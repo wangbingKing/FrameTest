@@ -12,6 +12,7 @@ public class MainBase {
 			try
 			{
 				Thread.sleep(50);
+				System.out.println("测试");
 			}
 			catch(Exception e)
 			{
