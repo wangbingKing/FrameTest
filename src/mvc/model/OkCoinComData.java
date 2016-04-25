@@ -10,7 +10,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
-public class OkCoinCnData extends ModelBase{
+public class OkCoinComData extends ModelBase{
 	public Vector<BaseList> verTickerSellData;
 	public Vector<BaseList> verTickerBuyData;
 	public BaseList tickerSellData[];//鐜拌揣鍗栨暟鎹�
@@ -27,7 +27,7 @@ public class OkCoinCnData extends ModelBase{
 		   return Integer.valueOf(v2.get(1)) - Integer.valueOf(v1.get(1));
 		  }
 		 };
-	public OkCoinCnData()
+	public OkCoinComData()
 	{
 		tickerSellData = new BaseList[5];
 		tickerBuyData = new BaseList[5];
