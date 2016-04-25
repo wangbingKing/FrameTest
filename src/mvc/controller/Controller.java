@@ -9,32 +9,32 @@ import base.BaseNode;
 
 public class Controller implements BaseNode{
 	/**
-	 * 数据集
+	 * 鏁版嵁闆�
 	 */
 	public ModelMain model;
 	/**
-	 * 工程结束
+	 * 宸ョ▼缁撴潫
 	 */
 	public Boolean isOver;
 	/**
-	 * view 主界面
+	 * view 涓荤晫闈�
 	 */
 	public ViewBase view;
-	public OkCoinCnController okCoinCnController; //ok中国
+	public OkCoinCnController okCoinCnController; //ok涓浗
 	public HuoBiController huobiController;
 	public Controller()
 	{
 		isOver = false;
 		model = new ModelMain();
-		view = new ViewBase("比特币交易机器人",this);
+		view = new ViewBase("姣旂壒甯佷氦鏄撴満鍣ㄤ汉",this);
 		
-		//添加ok中国控制器
+		//娣诲姞ok涓浗鎺у埗鍣�
 		okCoinCnController = new OkCoinCnController(this);
 		
 		huobiController = new HuoBiController(this);
 	}
 	/**
-	 * 从缓存中获取数据
+	 * 浠庣紦瀛樹腑鑾峰彇鏁版嵁
 	 */
 	public ModelBase getModelData(int pt)
 	{
@@ -44,7 +44,7 @@ public class Controller implements BaseNode{
 			return model.okcoinCnData;
 		case Config.OKCOINCOM:
 			return null;
-		case Config.BITVC:
+		case Config.BTBVC:
 			return null;
 		case Config.HUOBI:
 			return model.huoBIData;
@@ -53,7 +53,7 @@ public class Controller implements BaseNode{
 		}
 	}
 	/**
-	 * 整个工程结束是否
+	 * 鏁翠釜宸ョ▼缁撴潫鏄惁
 	 * @return
 	 */
 	public Boolean isOver()
@@ -61,12 +61,12 @@ public class Controller implements BaseNode{
 		return this.isOver;
 	}
 	/**
-	 * OkCoin中国数据刷新
+	 * OkCoin涓浗鏁版嵁鍒锋柊
 	 */
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		okCoinCnController.update();//更新OkCoin中国数据
+		okCoinCnController.update();//鏇存柊OkCoin涓浗鏁版嵁
 		huobiController.update();
 		view.update();
 	}

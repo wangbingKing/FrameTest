@@ -13,30 +13,106 @@ import com.alibaba.fastjson.JSONObject;
 public class OkCoinComData extends ModelBase{
 	public Vector<BaseList> verTickerSellData;
 	public Vector<BaseList> verTickerBuyData;
-	public BaseList tickerSellData[];//鐜拌揣鍗栨暟鎹�
-	public BaseList tickerBuyData[];//鐜拌揣涔版暟鎹�
-	 public static final Comparator<Vector<String>> VECTOR_COMPARATOR = new Comparator<Vector<String>>() {
-		  @Override
-		  public int compare(Vector<String> v1, Vector<String> v2) {
-		   if (v1 == null || v1.size() < 2) {
-		    return -1;
-		   }
-		   if (v2 == null || v2.size() < 2) {
-		    return 1;
-		   }
-		   return Integer.valueOf(v2.get(1)) - Integer.valueOf(v1.get(1));
-		  }
-		 };
+	public Vector<BaseList> verFurtureSellData;
+	public Vector<BaseList> verFurtureBuyData;
+	public BaseList tickerSellData[];//閻滄媽鎻ｉ崡鏍ㄦ殶閹癸拷
+	public BaseList tickerBuyData[];//閻滄媽鎻ｆ稊鐗堟殶閹癸拷
 	public OkCoinComData()
 	{
 		tickerSellData = new BaseList[5];
 		tickerBuyData = new BaseList[5];
 		verTickerSellData = new Vector<BaseList>();
 		verTickerBuyData = new Vector<BaseList>();
+		verFurtureSellData = new Vector<BaseList>();
+		verFurtureBuyData = new Vector<BaseList>();
+	}
+	public void setFutureData(String result)//保存期货数据
+	{
+		//{"asks":[[461.33,24],[461.31,12],[461.3,10],[461.23,3],[461.22,1]],"bids":[[461,3],[460.99,1],[460.68,53],[460.59,26],[460.54,59]]}
+		if(result.equals(null) || result.equals(""))
+		{
+			return;
+		}
+		JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
+		try{
+			int errorid = dataJson.getInteger("error_code");
+			if(errorid > 0)
+			{
+				return;//后期添加邮件提醒
+			}
+		}catch(Exception e)
+		{
+			
+		}
+		verFurtureSellData.clear();
+		verFurtureBuyData.clear();
+		JSONArray data=dataJson.getJSONArray("asks");
+		for(int i = 0;i < data.size();i++)
+		{
+			JSONArray arr = data.getJSONArray(i);
+			float num = arr.getFloatValue(1);
+			float value = arr.getFloatValue(0);
+			BaseList child = new BaseList(num,value);
+			verFurtureSellData.add(child);
+		}
+		data=dataJson.getJSONArray("bids");
+		for(int i = 0;i < data.size();i++)
+		{
+			JSONArray arr = data.getJSONArray(i);
+			float num = arr.getFloatValue(1);
+			float value = arr.getFloatValue(0);
+			BaseList child = new BaseList(num,value);
+			verFurtureBuyData.add(child);
+		}
+		
+		Collections.sort(verFurtureSellData,new Comparator<BaseList>() {
+
+            public int compare(BaseList left, BaseList right) {
+            	if(left.value > right.value)
+            	{
+            		return 1;
+            	}
+            	else
+            	{
+            		return 0;
+            	}
+            }
+        });
+		
+		Collections.sort(verFurtureBuyData,new Comparator<BaseList>() {
+
+            public int compare(BaseList left, BaseList right) {
+            	if(left.value > right.value)
+            	{
+            		return 1;
+            	}
+            	else
+            	{
+            		return 0;
+            	}
+            }
+        });
+		
 	}
 	public void setTickerData(String result)
 	{
-		JSONObject  dataJson = new JSONObject(JSON.parseObject(result));	
+		if(result.equals(null) || result.equals(""))
+		{
+			return;
+		}
+		JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
+		try{
+			int errorid = dataJson.getInteger("error_code");
+			if(errorid > 0)
+			{
+				return;//后期添加邮件提醒
+			}
+		}catch(Exception e)
+		{
+			
+		}
+		//{"error_code":20006,"result":false}
+		
 		/*
 		 * # Response
 {
@@ -114,7 +190,7 @@ public class OkCoinComData extends ModelBase{
 	{
 		return tickerBuyData;
 	}
-	public void sort()//鎺掑簭
+	public void sort()//閹烘帒绨�
 	{
 		for(int i = 0;i < tickerSellData.length;i++)
 		{
