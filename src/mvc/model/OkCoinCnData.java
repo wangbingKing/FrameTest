@@ -13,20 +13,8 @@ import com.alibaba.fastjson.JSONObject;
 public class OkCoinCnData extends ModelBase{
 	public Vector<BaseList> verTickerSellData;
 	public Vector<BaseList> verTickerBuyData;
-	public BaseList tickerSellData[];//鐜拌揣鍗栨暟鎹�
-	public BaseList tickerBuyData[];//鐜拌揣涔版暟鎹�
-	 public static final Comparator<Vector<String>> VECTOR_COMPARATOR = new Comparator<Vector<String>>() {
-		  @Override
-		  public int compare(Vector<String> v1, Vector<String> v2) {
-		   if (v1 == null || v1.size() < 2) {
-		    return -1;
-		   }
-		   if (v2 == null || v2.size() < 2) {
-		    return 1;
-		   }
-		   return Integer.valueOf(v2.get(1)) - Integer.valueOf(v1.get(1));
-		  }
-		 };
+	public BaseList tickerSellData[];//閻滄媽鎻ｉ崡鏍ㄦ殶閹癸拷
+	public BaseList tickerBuyData[];//閻滄媽鎻ｆ稊鐗堟殶閹癸拷
 	public OkCoinCnData()
 	{
 		tickerSellData = new BaseList[5];
@@ -36,85 +24,94 @@ public class OkCoinCnData extends ModelBase{
 	}
 	public void setTickerData(String result)
 	{
-		JSONObject  dataJson = new JSONObject(JSON.parseObject(result));	
-		/*
-		 * # Response
-{
- "asks": [
-  [792, 5],
-  [789.68, 0.018],
-  [788.99, 0.042],
-  [788.43, 0.036],
-  [787.27, 0.02]
- ],
- "bids": [
-  [787.1, 0.35],
-  [787, 12.071],
-  [786.5, 0.014],
-  [786.2, 0.38],
-  [786, 3.217],
-  [785.3, 5.322],
-  [785.04, 5.04]
- ]
-}
-*/		verTickerSellData.clear();
-		verTickerBuyData.clear();
-		JSONArray data=dataJson.getJSONArray("asks");
-		for(int i = 0;i < data.size();i++)
+		synchronized(this)
 		{
-			JSONArray arr = data.getJSONArray(i);
-			float num = arr.getFloatValue(1);
-			float value = arr.getFloatValue(0);
-			BaseList child = new BaseList(num,value);
-			verTickerSellData.add(child);
+			JSONObject  dataJson = new JSONObject(JSON.parseObject(result));	
+			/*
+			 * # Response
+	{
+	 "asks": [
+	  [792, 5],
+	  [789.68, 0.018],
+	  [788.99, 0.042],
+	  [788.43, 0.036],
+	  [787.27, 0.02]
+	 ],
+	 "bids": [
+	  [787.1, 0.35],
+	  [787, 12.071],
+	  [786.5, 0.014],
+	  [786.2, 0.38],
+	  [786, 3.217],
+	  [785.3, 5.322],
+	  [785.04, 5.04]
+	 ]
+	}
+	*/		verTickerSellData.clear();
+			verTickerBuyData.clear();
+			JSONArray data=dataJson.getJSONArray("asks");
+			for(int i = 0;i < data.size();i++)
+			{
+				JSONArray arr = data.getJSONArray(i);
+				float num = arr.getFloatValue(1);
+				float value = arr.getFloatValue(0);
+				BaseList child = new BaseList(num,value);
+				verTickerSellData.add(child);
+			}
+			data=dataJson.getJSONArray("bids");
+			for(int i = 0;i < data.size();i++)
+			{
+				JSONArray arr = data.getJSONArray(i);
+				float num = arr.getFloatValue(1);
+				float value = arr.getFloatValue(0);
+				BaseList child = new BaseList(num,value);
+				verTickerBuyData.add(child);
+			}
+			
+			Collections.sort(verTickerSellData,new Comparator<BaseList>() {
+	
+	            public int compare(BaseList left, BaseList right) {
+	            	if(left.value > right.value)
+	            	{
+	            		return 1;
+	            	}
+	            	else
+	            	{
+	            		return 0;
+	            	}
+	            }
+	        });
+			
+			Collections.sort(verTickerBuyData,new Comparator<BaseList>() {
+	
+	            public int compare(BaseList left, BaseList right) {
+	            	if(left.value > right.value)
+	            	{
+	            		return 1;
+	            	}
+	            	else
+	            	{
+	            		return 0;
+	            	}
+	            }
+	        });
 		}
-		data=dataJson.getJSONArray("bids");
-		for(int i = 0;i < data.size();i++)
-		{
-			JSONArray arr = data.getJSONArray(i);
-			float num = arr.getFloatValue(1);
-			float value = arr.getFloatValue(0);
-			BaseList child = new BaseList(num,value);
-			verTickerBuyData.add(child);
-		}
-		
-		Collections.sort(verTickerSellData,new Comparator<BaseList>() {
-
-            public int compare(BaseList left, BaseList right) {
-            	if(left.value > right.value)
-            	{
-            		return 1;
-            	}
-            	else
-            	{
-            		return 0;
-            	}
-            }
-        });
-		
-		Collections.sort(verTickerBuyData,new Comparator<BaseList>() {
-
-            public int compare(BaseList left, BaseList right) {
-            	if(left.value > right.value)
-            	{
-            		return 1;
-            	}
-            	else
-            	{
-            		return 0;
-            	}
-            }
-        });
 	}
 	public BaseList[] getTickerSellData()
 	{
-		return tickerSellData;
+		synchronized(this)
+		{
+			return tickerSellData;
+		}
 	}
 	public BaseList[] getTickerBuyData()
 	{
-		return tickerBuyData;
+		synchronized(this)
+		{
+			return tickerBuyData;
+		}
 	}
-	public void sort()//鎺掑簭
+	public void sort()//閹烘帒绨�
 	{
 		for(int i = 0;i < tickerSellData.length;i++)
 		{
