@@ -22,6 +22,7 @@ public class Controller implements BaseNode{
 	public ViewBase view;
 	public OkCoinCnController okCoinCnController; //ok涓浗
 	public HuoBiController huobiController;
+	public ProcessInterface process[];
 	public Controller()
 	{
 		isOver = false;
