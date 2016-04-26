@@ -1,13 +1,13 @@
 package machine;
 
-import mvc.controller.ProcessControllerAI;
+import mvc.controller.ProcessInterface;
 /**
- * 有限状态机
+ * 鏈夐檺鐘舵�佹満
  * @author bj
  *
  */
-public interface MachineInterface{//有限状态机
+public interface MachineInterface{//鏈夐檺鐘舵�佹満
 	void updata();
 	void changeMachine(MachineInterface machine);
-	void setController(ProcessControllerAI controller);
+	void setController(ProcessInterface controller);
 }

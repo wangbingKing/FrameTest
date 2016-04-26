@@ -3,6 +3,9 @@ package machine;
 import base.UserConBase;
 import mvc.controller.ProcessControllerAI;
 /**
+ * 用于初始化状态机
+ * 状态机下一状态是监听数据状态
+ * 当前切换到下一状态
  * @author Dolomo
  *
  */

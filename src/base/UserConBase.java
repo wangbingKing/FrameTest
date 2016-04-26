@@ -3,46 +3,51 @@ package base;
 public class UserConBase {
 
 	/**
-	 * Æ½Ì¨
+	 * å¹³å°
 	 */
 	public int platLeft = -1;
 	/**
-	 * ÏÖ»õ ÆÚ»õ
+	 * ç°è´§ æœŸè´§
 	 */
 	public int TypeMTLeft = -1;
 	
 	/**
-	 * µ±ÖÜ ÏÂÖÜ ÏÂÔÂ
+	 * å½“å‘¨ ä¸‹å‘¨ ä¸‹æœˆ
 	 */
 	public int furtureLeft = -1;
 	
 	/**
-	 * ÂòÂô¼Û
+	 * ä¹°å–ä»·
 	 */
 	public int BSStateLeft = -1;
 	/**
-	 * ´óÓÚ µÈÓÚ Ğ¡ÓÚ
+	 * å¤§äº ç­‰äº å°äº
 	 */
 	public int ComPareState = -1;
 	/**
-	 * µ±ÖÜ ÏÂÖÜ ÏÂÔÂ
+	 * å½“å‘¨ ä¸‹å‘¨ ä¸‹æœˆ
 	 */
 	public int furtureRight = -1;
 	/**
-	 * ÏÖ»õ ÆÚ»õ
+	 * ç°è´§ æœŸè´§
 	 */
 	public int TypeMTRight = -1;
 	/**
-	 * Æ½Ì¨
+	 * å¹³å°
 	 */
 	public int platRight = -1;
 	/**
-	 * ÂòÂô¼Û
+	 * ä¹°å–ä»·
 	 */
 	public int BSStateRight = -1;
 
 	/**
-	 * ½»Ò××´Ì¬
+	 * äº¤æ˜“çŠ¶æ€
 	 */
 	public int tradeState = -1;
+	/**
+	 * U_id
+	 * å”¯ä¸€id
+	 */
+	public long U_id = -1;
 }
