@@ -1,10 +1,10 @@
 package config;
 public class Config {
-	public static final int OKCOINCN = 1;  	//okä¸­å›½
-	public static final int OKCOINCOM = 2; 	//okå›½é™…
-	public static final int HUOBI = 3; 		//ç«å¸
+	public static final int OKCOINCN = 1;  	//okæ¶“î…æµ—
+	public static final int OKCOINCOM = 2; 	//oké¥ä»‹æª¯
+	public static final int HUOBI = 3; 		//éî‚¢ç«µ
 	public static final int BTBVC = 4; 		//btbvc	
-	public static final int BTCC  = 5; 		//±ÈÌØ±ÒÖĞ¹ú
+	public static final int BTCC  = 5; 		//æ¯”ç‰¹å¸ä¸­å›½
 	
 	public static enum stateAction
 	{
@@ -14,17 +14,17 @@ public class Config {
 		
 	}
 	public static final String[][]BTCPLAT = {
-		{"OKCoinÖĞ¹ú","ÏÖ»õ",""},
-		{"OKCoin¹ú¼Ê","ÏÖ»õ","ÆÚ»õ"},
-		{"»ğ±ÒÍø","ÏÖ»õ",""},
-		{"btcVc","","ÆÚ»õ"},
-		{"±ÈÌØ±ÒÖĞ¹ú","ÏÖ»õ","ÆÚ»õ"}
+		{"OKCoinä¸­å›½","ç°è´§",""},
+		{"OKCoinå›½é™…","ç°è´§","æœŸè´§"},
+		{"ç«å¸ç½‘","ç°è´§",""},
+		{"btcVc","","æœŸè´§"},
+		{"æ¯”ç‰¹å¸ä¸­å›½","ç°è´§","æœŸè´§"}
 	}; 
 	public static final int MODERN_ID = 0;
 	public static final int FURTURE_ID = 1;
 	public static String getStringMF(int mf)
 	{
-		String t[] = {"ÏÖ»õ","ÆÚ»õ"};
+		String t[] = {"ç°è´§","æœŸè´§"};
 		return t[mf];
 	}
 
@@ -32,7 +32,7 @@ public class Config {
 	public static final int SELL_ID = 1;
 	public static String getStringBS(int mf)
 	{
-		String t[] = {"Âò¼Û","Âô¼Û"};
+		String t[] = {"ä¹°ä»·","å–ä»·"};
 		return t[mf];
 	}
 	public static String getNameByPlat(int pt)
@@ -44,15 +44,15 @@ public class Config {
 	public static final int NEXT_MONTH_FURTURE = 2;
 	public static String getStringFurture(int t)
 	{
-		String s[] = {"µ±ÖÜ","ÏÂÖÜ","ÏÂÔÂ"};
+		String s[] = {"å½“å‘¨","ä¸‹å‘¨","ä¸‹æœˆ"};
 		return s[t];
 	}
 	public static enum TRADESTATE
 	{
-		CHECKDATA_TRADESTATE,//¼ì²é¼ì²âÊı¾İÊÇ·ñ´ïµ½ÒªÇó
-		BUYSELL_TRADESTATE,//Âú×ãÒªÇó½øĞĞ½»Ò×£¨ÏÂµ¥£©
+		CHECKDATA_TRADESTATE,//æ£€æŸ¥æ£€æµ‹æ•°æ®æ˜¯å¦è¾¾åˆ°è¦æ±‚
+		BUYSELL_TRADESTATE,//æ»¡è¶³è¦æ±‚è¿›è¡Œäº¤æ˜“ï¼ˆä¸‹å•ï¼‰
 		
-		BUYSELLSUCCESS_TRADESTATE//Á½·½½»Ò×Ë³Àû£¬¶¼Íê³É½»Ò×
+		BUYSELLSUCCESS_TRADESTATE//ä¸¤æ–¹äº¤æ˜“é¡ºåˆ©ï¼Œéƒ½å®Œæˆäº¤æ˜“
 		
 	}
 }

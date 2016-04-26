@@ -1,29 +1,21 @@
 package machine;
 
+import base.UserConBase;
 import mvc.controller.ProcessControllerAI;
-
-public class InitMachine implements MachineInterface{
-	
-	public InitMachine()
+/**
+ * @author Dolomo
+ *
+ */
+public class InitMachine extends BaseMachine{
+	public InitMachine(UserConBase userCheckData)
 	{
-		
+		super(userCheckData);
 	}
 	@Override
 	public void updata() {
 		// TODO Auto-generated method stub
+		super.updata();
+		
 		
 	}
-
-	@Override
-	public void changeMachine(MachineInterface machine) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setController(ProcessControllerAI controller) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
