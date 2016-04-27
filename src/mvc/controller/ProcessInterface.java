@@ -1,12 +1,14 @@
 package mvc.controller;
 
 import machine.MachineInterface;
+import mvc.model.ModelBase;
 
 public interface ProcessInterface {
 	void updata();
 	/**
-	 * ÉèÖÃcon
+	 * ï¿½ï¿½ï¿½ï¿½con
 	 * @param machine
 	 */
 	public void setControllerMachine(MachineInterface machine);
+	public ModelBase getModelData(int pt);
 }

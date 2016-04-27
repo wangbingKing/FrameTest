@@ -7,9 +7,10 @@ import mvc.controller.ProcessInterface;
 public class BaseMachine implements MachineInterface{
 	UserConBase userCheckData;
 	ProcessInterface controller;
-	public BaseMachine(UserConBase userCheckData)
+	public BaseMachine(ProcessInterface controller,UserConBase userCheckData)
 	{
 		this.userCheckData = userCheckData;
+		this.controller = controller;
 	}
 	@Override
 	public void updata() {

@@ -70,7 +70,7 @@ public class Controller implements BaseNode{
 			data.U_id = t2;
 		}
 		userData.addControlData(data);
-		ProcessControllerAI proc = new ProcessControllerAI(data.U_id,data);
+		ProcessControllerAI proc = new ProcessControllerAI(data.U_id,data,this);
 		processAI.add(proc);
 		
 	}
