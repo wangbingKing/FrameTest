@@ -16,12 +16,8 @@ public class OkCoinComData extends ModelBase{
 	public Vector<BaseList> verTickerBuyData;
 	public Vector<BaseList> verFurtureSellData;
 	public Vector<BaseList> verFurtureBuyData;
-	public BaseList tickerSellData[];//閻滄媽鎻ｉ崡鏍ㄦ殶閹癸拷
-	public BaseList tickerBuyData[];//閻滄媽鎻ｆ稊鐗堟殶閹癸拷
 	public OkCoinComData()
 	{
-		tickerSellData = new BaseList[5];
-		tickerBuyData = new BaseList[5];
 		verTickerSellData = new Vector<BaseList>();
 		verTickerBuyData = new Vector<BaseList>();
 		verFurtureSellData = new Vector<BaseList>();
@@ -32,7 +28,7 @@ public class OkCoinComData extends ModelBase{
 		synchronized(this)
 		{
 			//{"asks":[[461.33,24],[461.31,12],[461.3,10],[461.23,3],[461.22,1]],"bids":[[461,3],[460.99,1],[460.68,53],[460.59,26],[460.54,59]]}
-			if(result.equals(null) || result.equals(""))
+			if(result == null || result.equals(""))
 			{
 				return;
 			}
@@ -70,6 +66,7 @@ public class OkCoinComData extends ModelBase{
 			
 			Collections.sort(verFurtureSellData,new Comparator<BaseList>() {
 
+                    @Override
 	            public int compare(BaseList left, BaseList right) {
 	            	if(left.value > right.value)
 	            	{
@@ -84,6 +81,7 @@ public class OkCoinComData extends ModelBase{
 			
 			Collections.sort(verFurtureBuyData,new Comparator<BaseList>() {
 
+                    @Override
 	            public int compare(BaseList left, BaseList right) {
 	            	if(left.value > right.value)
 	            	{
@@ -99,11 +97,12 @@ public class OkCoinComData extends ModelBase{
 		
 		
 	}
+        //保存现货
 	public void setTickerData(String result)
 	{
 		synchronized(this)
 		{
-			if(result.equals(null) || result.equals(""))
+			if(result == null || result.equals(""))
 			{
 				return;
 			}
@@ -163,6 +162,7 @@ public class OkCoinComData extends ModelBase{
 			
 			Collections.sort(verTickerSellData,new Comparator<BaseList>() {
 	
+                    @Override
 	            public int compare(BaseList left, BaseList right) {
 	            	if(left.value > right.value)
 	            	{
@@ -177,6 +177,7 @@ public class OkCoinComData extends ModelBase{
 			
 			Collections.sort(verTickerBuyData,new Comparator<BaseList>() {
 	
+                    @Override
 	            public int compare(BaseList left, BaseList right) {
 	            	if(left.value > right.value)
 	            	{
@@ -190,60 +191,7 @@ public class OkCoinComData extends ModelBase{
 	        });
 		}
 	}
-	public BaseList[] getTickerSellData()
-	{
-		synchronized(this)
-		{
-			return tickerSellData;
-		}
-	}
-
-	public BaseList[] getTickerBuyData()
-	{
-		synchronized(this)
-		{
-			return tickerBuyData;
-		}
-	}
-	public void sort()//閹烘帒绨�
-	{
-		for(int i = 0;i < tickerSellData.length;i++)
-		{
-			for(int j = i;j < tickerSellData.length;j++)
-			{
-				if(tickerSellData[j].value < tickerSellData[i].value)
-				{
-					float value;
-					value = tickerSellData[j].value;
-					tickerSellData[j].value = tickerSellData[i].value;
-					tickerSellData[i].value = value;
-					
-					value = tickerSellData[j].num;
-					tickerSellData[j].num = tickerSellData[i].num;
-					tickerSellData[i].num = value;
-					
-				}
-			}
-		}
-		for(int i = 0;i < tickerBuyData.length;i++)
-		{
-			for(int j = i;j < tickerBuyData.length;j++)
-			{
-				if(tickerBuyData[j].value < tickerBuyData[i].value)
-				{
-					float value;
-					value = tickerBuyData[j].value;
-					tickerBuyData[j].value = tickerBuyData[i].value;
-					tickerBuyData[i].value = value;
-					
-					value = tickerBuyData[j].num;
-					tickerBuyData[j].num = tickerBuyData[i].num;
-					tickerBuyData[i].num = value;
-					
-				}
-			}
-		}
-	}
+	
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub

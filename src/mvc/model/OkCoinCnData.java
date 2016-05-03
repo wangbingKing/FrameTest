@@ -26,6 +26,10 @@ public class OkCoinCnData extends ModelBase{
 	{
 		synchronized(this)
 		{
+                    if(result == null || result.equals(""))
+			{
+				return;
+			}
 			JSONObject  dataJson = new JSONObject(JSON.parseObject(result));	
 			/*
 			 * # Response
@@ -70,6 +74,7 @@ public class OkCoinCnData extends ModelBase{
 			
 			Collections.sort(verTickerSellData,new Comparator<BaseList>() {
 	
+                    @Override
 	            public int compare(BaseList left, BaseList right) {
 	            	if(left.value > right.value)
 	            	{
@@ -84,6 +89,7 @@ public class OkCoinCnData extends ModelBase{
 			
 			Collections.sort(verTickerBuyData,new Comparator<BaseList>() {
 	
+                    @Override
 	            public int compare(BaseList left, BaseList right) {
 	            	if(left.value > right.value)
 	            	{

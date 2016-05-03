@@ -19,13 +19,21 @@ import mvc.model.OkCoinComData;
  * @author dabing
  *
  */
-public class CheckMachine extends BaseMachine{
+public class TradeMachine extends BaseMachine{
         Vector<BaseList> buyListLift;
         Vector<BaseList> sellListLift;
         Vector<BaseList> buyListRight;
         Vector<BaseList> sellListRight;
-        
-	public CheckMachine(ProcessInterface controller,UserConBase userCheckData)
+        public static enum TRADESTATE
+        {
+            STATE_BEGIN,//开始交易
+            STATE_SENDREQUESE,
+            STATE_TRADEINT,
+            STATE_CHECKRESULT,
+            
+            
+        }
+	public TradeMachine(ProcessInterface controller,UserConBase userCheckData)
 	{
 		super(controller,userCheckData);
                 buyListLift = new Vector<BaseList>();
@@ -45,13 +53,7 @@ public class CheckMachine extends BaseMachine{
                 ModelBase dataRight = this.controller.getModelData(this.userCheckData.platRight);
                 setDataToLeft(this.userCheckData.platLeft,dataLeft);
                 setDataToRight(this.userCheckData.platRight,dataRight);
-                if(Math.abs(Math.abs(this.userCheckData.BSMoneyLeft) - Math.abs(this.userCheckData.BSMoneyRight))>Math.abs(this.userCheckData.money))
-                {
-                    //满足条件  切换到交易状态
-                    TradeMachine machine = new TradeMachine(this.controller,this.userCheckData);
-                    this.changeMachine(machine);//切换到监听数据状态
-                    machine.updata();
-                }
+                
                 
                 
 	}
