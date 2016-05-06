@@ -50,6 +50,19 @@ public class Controller implements BaseNode{
 	{
 		userData = new UserConfigData();
 		processAI = new Vector<ProcessControllerAI>();
+                UserConBase data = new UserConBase();
+                data.BSStateLeft = Config.BUY_ID;
+                data.BSStateRight = Config.SELL_ID;
+                
+                data.TypeMTLeft = Config.SELL_ID;
+                data.TypeMTRight = Config.BUY_ID;
+                
+                data.platLeft = Config.OKCOINCN;
+                data.platRight = Config.OKCOINCN;
+                
+//                data.ComPareState = Config.
+                
+                this.addProcess(data);
 		
 	}
 	/**

@@ -5,7 +5,7 @@ import config.Config;
 public class ModelMain extends ModelBase{
 	public OkCoinCnData okcoinCnData;//Ok涓浗鏁版嵁缂撳瓨
 	public HuoBIData huoBIData;//鐏竵鐜拌揣鏁版嵁
-	public OkCoinComData okCoinComData;//ok国际现货
+	public OkCoinComData okCoinComData;//ok鍥介檯
 	public ModelMain()
 	{
 		okcoinCnData = new OkCoinCnData();

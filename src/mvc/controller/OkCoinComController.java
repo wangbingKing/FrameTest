@@ -9,7 +9,7 @@ import base.BaseNode;
 public class OkCoinComController implements BaseNode{
 	public Controller mainController;
 	int index = 0;//限制请求次数
-	stateAction state = Config.stateAction.INIT_STATE;//控制状�??
+	stateAction state = Config.stateAction.INIT_STATE;//控制状
 	public OkCoinComController(Controller con)
 	{
 		mainController = con;
@@ -34,12 +34,12 @@ public class OkCoinComController implements BaseNode{
 	{
 		//https://www.okcoin.cn/api/v1/depth.do?symbol=btc_cny
 		// TODO Auto-generated method stub
-		if(index == -1) //网络连接�?
+		if(index == -1) //网络连接
 		{
 			return;
 		}
 		index ++;
-		if(index > 4) //计数�?
+		if(index > 4) //计数
 		{
 			state = Config.stateAction.NETING_STATE;
 			index = -1;

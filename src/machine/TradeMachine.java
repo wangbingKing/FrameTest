@@ -41,6 +41,21 @@ public class TradeMachine extends BaseMachine{
                 buyListRight = new Vector<BaseList>();
                 sellListRight = new Vector<BaseList>();
 	}
+        public void setTradeData(   Vector<BaseList> buyListLift,
+                                    Vector<BaseList> sellListLift,
+                                    Vector<BaseList> buyListRight,
+                                    Vector<BaseList> sellListRight)
+        {
+            this.buyListLift = buyListLift;
+            this.sellListLift = sellListLift;
+            this.buyListRight = buyListRight;
+            this.sellListRight = sellListRight;
+        }
+        public void tarde()
+        {
+            
+        }
+        
 	@Override
 	public void updata() {
 		// TODO Auto-generated method stub

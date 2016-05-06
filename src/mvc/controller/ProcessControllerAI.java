@@ -13,7 +13,7 @@ public class ProcessControllerAI implements ProcessInterface {
 	public long U_id = -1;
 	public ProcessControllerAI(long U_id,UserConBase userCheckData,Controller mainControl)
 	{
-		this.U_id = -1;
+		this.U_id = U_id;
 		this.mainControl = mainControl;
 		MachineInterface machine = new InitMachine(this,userCheckData);
 		this.setControllerMachine(machine);
