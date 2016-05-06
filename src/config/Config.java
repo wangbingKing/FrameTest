@@ -110,13 +110,18 @@ public class Config {
 		return s[t];
 	}
         /**
-         * 交易状态
+         * 单子交易状态
          */
 	public static enum TRADESTATE
 	{
-		CHECKDATA_TRADESTATE,//检查检测数据是否达到要求
-		BUYSELL_TRADESTATE,//满足要求进行交易（下单）
-		
+		/**
+		 * 挂单中
+		 */
+		TRADING_TRADESTATE,
+		OVER_TRADESTATE,//满足要求进行交易（下单）
+		/**
+		 * 单子交易完成
+		 */
 		BUYSELLSUCCESS_TRADESTATE//两方交易顺利，都完成交易
 		
 	}

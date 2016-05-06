@@ -8,7 +8,14 @@ package tools;
 import base.BaseList;
 import base.UserConBase;
 import config.Config;
+
+import java.util.Arrays;
 import java.util.Vector;
+
+import mvc.model.HuoBIData;
+import mvc.model.ModelBase;
+import mvc.model.OkCoinCnData;
+import mvc.model.OkCoinComData;
 
 /**
  *
@@ -24,7 +31,7 @@ public class Tools {
      * @param userCheckData
      * @return 
      */
-    public static int getResidual(Vector<BaseList> buyListLift,Vector<BaseList> sellListLift,Vector<BaseList> buyListRight,Vector<BaseList> sellListRight,UserConBase userCheckData)
+    public static float getResidual(Vector<BaseList> buyListLift,Vector<BaseList> sellListLift,Vector<BaseList> buyListRight,Vector<BaseList> sellListRight,UserConBase userCheckData)
     {
         Vector<BaseList> lift;
         Vector<BaseList> right;
@@ -38,8 +45,8 @@ public class Tools {
         int lmax = 0;
         int rmax = 0;
 
-        int numL = 0;
-        int numR = 0;
+        float numL = 0;
+        float numR = 0;
         if(userCheckData.BSStateLeft == Config.BUY_ID)//买最高的
         {
             lift = buyListLift;
@@ -129,8 +136,88 @@ public class Tools {
                 break;
             }
         }
-        int result =   numL > numR ? numR : numL;
+        float result =   numL > numR ? numR : numL;
         return result;
+    }
+    /**
+     * 处理从model中获得的数据 解析保存到列表中
+     * @param buyList 保存买数据
+     * @param sellList 保存卖数据
+     * @param pt 平台标志id
+     * @param data 获得的数据
+     * @param userCheckData  个人设置的检测数据
+     */
+    public static void setDataTo( Vector<BaseList> buyList,Vector<BaseList> sellList,int pt,ModelBase data,UserConBase userCheckData)
+    {
+        switch(pt)
+         {
+             case Config.BTBVC:
+
+                 break;
+             case Config.BTCC:
+                 break;
+             case Config.HUOBI:
+             	 if(userCheckData.TypeMTLeft == Config.MODERN_ID)
+                  {
+						HuoBIData huoBiData = (HuoBIData)data;  //只有现货
+						sellList.addAll(Arrays.asList(huoBiData.tickerSellData));
+						buyList.addAll(Arrays.asList(huoBiData.tickerBuyData));
+						break;
+                  }
+             	 else if (userCheckData.TypeMTLeft == Config.FURTURE_ID)
+             	 {
+             		 System.out.println("火币没有期货,出错!!!");
+             	 }
+             case Config.OKCOINCN:
+                 OkCoinCnData okdata = (OkCoinCnData)data;
+                 //for(int i = 0;i < okdata)
+                 if(userCheckData.TypeMTLeft == Config.MODERN_ID)
+                 {
+                     //现货
+                     for(int i = 0;i < okdata.verTickerBuyData.size();i++)
+                     {
+                         buyList.add(okdata.verTickerBuyData.get(i));
+                     }
+                     for(int i = 0;i < okdata.verTickerSellData.size();i ++ )
+                     {
+                         sellList.add(okdata.verTickerSellData.get(i));
+                     }
+                 }
+                 else if (userCheckData.TypeMTLeft == Config.FURTURE_ID)
+                 {
+                     //期货
+                     System.out.println("OK中国没有期货,出错!!!");
+                 }
+                 break;
+             case Config.OKCOINCOM:
+                 OkCoinComData okdataCM = (OkCoinComData)data;
+                 //for(int i = 0;i < okdata)
+                 if(userCheckData.TypeMTLeft == Config.MODERN_ID)
+                 {
+                     //现货
+                     for(int i = 0;i < okdataCM.verTickerBuyData.size();i++)
+                     {
+                         buyList.add(okdataCM.verTickerBuyData.get(i));
+                     }
+                     for(int i = 0;i < okdataCM.verTickerSellData.size();i ++ )
+                     {
+                         sellList.add(okdataCM.verTickerSellData.get(i));
+                     }
+                 }
+                 else if (userCheckData.TypeMTLeft == Config.FURTURE_ID)
+                 {
+                     //期货
+                     for(int i = 0;i < okdataCM.verFurtureBuyData.size();i++)
+                     {
+                         buyList.add(okdataCM.verFurtureBuyData.get(i));
+                     }
+                     for(int i = 0;i < okdataCM.verFurtureSellData.size();i ++ )
+                     {
+                         sellList.add(okdataCM.verFurtureSellData.get(i));
+                     }
+                 }
+                 break;
+         } 
     }
     
 }
