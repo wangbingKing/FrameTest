@@ -88,16 +88,16 @@ public class Tools {
             {
                 if(istrue == 0)
                 {
-                    lmax += dataL.num;
-                    rmax += dataR.num;
+                	numL += dataL.num;
+                	numR += dataR.num;
                 }
                 else if(istrue >0 && !liftIsMax)
                 {
-                    lmax += dataL.num;
+                	numL += dataL.num;
                 }
                 else if(istrue < 0 && !rightIsMax)
                 {
-                    rmax += dataR.num;
+                	numR += dataR.num;
                 }
             }
             if(istrue >= 0)
@@ -129,7 +129,7 @@ public class Tools {
                 break;
             }
         }
-        int result =   lmax > rmax ? rmax : lmax;
+        int result =   numL > numR ? numR : numL;
         return result;
     }
     
