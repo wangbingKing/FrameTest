@@ -118,11 +118,12 @@ public class Config {
 		 * 挂单中
 		 */
 		TRADING_TRADESTATE,
+		
 		OVER_TRADESTATE,//满足要求进行交易（下单）
 		/**
 		 * 单子交易完成
 		 */
-		BUYSELLSUCCESS_TRADESTATE//两方交易顺利，都完成交易
+		BUYSELLSUCCESS_TRADESTATE
 		
 	}
 }
