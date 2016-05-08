@@ -11,7 +11,7 @@ import mvc.controller.ProcessInterface;
  *
  */
 public class InitMachine extends BaseMachine{
-	public InitMachine(ProcessInterface controller,UserConBase userCheckData)
+	public InitMachine(ProcessControllerAI controller,UserConBase userCheckData)
 	{
 		super(controller,userCheckData);
 	}

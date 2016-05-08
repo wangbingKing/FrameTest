@@ -1,18 +1,31 @@
 package mvc.controller;
 
+import tools.Tools;
 import com.okcoin.rest.HttpUtilManager;
-
 import config.Config;
 import config.Config.stateAction;
+import base.BaseConfig;
 import base.BaseNode;
 
 public class OkCoinComController implements BaseNode{
 	public Controller mainController;
 	int index = 0;//限制请求次数
 	stateAction state = Config.stateAction.INIT_STATE;//控制状
+	/**
+	 * 存用户的key
+	 */
+	BaseConfig userKey;
 	public OkCoinComController(Controller con)
 	{
 		mainController = con;
+		userKey = Tools.getUserAccount(Config.OKCOINCOM);
+	}
+	/**
+	 * 获得用户key
+	 */
+	public BaseConfig getUserKey()
+	{
+		return this.userKey;
 	}
 	@Override
 	public void update() {

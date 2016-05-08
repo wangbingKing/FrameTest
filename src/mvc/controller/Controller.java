@@ -7,6 +7,7 @@ import mvc.model.ModelBase;
 import mvc.model.ModelMain;
 import mvc.model.UserConfigData;
 import mvc.view.ViewBase;
+import base.BaseConfig;
 import base.BaseNode;
 import base.UserConBase;
 
@@ -43,6 +44,22 @@ public class Controller implements BaseNode{
 		this.initProcess();
 		
 	}
+	public BaseConfig getUserConfig(int pt)
+	{
+		switch(pt)
+		{
+		case Config.OKCOINCN:
+			return okCoinCnController.getUserKey();
+		case Config.OKCOINCOM:
+			return null;
+		case Config.BTBVC:
+			return null;
+		case Config.HUOBI:
+			return huobiController.getUserKey();
+		default:
+			return null;
+		}
+	}
 	/**
 	 * 初始化状态机
 	 */
@@ -50,19 +67,19 @@ public class Controller implements BaseNode{
 	{
 		userData = new UserConfigData();
 		processAI = new Vector<ProcessControllerAI>();
-                UserConBase data = new UserConBase();
-                data.BSStateLeft = Config.BUY_ID;
-                data.BSStateRight = Config.SELL_ID;
-                
-                data.TypeMTLeft = Config.SELL_ID;
-                data.TypeMTRight = Config.BUY_ID;
-                
-                data.platLeft = Config.OKCOINCN;
-                data.platRight = Config.OKCOINCN;
-                
-//                data.ComPareState = Config.
-                
-                this.addProcess(data);
+        UserConBase data = new UserConBase();
+        data.BSStateLeft = Config.BUY_ID;
+        data.BSStateRight = Config.SELL_ID;
+        
+        data.TypeMTLeft = Config.SELL_ID;
+        data.TypeMTRight = Config.BUY_ID;
+        
+        data.platLeft = Config.OKCOINCN;
+        data.platRight = Config.OKCOINCN;
+        
+//      data.ComPareState = Config.
+        
+        this.addProcess(data);
 		
 	}
 	/**

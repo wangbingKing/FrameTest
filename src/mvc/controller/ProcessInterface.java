@@ -9,6 +9,5 @@ public interface ProcessInterface {
 	 * ����con
 	 * @param machine
 	 */
-	public void setControllerMachine(MachineInterface machine);
 	public ModelBase getModelData(int pt);
 }

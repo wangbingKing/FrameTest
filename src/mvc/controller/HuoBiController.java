@@ -1,18 +1,33 @@
 package mvc.controller;
 
+import tools.Tools;
+
 import com.okcoin.rest.HttpUtilManager;
 
 import config.Config;
 import config.Config.stateAction;
+import base.BaseConfig;
 import base.BaseNode;
 
 public class HuoBiController implements BaseNode{
 	public Controller mainController;
+	/**
+	 * 存用户的key
+	 */
+	BaseConfig userKey;
 	int index = 0;//限制请求次数
 	stateAction state = Config.stateAction.INIT_STATE;//控制状态
 	public HuoBiController(Controller con)
 	{
 		mainController = con;
+		userKey = Tools.getUserAccount(Config.HUOBI);
+	}
+	/**
+	 * 获得用户key
+	 */
+	public BaseConfig getUserKey()
+	{
+		return this.userKey;
 	}
 	@Override
 	public void update() {

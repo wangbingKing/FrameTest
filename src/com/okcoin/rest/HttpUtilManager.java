@@ -60,18 +60,18 @@ public class HttpUtilManager {
 	}
 
     public static void IdleConnectionMonitor(){
-		
-		if(System.currentTimeMillis()-startTime>30000){
+		//设置延迟为5s
+		if(System.currentTimeMillis()-startTime>5000){
 			 startTime = System.currentTimeMillis();
 			 cm.closeExpiredConnections();  
-             cm.closeIdleConnections(30, TimeUnit.SECONDS);
+             cm.closeIdleConnections(5, TimeUnit.SECONDS);
 		}
 	}
 	 
 	private static RequestConfig requestConfig = RequestConfig.custom()
-	        .setSocketTimeout(20000)
-	        .setConnectTimeout(20000)
-	        .setConnectionRequestTimeout(20000)
+	        .setSocketTimeout(5000)
+	        .setConnectTimeout(5000)
+	        .setConnectionRequestTimeout(5000)
 	        .build();
 	
 	

@@ -115,15 +115,28 @@ public class Config {
 	public static enum TRADESTATE
 	{
 		/**
-		 * 挂单中
+		 * 空状态
+		 */
+		NULL_TRADESTATE,
+		/**
+		 * 挂单中(交易中)
 		 */
 		TRADING_TRADESTATE,
-		
-		OVER_TRADESTATE,//满足要求进行交易（下单）
+		/**
+		 * 撤单中
+		 */
+		REPEAL_TRADESTATE,
+		/**
+		 * 撤单完成
+		 */
+		REPEALOVER_TRADESTATE,
 		/**
 		 * 单子交易完成
 		 */
-		BUYSELLSUCCESS_TRADESTATE
-		
+		BUYSELLSUCCESS_TRADESTATE,
+		/**
+		 * 撤销失败的订单
+		 */
+		REPEALERROR_TRADESTATE
 	}
 }

@@ -5,12 +5,19 @@
  */
 package tools;
 
+import base.BaseConfig;
 import base.BaseList;
 import base.UserConBase;
 import config.Config;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.Arrays;
 import java.util.Vector;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 import mvc.model.HuoBIData;
 import mvc.model.ModelBase;
@@ -22,6 +29,57 @@ import mvc.model.OkCoinComData;
  * @author wuxianshikong
  */
 public class Tools {
+	
+	 public static String FileInputStreamDemo(String path){
+		 try{
+			 File file=new File(path);
+	         if(!file.exists()||file.isDirectory())
+	         {
+	        	 return "";
+	         }
+	         FileInputStream fis=new FileInputStream(file);
+	         byte[] buf = new byte[1024];
+	         StringBuffer sb=new StringBuffer();
+	         while((fis.read(buf))!=-1){
+	             sb.append(new String(buf));
+	             buf=new byte[1024];//重新生成，避免和上次读取的数据重复
+	         }
+	         return sb.toString();
+		 }catch(Exception e)
+		 {
+			 return ""; 
+		 }
+     }
+	
+	public static String getConfigFile()
+	{
+		File directory = new File("");//参数为空 
+		try{
+			String courseFile = directory.getCanonicalPath(); 
+			return Tools.FileInputStreamDemo(courseFile+"\\config.cof");
+		}catch(Exception e)
+		{
+			System.out.println("配置文件打开失败");
+			return "";
+		}
+	}
+	public static BaseConfig getUserAccount(int pt)
+	{
+		BaseConfig conObj = new BaseConfig();
+		String configStr = Tools.getConfigFile();
+		if(configStr == "" || configStr.equals(null) )
+		{
+			return null;
+		}
+		configStr = configStr.trim();
+		JSONObject  dataJson = new JSONObject(JSON.parseObject(configStr));	
+		JSONArray data=dataJson.getJSONArray("data");
+		JSONObject datapt = data.getJSONObject(pt);
+		conObj.ptName = datapt.getString("ptName");
+		conObj.api_key = datapt.getString("api_key");
+		conObj.secret_key = datapt.getString("secret_key");
+		return conObj;
+	}
     /**
      * 获得比较有差值的数量
      * @param buyListLift
@@ -47,6 +105,9 @@ public class Tools {
 
         float numL = 0;
         float numR = 0;
+        userCheckData.BSMoneyLeft = 0.0f;
+        userCheckData.BSMoneyRight = 0.0f;
+        userCheckData.checkNum = 0.0f;
         if(userCheckData.BSStateLeft == Config.BUY_ID)//买最高的
         {
             lift = buyListLift;
@@ -84,8 +145,6 @@ public class Tools {
         Boolean rightIsMax = false;
         while(true)
         {
-//                rsize = right.size();
-//                foR = -1;
             int l = lsize + foL * idxL;
             int r = rsize + foR * idxR;
             BaseList dataL = lift.get(l);
@@ -95,15 +154,19 @@ public class Tools {
             {
                 if(istrue == 0)
                 {
+                	userCheckData.BSMoneyLeft = dataL.value;
+                	userCheckData.BSMoneyRight = dataR.value;
                 	numL += dataL.num;
                 	numR += dataR.num;
                 }
                 else if(istrue >0 && !liftIsMax)
                 {
+                	userCheckData.BSMoneyLeft = dataL.value;
                 	numL += dataL.num;
                 }
                 else if(istrue < 0 && !rightIsMax)
                 {
+                	userCheckData.BSMoneyRight = dataR.value;
                 	numR += dataR.num;
                 }
             }
@@ -137,6 +200,7 @@ public class Tools {
             }
         }
         float result =   numL > numR ? numR : numL;
+        userCheckData.checkNum = result;
         return result;
     }
     /**

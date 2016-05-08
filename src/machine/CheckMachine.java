@@ -22,39 +22,29 @@ import mvc.model.OkCoinComData;
  *
  */
 public class CheckMachine extends BaseMachine{
-        Vector<BaseList> buyListLift;
-        Vector<BaseList> sellListLift;
-        Vector<BaseList> buyListRight;
-        Vector<BaseList> sellListRight;
+
         
-	public CheckMachine(ProcessInterface controller,UserConBase userCheckData)
+	public CheckMachine(ProcessControllerAI controller,UserConBase userCheckData)
 	{
 		super(controller,userCheckData);
-                buyListLift = new Vector<BaseList>();
-                sellListLift = new Vector<BaseList>();
-                buyListRight = new Vector<BaseList>();
-                sellListRight = new Vector<BaseList>();
 	}
 	@Override
 	public void updata() {
 		// TODO Auto-generated method stub
 		super.updata();
-                buyListLift.clear();
-                sellListLift.clear();
-                buyListRight.clear();
-                sellListRight.clear();
-                ModelBase dataLeft = this.controller.getModelData(this.userCheckData.platLeft);              
-                ModelBase dataRight = this.controller.getModelData(this.userCheckData.platRight);
-                Tools.setDataTo(buyListLift, sellListLift, this.userCheckData.platLeft, dataLeft, this.userCheckData);
-                Tools.setDataTo(buyListRight, sellListRight, this.userCheckData.platRight, dataRight, this.userCheckData);
-                float num = Tools.getResidual(this.buyListLift, this.sellListLift, this.buyListRight, this.sellListRight, this.userCheckData);
-                if(num > 0)
-                {
-                	//满足条件  切换到交易状态
-	                  TradeMachine machine = new TradeMachine(this.controller,this.userCheckData);
-	                  this.changeMachine(machine);//切换到监听数据状态
-	                  machine.updata();
-                }
+		this.controller.clearCheckData();
+        ModelBase dataLeft = this.controller.getModelData(this.userCheckData.platLeft);              
+        ModelBase dataRight = this.controller.getModelData(this.userCheckData.platRight);
+        Tools.setDataTo(this.controller.buyListLift, this.controller.sellListLift, this.userCheckData.platLeft, dataLeft, this.userCheckData);
+        Tools.setDataTo(this.controller.buyListRight, this.controller.sellListRight, this.userCheckData.platRight, dataRight, this.userCheckData);
+        float num = Tools.getResidual(this.controller.buyListLift, this.controller.sellListLift, this.controller.buyListRight, this.controller.sellListRight, this.userCheckData);
+        if(num > 0)
+        {
+        	//满足条件  切换到交易状态
+              TradeMachine machine = new TradeMachine(this.controller,this.userCheckData);
+              this.changeMachine(machine);//切换到监听数据状态
+              machine.updata();
+        }
                 
 	}
 }

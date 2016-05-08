@@ -6,8 +6,8 @@ import mvc.controller.ProcessInterface;
 
 public class BaseMachine implements MachineInterface{
 	UserConBase userCheckData;
-	ProcessInterface controller;
-	public BaseMachine(ProcessInterface controller,UserConBase userCheckData)
+	ProcessControllerAI controller;
+	public BaseMachine(ProcessControllerAI controller,UserConBase userCheckData)
 	{
 		this.userCheckData = userCheckData;
 		this.controller = controller;
@@ -25,9 +25,8 @@ public class BaseMachine implements MachineInterface{
 	}
 
 	@Override
-	public void setController(ProcessInterface controller) {
+	public void setController(ProcessControllerAI controller) {
 		// TODO Auto-generated method stub
 		this.controller = controller;
 	}
-
 }
