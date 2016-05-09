@@ -34,7 +34,7 @@ public class FutureClient {
 		 * 发送post请求之前，程序会做自动加密，生成签名。
 		 * 
 		*/
-//		IFutureRestApi futurePostV1 = new FutureRestApiV1(url_prex, api_key,secret_key);
+		IFutureRestApi futurePostV1 = new FutureRestApiV1(url_prex, api_key,secret_key);
 		HttpUtilManager httpUtil = HttpUtilManager.getInstance();
 //		String result = httpUtil.requestHttpGet("http://api.huobi.com/staticmarket/detail_btc_json.js","", "");
 //		System.out.println(result);
@@ -59,7 +59,7 @@ public class FutureClient {
 //		System.out.println("获得数据4 = " + str4);
 		
 		//期货下单
-//		String tradeResultV1 = futurePostV1.future_trade("btc_usd","this_week", "10.134", "1", "1", "0");
+		String tradeResultV1 = futurePostV1.future_trade("btc_usd","this_week", "10.134", "1", "1", "0");
 //		JSONObject tradeJSV1 = JSONObject.parseObject(tradeResultV1);
 //		String tradeOrderV1 = tradeJSV1.getString("order_id");
 //		System.out.println(tradeResultV1);
