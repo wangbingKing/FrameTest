@@ -11,6 +11,7 @@ import base.BaseNode;
 public class ViewBase extends Frame implements BaseNode{
 	public Controller mainController;
 	public ShowList list = null;
+        public SetView setView = null;
 	public ViewBase(String str,Controller con)
 	{
 		super(str);
@@ -21,6 +22,10 @@ public class ViewBase extends Frame implements BaseNode{
 		setVisible(true);
 		list = new ShowList(this);
 		add(list);
+                
+                setView = new SetView();
+                add(setView);
+                
 		this.setBackground(Color.gray);
 		addWindowListener(new WinAdp());
 	}

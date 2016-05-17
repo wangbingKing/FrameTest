@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Vector;
 
 import config.Config;
+import tools.MailUtil;
 import tools.Tools;
 
 public class test {
@@ -26,7 +27,8 @@ public class test {
 		{
 			
 		}
-		
+                MailUtil.sendMail("wangbing0108@163.com,1473636133@qq.com", "机器人功能", "测试一下邮件功能cxgfdhfhfhgfhfgdhgfhdf");
+//		HtmlEmail email = new HtmlEmail();  
 //		testClass s = new testClass();
 		
 	}
