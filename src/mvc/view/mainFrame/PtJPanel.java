@@ -10,6 +10,8 @@ import config.Config;
 import mvc.controller.Controller;
 import mvc.model.HuoBIData;
 import mvc.model.ModelBase;
+import mvc.model.OkCoinCnData;
+import mvc.model.OkCoinComData;
 
 /**
  *
@@ -222,35 +224,157 @@ public class PtJPanel extends javax.swing.JPanel implements BaseNode{
         buyPanel5.num.setText(medelData.tickerBuyData[4].num+"");
         
         sellPanel1.id.setText("卖一");
-        sellPanel1.value.setText(medelData.tickerSellData[0].value+"");
-        sellPanel1.num.setText(medelData.tickerSellData[0].num+"");
+        sellPanel1.value.setText(medelData.tickerSellData[4].value+"");
+        sellPanel1.num.setText(medelData.tickerSellData[4].num+"");
 
         sellPanel2.id.setText("卖二");
-        sellPanel2.value.setText(medelData.tickerSellData[1].value+"");
-        sellPanel2.num.setText(medelData.tickerSellData[1].num+"");
+        sellPanel2.value.setText(medelData.tickerSellData[3].value+"");
+        sellPanel2.num.setText(medelData.tickerSellData[3].num+"");
 
         sellPanel3.id.setText("卖三");
         sellPanel3.value.setText(medelData.tickerSellData[2].value+"");
         sellPanel3.num.setText(medelData.tickerSellData[2].num+"");
 
         sellPanel4.id.setText("卖四");
-        sellPanel4.value.setText(medelData.tickerSellData[3].value+"");
-        sellPanel4.num.setText(medelData.tickerSellData[3].num+"");
+        sellPanel4.value.setText(medelData.tickerSellData[1].value+"");
+        sellPanel4.num.setText(medelData.tickerSellData[1].num+"");
 
         sellPanel5.id.setText("卖五");
-        sellPanel5.value.setText(medelData.tickerSellData[4].value+"");
-        sellPanel5.num.setText(medelData.tickerSellData[4].num+"");
+        sellPanel5.value.setText(medelData.tickerSellData[0].value+"");
+        sellPanel5.num.setText(medelData.tickerSellData[0].num+"");
         
     }
-    
+    public void updateOkCoinCn(ModelBase medol)
+    {
+    	OkCoinCnData medelData = (OkCoinCnData)medol;
+         if(medelData.verTickerSellData.size() < 5 && medelData.verTickerBuyData.size() < 5)
+         {
+             return;
+         }
+         buyPanel1.id.setText("买一");
+         buyPanel1.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-1).value+"");
+         buyPanel1.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-1).num+"");
+
+         buyPanel2.id.setText("买二");
+         buyPanel2.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-2).value+"");
+         buyPanel2.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-2).num+"");
+
+         buyPanel3.id.setText("买三");
+         buyPanel3.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-3).value+"");
+         buyPanel3.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-3).num+"");
+
+         buyPanel4.id.setText("买四");
+         buyPanel4.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-4).value+"");
+         buyPanel4.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-4).num+"");
+
+         buyPanel5.id.setText("买五");
+         buyPanel5.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-5).value+"");
+         buyPanel5.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-5).num+"");
+         
+         sellPanel1.id.setText("卖一");
+         sellPanel1.value.setText(medelData.verTickerSellData.get(0).value+"");
+         sellPanel1.num.setText(medelData.verTickerSellData.get(0).num+"");
+
+         sellPanel2.id.setText("卖二");
+         sellPanel2.value.setText(medelData.verTickerSellData.get(1).value+"");
+         sellPanel2.num.setText(medelData.verTickerSellData.get(1).num+"");
+
+         sellPanel3.id.setText("卖三");
+         sellPanel3.value.setText(medelData.verTickerSellData.get(2).value+"");
+         sellPanel3.num.setText(medelData.verTickerSellData.get(2).num+"");
+
+         sellPanel4.id.setText("卖四");
+         sellPanel4.value.setText(medelData.verTickerSellData.get(3).value+"");
+         sellPanel4.num.setText(medelData.verTickerSellData.get(3).num+"");
+
+         sellPanel5.id.setText("卖五");
+         sellPanel5.value.setText(medelData.verTickerSellData.get(4).value+"");
+         sellPanel5.num.setText(medelData.verTickerSellData.get(4).num+"");
+    }
+    public void updateOkCoinCom(ModelBase medol)
+    {
+    	OkCoinComData medelData = (OkCoinComData)medol;
+         if(medelData.verTickerSellData.size() < 5 && medelData.verTickerBuyData.size() < 5)
+         {
+             return;
+         }
+         buyPanel1.id.setText("买一");
+         buyPanel1.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-1).value+"");
+         buyPanel1.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-1).num+"");
+
+         buyPanel2.id.setText("买二");
+         buyPanel2.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-2).value+"");
+         buyPanel2.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-2).num+"");
+
+         buyPanel3.id.setText("买三");
+         buyPanel3.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-3).value+"");
+         buyPanel3.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-3).num+"");
+
+         buyPanel4.id.setText("买四");
+         buyPanel4.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-4).value+"");
+         buyPanel4.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-4).num+"");
+
+         buyPanel5.id.setText("买五");
+         buyPanel5.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-5).value+"");
+         buyPanel5.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-5).num+"");
+         
+         sellPanel1.id.setText("卖一");
+         sellPanel1.value.setText(medelData.verTickerSellData.get(0).value+"");
+         sellPanel1.num.setText(medelData.verTickerSellData.get(0).num+"");
+
+         sellPanel2.id.setText("卖二");
+         sellPanel2.value.setText(medelData.verTickerSellData.get(1).value+"");
+         sellPanel2.num.setText(medelData.verTickerSellData.get(1).num+"");
+
+         sellPanel3.id.setText("卖三");
+         sellPanel3.value.setText(medelData.verTickerSellData.get(2).value+"");
+         sellPanel3.num.setText(medelData.verTickerSellData.get(2).num+"");
+
+         sellPanel4.id.setText("卖四");
+         sellPanel4.value.setText(medelData.verTickerSellData.get(3).value+"");
+         sellPanel4.num.setText(medelData.verTickerSellData.get(3).num+"");
+
+         sellPanel5.id.setText("卖五");
+         sellPanel5.value.setText(medelData.verTickerSellData.get(4).value+"");
+         sellPanel5.num.setText(medelData.verTickerSellData.get(4).num+"");
+    }
     @Override
     public void update() {
         ModelBase medol = mainController.getModelData(ptID);
         if(ptID == Config.HUOBI)
         {
-            upDateHuobi(medol);
+        	try
+        	{
+        		upDateHuobi(medol);
+        	}
+            catch(Exception e)
+            {
+            	
+            }
         }
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        else if(ptID == Config.OKCOINCN)
+        {
+        	try
+        	{
+        		updateOkCoinCn(medol);
+        	}
+            catch(Exception e)
+            {
+            	
+            }
+        	
+        }
+        else if(ptID == Config.OKCOINCOM)
+        {
+        	try
+        	{
+        		updateOkCoinCom(medol);
+        	}
+            catch(Exception e)
+            {
+            	
+            }
+        	
+        }
     }
 }

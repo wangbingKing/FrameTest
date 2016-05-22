@@ -277,7 +277,6 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
 //        list.updateUI(this.mainController.getModelData(Config.HUOBI));
         ptHuobiJPanel.update();
         ptOkCoinCnJPanel.update();
-        ptOkCoinComJPanel.update();
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.        
+        ptOkCoinComJPanel.update();   
     }
 }

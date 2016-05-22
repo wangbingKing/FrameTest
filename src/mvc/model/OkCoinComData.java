@@ -68,7 +68,7 @@ public class OkCoinComData extends ModelBase{
 
                     @Override
 	            public int compare(BaseList left, BaseList right) {
-	            	if(left.value > right.value)
+	            	if(left.value < right.value)
 	            	{
 	            		return 1;
 	            	}
@@ -83,7 +83,7 @@ public class OkCoinComData extends ModelBase{
 
                     @Override
 	            public int compare(BaseList left, BaseList right) {
-	            	if(left.value > right.value)
+	            	if(left.value < right.value)
 	            	{
 	            		return 1;
 	            	}
@@ -164,7 +164,7 @@ public class OkCoinComData extends ModelBase{
 	
                     @Override
 	            public int compare(BaseList left, BaseList right) {
-	            	if(left.value > right.value)
+	            	if(left.value < right.value)
 	            	{
 	            		return 1;
 	            	}
@@ -179,7 +179,7 @@ public class OkCoinComData extends ModelBase{
 	
                     @Override
 	            public int compare(BaseList left, BaseList right) {
-	            	if(left.value > right.value)
+	            	if(left.value < right.value)
 	            	{
 	            		return 1;
 	            	}
