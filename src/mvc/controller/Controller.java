@@ -10,6 +10,7 @@ import mvc.view.ViewBase;
 import base.BaseConfig;
 import base.BaseNode;
 import base.UserConBase;
+import mvc.view.mainFrame.MainFrame;
 
 public class Controller implements BaseNode{
 	/**
@@ -24,6 +25,7 @@ public class Controller implements BaseNode{
 	 * view 涓荤晫闈�
 	 */
 	public ViewBase view;
+        public MainFrame mainview;
 	public OkCoinCnController okCoinCnController; //ok涓浗
 	public HuoBiController huobiController;
 	public Vector<ProcessControllerAI> processAI;
@@ -36,13 +38,40 @@ public class Controller implements BaseNode{
 		isOver = false;
 		model = new ModelMain();
 		view = new ViewBase("比特币交易机器人",this);
-		
+		mainview = new MainFrame("比特币交易机器人",this);
 		//娣诲姞ok涓浗鎺у埗鍣�
 		okCoinCnController = new OkCoinCnController(this);
 		
 		huobiController = new HuoBiController(this);
 		this.initProcess();
 		
+                
+                 try {
+                        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                            if ("Nimbus".equals(info.getName())) {
+                                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                                break;
+                            }
+                        }
+                    } catch (ClassNotFoundException ex) {
+                        java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    } catch (InstantiationException ex) {
+                        java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    } catch (IllegalAccessException ex) {
+                        java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                        java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    }
+                    //</editor-fold>
+                    //</editor-fold>
+
+                    /* Create and display the form */
+                    java.awt.EventQueue.invokeLater(new Runnable() {
+                        public void run() {
+                            mainview.setVisible(true);
+                        }
+                    });
+                
 	}
 	public BaseConfig getUserConfig(int pt)
 	{
@@ -156,6 +185,7 @@ public class Controller implements BaseNode{
 		huobiController.update();
 		view.update();
 		updata_Process();//更新状态机
+                mainview.update();
 	}
 
 }

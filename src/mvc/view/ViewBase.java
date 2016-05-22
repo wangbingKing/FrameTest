@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 import config.Config;
 import mvc.controller.Controller;
 import base.BaseNode;
+import java.awt.Panel;
 
 public class ViewBase extends Frame implements BaseNode{
 	public Controller mainController;
@@ -22,6 +23,11 @@ public class ViewBase extends Frame implements BaseNode{
 		setVisible(true);
 		list = new ShowList(this);
 		add(list);
+                
+                ShowList list1 = new ShowList(this);
+                list1.setLocation(100, 400);
+		add(list1);
+               
                 
                 setView = new SetView();
                 add(setView);

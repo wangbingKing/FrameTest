@@ -58,6 +58,7 @@ public class ShowList extends Panel implements BaseNode {
 	
 	public ShowList(ViewBase view)
 	{
+                super();
 		mainView = view;
 		init();
 		
@@ -67,7 +68,7 @@ public class ShowList extends Panel implements BaseNode {
 		
 		this.setLayout(null);
 		setBackground(Color.GREEN);
-		setSize(400, 200);
+		setSize(500, 400);
 		setLocation(100, 100);
 		setVisible(true);
 		this.initButtonBS();
@@ -188,29 +189,29 @@ public class ShowList extends Panel implements BaseNode {
 		for(int i = 0;i < 5;i++)
 		{
 			listSellDes[i] = new Label("卖"+ (5-i));
-			listSellDes[i].setBounds(ogX,ogY + 16 * i, 50, 14);
+			listSellDes[i].setBounds(ogX,ogY + 16 * i, 60, 14);
 			listSellDes[i].setVisible(true);
 			this.add(listSellDes[i]);
 			
 			listSellCost[i] = new Label("");
-			listSellCost[i].setBounds(ogX + 50,ogY + 16 * i, 50, 14);
+			listSellCost[i].setBounds(ogX + 50,ogY + 16 * i, 80, 14);
 			listSellCost[i].setVisible(true);
 			this.add(listSellCost[i]);
 			listSellNum[i] = new Label("");
-			listSellNum[i].setBounds(ogX + 20+ 100,ogY + 16 * i, 60, 14);
+			listSellNum[i].setBounds(ogX + 20+ 110,ogY + 16 * i, 60, 14);
 			listSellNum[i].setVisible(true);
 			this.add(listSellNum[i]);
 			listBuyDes[4-i] = new Label("买"+ (i+1));
 			listBuyDes[4-i].setText("买"+ (i+1));
-			listBuyDes[4-i].setBounds(ogX,ogY + 16 * (5+i) , 50, 14);
+			listBuyDes[4-i].setBounds(ogX,ogY + 16 * (5+i) , 60, 14);
 			listBuyDes[4-i].setVisible(true);
 			this.add(listBuyDes[4-i]);
 			listBuyCost[4-i] = new Label("");
-			listBuyCost[4-i].setBounds(ogX + 50,ogY + 16 * (5+i), 50, 14);
+			listBuyCost[4-i].setBounds(ogX + 50,ogY + 16 * (5+i), 80, 14);
 			listBuyCost[4-i].setVisible(true);
 			this.add(listBuyCost[4-i]);
 			listBuyNum[4-i] = new Label("");
-			listBuyNum[4-i].setBounds(ogX+ 20 + 100,ogY + 16 * (5+i), 60, 14);
+			listBuyNum[4-i].setBounds(ogX+ 20 + 110,ogY + 16 * (5+i), 60, 14);
 			listBuyNum[4-i].setVisible(true);
 			this.add(listBuyNum[4-i]);
 			
