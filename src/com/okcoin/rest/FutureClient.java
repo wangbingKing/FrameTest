@@ -20,8 +20,8 @@ public class FutureClient {
 	public static void main(String[] args) throws HttpException, IOException {
 
 		
-	    String api_key = "a5da83ae-54e2-403b-a64e-3a79fd11d3b3";  //OKCoin申请的apiKey
-       	String secret_key = "D2A6662C68229500FBEDB0F478B12E47";  //OKCoin申请的secretKey
+	    String api_key = "";  //OKCoin申请的apiKey
+       	String secret_key = "";  //OKCoin申请的secretKey
  	    String url_prex = "https://www.okcoin.cn";  //注意：请求URL 国际站https://www.okcoin.com ; 国内站https://www.okcoin.cn
 		/**
 		 *  get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息

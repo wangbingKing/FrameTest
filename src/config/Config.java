@@ -139,4 +139,5 @@ public class Config {
 		 */
 		REPEALERROR_TRADESTATE
 	}
+        public static String RUN_PT = "ios";
 }

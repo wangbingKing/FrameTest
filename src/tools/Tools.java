@@ -55,8 +55,16 @@ public class Tools {
 	{
 		File directory = new File("");//参数为空 
 		try{
-			String courseFile = directory.getCanonicalPath(); 
-			return Tools.FileInputStreamDemo(courseFile+"\\config.cof");
+			String courseFile = directory.getCanonicalPath();
+                        if(Config.RUN_PT=="ios")
+                        {
+                            return Tools.FileInputStreamDemo(courseFile+"/config.cof");
+                        }
+                        else
+                        {
+                            return Tools.FileInputStreamDemo(courseFile+"\\config.cof");
+                        }
+			
 		}catch(Exception e)
 		{
 			System.out.println("配置文件打开失败");
@@ -78,6 +86,7 @@ public class Tools {
 		conObj.ptName = datapt.getString("ptName");
 		conObj.api_key = datapt.getString("api_key");
 		conObj.secret_key = datapt.getString("secret_key");
+                conObj.baseUrl = datapt.getString("base_url");
 		return conObj;
 	}
     /**

@@ -7,8 +7,10 @@ package mvc.view.mainFrame;
 
 import base.BaseNode;
 import config.Config;
+import java.util.Vector;
 import mvc.controller.Controller;
 import mvc.view.balanceFrame.FutureJFrame;
+import mvc.view.holdOrder.HoldOrderListPanel;
 import mvc.view.setERFrame.OneDirectionFrame;
 
 /**
@@ -27,6 +29,8 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
         ptOkCoinCnJPanel.setPt(Config.OKCOINCN,con);
         ptOkCoinComJPanel.setPt(Config.OKCOINCOM,con);
         ptHuobiJPanel.setPt(Config.HUOBI,con);
+        okCoinHoldOrderList = new Vector<HoldOrderListPanel>();
+        bitVcHoldOrderList = new Vector<HoldOrderListPanel>();
     }
 
     /**
@@ -45,11 +49,11 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
+        OkCoinFuturePanel = new javax.swing.JPanel();
         holdOrderListPaneltitle2 = new mvc.view.holdOrder.HoldOrderListPaneltitle();
         holdOrderListPanel2 = new mvc.view.holdOrder.HoldOrderListPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
+        VcFuturePanel = new javax.swing.JPanel();
         holdOrderListPaneltitle1 = new mvc.view.holdOrder.HoldOrderListPaneltitle();
         holdOrderListPanel1 = new mvc.view.holdOrder.HoldOrderListPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -69,19 +73,19 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
 
         jLabel2.setText("BitVc");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout OkCoinFuturePanelLayout = new javax.swing.GroupLayout(OkCoinFuturePanel);
+        OkCoinFuturePanel.setLayout(OkCoinFuturePanelLayout);
+        OkCoinFuturePanelLayout.setHorizontalGroup(
+            OkCoinFuturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OkCoinFuturePanelLayout.createSequentialGroup()
+                .addGroup(OkCoinFuturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(holdOrderListPaneltitle2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(holdOrderListPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 219, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        OkCoinFuturePanelLayout.setVerticalGroup(
+            OkCoinFuturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OkCoinFuturePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(holdOrderListPaneltitle2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -89,21 +93,21 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
                 .addContainerGap(144, Short.MAX_VALUE))
         );
 
-        jScrollPane2.setViewportView(jPanel2);
+        jScrollPane2.setViewportView(OkCoinFuturePanel);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout VcFuturePanelLayout = new javax.swing.GroupLayout(VcFuturePanel);
+        VcFuturePanel.setLayout(VcFuturePanelLayout);
+        VcFuturePanelLayout.setHorizontalGroup(
+            VcFuturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VcFuturePanelLayout.createSequentialGroup()
+                .addGroup(VcFuturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(holdOrderListPaneltitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(holdOrderListPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 219, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        VcFuturePanelLayout.setVerticalGroup(
+            VcFuturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VcFuturePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(holdOrderListPaneltitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -111,7 +115,7 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
                 .addContainerGap(341, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setViewportView(jPanel1);
+        jScrollPane1.setViewportView(VcFuturePanel);
 
         javax.swing.GroupLayout FuturePanelLayout = new javax.swing.GroupLayout(FuturePanel);
         FuturePanel.setLayout(FuturePanelLayout);
@@ -317,6 +321,8 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
     public Controller mainController;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel FuturePanel;
+    public javax.swing.JPanel OkCoinFuturePanel;
+    public javax.swing.JPanel VcFuturePanel;
     private mvc.view.holdOrder.HoldOrderListPanel holdOrderListPanel1;
     private mvc.view.holdOrder.HoldOrderListPanel holdOrderListPanel2;
     private mvc.view.holdOrder.HoldOrderListPaneltitle holdOrderListPaneltitle1;
@@ -326,8 +332,6 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -335,7 +339,8 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
     private mvc.view.mainFrame.PtJPanel ptOkCoinCnJPanel;
     private mvc.view.mainFrame.PtJPanel ptOkCoinComJPanel;
     // End of variables declaration//GEN-END:variables
-
+    public Vector<HoldOrderListPanel> okCoinHoldOrderList;
+    public Vector<HoldOrderListPanel> bitVcHoldOrderList;
     @Override
     public void update() {
 //        list.updateUI(this.mainController.getModelData(Config.HUOBI));

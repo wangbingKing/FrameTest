@@ -29,6 +29,7 @@ public class Controller implements BaseNode{
 	public OkCoinCnController okCoinCnController; //ok涓浗
 	public OkCoinComController okCoinComController;
 	public HuoBiController huobiController;
+        public BitVcController bitVcController;
 	public Vector<ProcessControllerAI> processAI;
 	/**
 	 * set user config data
@@ -44,6 +45,7 @@ public class Controller implements BaseNode{
 		okCoinCnController = new OkCoinCnController(this);
 		okCoinComController = new OkCoinComController(this);
 		huobiController = new HuoBiController(this);
+                bitVcController = new BitVcController(this);
 		this.initProcess();
 		
                 
@@ -185,6 +187,7 @@ public class Controller implements BaseNode{
 		okCoinCnController.update();//鏇存柊OkCoin涓浗鏁版嵁
 		huobiController.update();
 		okCoinComController.update();
+                bitVcController.update();
 		updata_Process();//更新状态机
                 mainview.update();
 	}
