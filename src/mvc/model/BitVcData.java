@@ -74,8 +74,14 @@ public class BitVcData extends ModelBase{
 
 
 			JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
+		
 			try
 			{
+				int errorid = dataJson.getInteger("code");
+				if(errorid > 0)
+				{
+					return;//后期添加邮件提醒
+				}
 				JSONArray data=dataJson.getJSONArray(type);
 				bitvcData.clear();
 				for(int i = 0;i < data.size();i++)
