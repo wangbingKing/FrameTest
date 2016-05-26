@@ -26,11 +26,12 @@ public class OkCoinCnData extends ModelBase{
 	{
 		synchronized(this)
 		{
-                    if(result == null || result.equals(""))
+            if(result == null || result.equals(""))
 			{
 				return;
 			}
-			JSONObject  dataJson = new JSONObject(JSON.parseObject(result));	
+			JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
+			
 			/*
 			 * # Response
 	{

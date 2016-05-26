@@ -6,11 +6,26 @@ public class ModelMain extends ModelBase{
 	public OkCoinCnData okcoinCnData;//Ok中国数据缓存
 	public HuoBIData huoBIData;//火币现货数据
 	public OkCoinComData okCoinComData;//ok国际
+	public BitVcData bitVcData;
 	public ModelMain()
 	{
 		okcoinCnData = new OkCoinCnData();
 		huoBIData = new HuoBIData();
 		okCoinComData = new OkCoinComData();
+		bitVcData = new BitVcData();
+	}
+	public void setHoldOrderData(int pt,String str,String type)
+	{
+		switch(pt)
+		{
+		case Config.OKCOINCOM:
+			break;
+		case Config.BTBVC:
+			bitVcData.setHoldOrderData(str,type);
+			break;
+		default:
+			System.out.println("平台不存在期货");
+		}
 	}
 	public void setTickerData(int pt,String str)
 	{
@@ -28,7 +43,7 @@ public class ModelMain extends ModelBase{
 		}
 		
 	}
-	public void setFutureData(int pt,String str)
+	public void setFutureData(int pt,String str,String type)
 	{
 		switch(pt)
 		{

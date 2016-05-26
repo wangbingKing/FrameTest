@@ -63,7 +63,7 @@ public class OkCoinComController implements BaseNode{
 							String result = httpUtil.requestHttpGet("https://www.okcoin.com/api/v1/depth.do?symbol=btc_usd","", "");
 							mainController.model.setTickerData(Config.OKCOINCOM,result);
 							String futureresult = httpUtil.requestHttpGet("https://www.okcoin.com/api/v1/depth.do?symbol=btc_usd","", "");
-							mainController.model.setFutureData(Config.OKCOINCOM,futureresult);
+							mainController.model.setFutureData(Config.OKCOINCOM,futureresult,"week");
 							index = 0;	
 					   }
 					   catch(Exception E)

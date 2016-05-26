@@ -45,7 +45,7 @@ public class Controller implements BaseNode{
 		okCoinCnController = new OkCoinCnController(this);
 		okCoinComController = new OkCoinComController(this);
 		huobiController = new HuoBiController(this);
-                bitVcController = new BitVcController(this);
+        bitVcController = new BitVcController(this);
 		this.initProcess();
 		
                 
@@ -75,6 +75,10 @@ public class Controller implements BaseNode{
 		        }
 		    });
                 
+	}
+	public void setHoldOrderModel(int pt,String result,String type)
+	{
+		model.setHoldOrderData(pt, result, type);
 	}
 	public BaseConfig getUserConfig(int pt)
 	{
@@ -187,7 +191,7 @@ public class Controller implements BaseNode{
 		okCoinCnController.update();//鏇存柊OkCoin涓浗鏁版嵁
 		huobiController.update();
 		okCoinComController.update();
-                bitVcController.update();
+        bitVcController.update();
 		updata_Process();//更新状态机
                 mainview.update();
 	}
