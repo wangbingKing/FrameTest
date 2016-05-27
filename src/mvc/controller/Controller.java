@@ -76,7 +76,7 @@ public class Controller implements BaseNode{
 		    });
                 
 	}
-	public void setHoldOrderModel(int pt,String result,String type)
+	public void setHoldOrderModel(int pt,String result,int type)
 	{
 		model.setHoldOrderData(pt, result, type);
 	}

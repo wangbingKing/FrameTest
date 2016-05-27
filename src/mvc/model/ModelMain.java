@@ -14,7 +14,7 @@ public class ModelMain extends ModelBase{
 		okCoinComData = new OkCoinComData();
 		bitVcData = new BitVcData();
 	}
-	public void setHoldOrderData(int pt,String str,String type)
+	public void setHoldOrderData(int pt,String str,int type)
 	{
 		switch(pt)
 		{
@@ -43,15 +43,15 @@ public class ModelMain extends ModelBase{
 		}
 		
 	}
-	public void setFutureData(int pt,String str,String type)
+	public void setFutureData(int pt,String str,int futrueType)
 	{
 		switch(pt)
 		{
 		case Config.OKCOINCOM:
-			okCoinComData.setFutureData(str);
+			okCoinComData.setFutureData(str,futrueType);
 			break;
 		case Config.BTBVC:
-			
+			bitVcData.setFutureData(str,futrueType);
 			break;
 		}
 	}

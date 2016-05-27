@@ -25,6 +25,15 @@ public class BitVcData extends ModelBase{
 	
 	public Vector<BaseList> verFurtureSellData;
 	public Vector<BaseList> verFurtureBuyData;
+	
+	public Vector<BaseList> verFurtureSellDataWeek;
+	public Vector<BaseList> verFurtureBuyDataWeek;
+	
+	public Vector<BaseList> verFurtureSellDataNextWeek;
+	public Vector<BaseList> verFurtureBuyDataNextWeek;
+	
+	public Vector<BaseList> verFurtureSellDataMonth;
+	public Vector<BaseList> verFurtureBuyDataMonth;
     /**
      * 存放仓位信息
      */
@@ -34,13 +43,20 @@ public class BitVcData extends ModelBase{
         bitvcData =new Vector<BaseVcHoldOrder>();
         verFurtureSellData = new Vector<BaseList>();
 		verFurtureBuyData = new Vector<BaseList>();
+		
+		verFurtureSellDataWeek = new Vector<BaseList>();
+		verFurtureBuyDataNextWeek = new Vector<BaseList>();
+		verFurtureSellDataWeek = new Vector<BaseList>();
+		verFurtureBuyDataWeek = new Vector<BaseList>();
+		verFurtureSellDataMonth = new Vector<BaseList>();
+		verFurtureSellDataMonth = new Vector<BaseList>();
     }
     /**
      * 设置仓位
      * @param result
      * @param type
      */
-    public void setHoldOrderData(String result,String type)
+    public void setHoldOrderData(String result,int type)
     {
     	synchronized(this)
 		{
@@ -72,7 +88,7 @@ public class BitVcData extends ModelBase{
 //                ]
 //            }
 
-
+            String funtureName[] = {"week","nextweek","month"};
 			JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
 		
 			try
@@ -82,7 +98,7 @@ public class BitVcData extends ModelBase{
 				{
 					return;//后期添加邮件提醒
 				}
-				JSONArray data=dataJson.getJSONArray(type);
+				JSONArray data=dataJson.getJSONArray(funtureName[type]);
 				bitvcData.clear();
 				for(int i = 0;i < data.size();i++)
 				{
@@ -114,7 +130,7 @@ public class BitVcData extends ModelBase{
      * 保存期货数据
      * @param result
      */
-	public void setFutureData(String result)//保存期货数据
+	public void setFutureData(String result,int FURTUREType)//保存期货数据
 	{
 		synchronized(this)
 		{
@@ -147,6 +163,8 @@ public class BitVcData extends ModelBase{
 			{
 				
 			}
+			
+			
 			verFurtureSellData.clear();
 			verFurtureBuyData.clear();
 			JSONArray data=dataJson.getJSONArray("asks");

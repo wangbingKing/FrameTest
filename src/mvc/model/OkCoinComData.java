@@ -23,7 +23,7 @@ public class OkCoinComData extends ModelBase{
 		verFurtureSellData = new Vector<BaseList>();
 		verFurtureBuyData = new Vector<BaseList>();
 	}
-	public void setFutureData(String result)//保存期货数据
+	public void setFutureData(String result,int rutureType)//保存期货数据
 	{
 		synchronized(this)
 		{

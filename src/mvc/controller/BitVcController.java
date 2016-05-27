@@ -67,7 +67,7 @@ public class BitVcController implements BaseNode{
         try
         {
             String result = httpUtil.requestHttpPost(BASE_URL,GET_HOLDORDER_URL, params);
-            mainController.setHoldOrderModel(Config.BTBVC,result,type);
+            mainController.setHoldOrderModel(Config.BTBVC,result,Config.THIS_WEEK_FURTURE);
         }
         catch(Exception e)
         {
@@ -90,7 +90,7 @@ public class BitVcController implements BaseNode{
 					   try{
 						   HttpUtilManager httpUtil = HttpUtilManager.getInstance();
 							String result = httpUtil.requestHttpGet("http://market.bitvc.com/futures/depths_btc_week.js","", "");
-							mainController.model.setFutureData(Config.BTBVC, result,"week");
+							mainController.model.setFutureData(Config.BTBVC, result,Config.THIS_WEEK_FURTURE);
 							index = 0;	
 					   }
 					   catch(Exception E)
