@@ -5,19 +5,35 @@
  */
 package mvc.view.mainFrame;
 
+import base.BaseUserInfo;
+import config.Config;
+
 /**
  *
  * @author wuxianshikong
  */
 public class BSJPanel extends javax.swing.JPanel {
-
+    double value;
+    double num;
+    double total;
+    PtJPanel superPanle;
+    /**
+     * 买卖标志
+     */
+    private int bsflag;
     /**
      * Creates new form BSJPanel
      */
     public BSJPanel() {
+        value = 0.0f;
+        num = 0.0f;
+        total = 0.0f;
         initComponents();
     }
-
+    public void setSuperPanel(PtJPanel superP)
+    {
+        superPanle = superP;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,57 +43,62 @@ public class BSJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        assetTitle = new javax.swing.JLabel();
+        freeTitile = new javax.swing.JLabel();
+        freeValue = new javax.swing.JLabel();
+        assetValue = new javax.swing.JLabel();
+        label = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        bsValue = new javax.swing.JTextField();
+        bsNum = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        bsTotal = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        bsButton = new javax.swing.JButton();
 
-        jLabel1.setText("人民币余额:");
+        assetTitle.setText("人民币余额:");
 
-        jLabel2.setText("人民币余额:");
+        freeTitile.setText("人民币余额:");
 
-        jLabel3.setText("100000000");
+        freeValue.setText("100000000");
 
-        jLabel4.setText("100000000");
+        assetValue.setText("100000000");
 
-        jLabel5.setText("价格");
+        label.setText("价格");
 
         jLabel6.setText("数量");
 
         jLabel7.setText("总价");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        bsValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                bsValueActionPerformed(evt);
             }
         });
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        bsNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                bsNumActionPerformed(evt);
             }
         });
 
         jLabel8.setText("X");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        bsTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                bsTotalActionPerformed(evt);
             }
         });
 
         jLabel9.setText("=");
 
-        jButton1.setText("买卖");
+        bsButton.setText("买卖");
+        bsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bsButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -86,90 +107,150 @@ public class BSJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(assetTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(assetValue, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel5)
+                        .addComponent(label)
                         .addGap(59, 59, 59)
                         .addComponent(jLabel6)
                         .addGap(59, 59, 59)
                         .addComponent(jLabel7))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(freeTitile, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bsValue, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bsNum, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(bsTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(freeValue, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4))
+                    .addComponent(assetTitle)
+                    .addComponent(assetValue))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(freeTitile)
+                    .addComponent(freeValue))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(label)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bsValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bsNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bsTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1))
+                .addComponent(bsButton))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void bsValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsValueActionPerformed
+
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        try{
+            value = Double.parseDouble(bsValue.getText());
+            total = value * num;
+        }
+        catch(Exception e)
+        {
+            
+        }
+        updateUI();
+        
+    }//GEN-LAST:event_bsValueActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void bsNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsNumActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+         try{
+            num = Double.parseDouble(bsNum.getText());
+            total = value * num;
+        }
+        catch(Exception e)
+        {
+            
+        }
+        updateUI();
+    }//GEN-LAST:event_bsNumActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void bsTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+        updateUI();
+    }//GEN-LAST:event_bsTotalActionPerformed
 
-
+    private void bsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsButtonActionPerformed
+        // TODO add your handling code here:
+        bsRequest();
+    }//GEN-LAST:event_bsButtonActionPerformed
+    public void updateUI()
+    {
+        bsValue.setText("" + value);
+        bsNum.setText("" + num);
+        bsTotal.setText("" + total);
+    }
+    public void setBSData(double value,double num)
+    {
+        this.value = value;
+        this.num = num;
+        this.total = value * num;
+        updateUI();
+    }
+    public void updateUserInfo(BaseUserInfo info)
+    {
+        assetTitle.setText("账号资产:");
+        assetValue.setText(info.asset);
+        freeTitile.setText("账号余额:");
+        freeValue.setText(info.free);
+    }
+    public void setBSPanel(int bs)
+    {
+        bsflag = bs;
+        if(bs == Config.BUY_ID)
+        {
+            bsButton.setText("买入");
+        }
+        else
+        {
+            bsButton.setText("卖出");
+        }
+    }
+    public void bsRequest()
+    {
+        superPanle.bsRequest(bsflag, value, num);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel assetTitle;
+    private javax.swing.JLabel assetValue;
+    private javax.swing.JButton bsButton;
+    private javax.swing.JTextField bsNum;
+    private javax.swing.JTextField bsTotal;
+    private javax.swing.JTextField bsValue;
+    private javax.swing.JLabel freeTitile;
+    private javax.swing.JLabel freeValue;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel label;
     // End of variables declaration//GEN-END:variables
 }

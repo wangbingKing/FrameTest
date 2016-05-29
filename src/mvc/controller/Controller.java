@@ -155,6 +155,20 @@ public class Controller implements BaseNode{
 		Boolean dataResult = userData.removeControlData(U_id);
 		return result && dataResult;
 	}
+        /**
+         * 现货买卖请求
+         * @param bs
+         * @param value
+         * @param num 
+         */
+        public Boolean bsRequest(int bs,double value,double num,int pt)
+        {
+            if(pt == Config.OKCOINCN)
+            {
+                
+            }
+            return true;
+        }
 	/**
 	 * 浠庣紦瀛樹腑鑾峰彇鏁版嵁
 	 */

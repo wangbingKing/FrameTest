@@ -24,6 +24,8 @@ public class PtJPanel extends javax.swing.JPanel implements BaseNode{
      */
     public PtJPanel() {
         initComponents();
+        bSPTPanel1.setBSPanel(Config.BUY_ID);
+        bSPTPanel2.setBSPanel(Config.SELL_ID);
     }
 
     /**
@@ -36,11 +38,11 @@ public class PtJPanel extends javax.swing.JPanel implements BaseNode{
     private void initComponents() {
 
         titleLabel = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        bSJPanel3 = new mvc.view.mainFrame.BSJPanel();
-        jPanel2 = new javax.swing.JPanel();
-        bSJPanel4 = new mvc.view.mainFrame.BSJPanel();
+        tabbedPabel = new javax.swing.JTabbedPane();
+        buyPanel = new javax.swing.JPanel();
+        bSPTPanel1 = new mvc.view.mainFrame.BSJPanel();
+        sellPanel = new javax.swing.JPanel();
+        bSPTPanel2 = new mvc.view.mainFrame.BSJPanel();
         jPanel3 = new javax.swing.JPanel();
         sellPanel5 = new mvc.view.mainFrame.PtListJPanel();
         sellPanel4 = new mvc.view.mainFrame.PtListJPanel();
@@ -58,37 +60,37 @@ public class PtJPanel extends javax.swing.JPanel implements BaseNode{
         titleLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         titleLabel.setText("okcoin");
 
-        jTabbedPane1.setBackground(new java.awt.Color(0, 204, 153));
+        tabbedPabel.setBackground(new java.awt.Color(0, 204, 153));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(bSJPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout buyPanelLayout = new javax.swing.GroupLayout(buyPanel);
+        buyPanel.setLayout(buyPanelLayout);
+        buyPanelLayout.setHorizontalGroup(
+            buyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buyPanelLayout.createSequentialGroup()
+                .addComponent(bSPTPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bSJPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        buyPanelLayout.setVerticalGroup(
+            buyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bSPTPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jTabbedPane1.addTab("买入", jPanel1);
+        tabbedPabel.addTab("买入", buyPanel);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(bSJPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout sellPanelLayout = new javax.swing.GroupLayout(sellPanel);
+        sellPanel.setLayout(sellPanelLayout);
+        sellPanelLayout.setHorizontalGroup(
+            sellPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sellPanelLayout.createSequentialGroup()
+                .addComponent(bSPTPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bSJPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        sellPanelLayout.setVerticalGroup(
+            sellPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bSPTPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jTabbedPane1.addTab("卖出", jPanel2);
+        tabbedPabel.addTab("卖出", sellPanel);
 
         jPanel3.setBackground(new java.awt.Color(51, 204, 0));
 
@@ -144,7 +146,7 @@ public class PtJPanel extends javax.swing.JPanel implements BaseNode{
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane1))
+                    .addComponent(tabbedPabel))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(95, 95, 95)
@@ -157,7 +159,7 @@ public class PtJPanel extends javax.swing.JPanel implements BaseNode{
                 .addContainerGap()
                 .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabbedPabel, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -178,25 +180,28 @@ public class PtJPanel extends javax.swing.JPanel implements BaseNode{
      */
     public Controller mainController;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private mvc.view.mainFrame.BSJPanel bSJPanel3;
-    private mvc.view.mainFrame.BSJPanel bSJPanel4;
+    private mvc.view.mainFrame.BSJPanel bSPTPanel1;
+    private mvc.view.mainFrame.BSJPanel bSPTPanel2;
+    private javax.swing.JPanel buyPanel;
     public mvc.view.mainFrame.PtListJPanel buyPanel1;
     public mvc.view.mainFrame.PtListJPanel buyPanel2;
     public mvc.view.mainFrame.PtListJPanel buyPanel3;
     public mvc.view.mainFrame.PtListJPanel buyPanel4;
     public mvc.view.mainFrame.PtListJPanel buyPanel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     public javax.swing.JPanel jPanel3;
-    public javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPanel sellPanel;
     public mvc.view.mainFrame.PtListJPanel sellPanel1;
     public mvc.view.mainFrame.PtListJPanel sellPanel2;
     public mvc.view.mainFrame.PtListJPanel sellPanel3;
     public mvc.view.mainFrame.PtListJPanel sellPanel4;
     public mvc.view.mainFrame.PtListJPanel sellPanel5;
+    public javax.swing.JTabbedPane tabbedPabel;
     public javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
-
+    public Boolean bsRequest(int bs,double value,double num)
+    {
+        return mainController.bsRequest(bs, value, num, ptID);
+    }
     public void upDateHuobi(ModelBase medol)
     {
         HuoBIData medelData = (HuoBIData)medol;
