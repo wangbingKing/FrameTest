@@ -176,7 +176,7 @@ public class BSJPanel extends javax.swing.JPanel {
         {
             
         }
-        updateUI();
+        updateBSUI();
         
     }//GEN-LAST:event_bsValueActionPerformed
 
@@ -190,19 +190,19 @@ public class BSJPanel extends javax.swing.JPanel {
         {
             
         }
-        updateUI();
+         updateBSUI();
     }//GEN-LAST:event_bsNumActionPerformed
 
     private void bsTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsTotalActionPerformed
         // TODO add your handling code here:
-        updateUI();
+    	updateBSUI();
     }//GEN-LAST:event_bsTotalActionPerformed
 
     private void bsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsButtonActionPerformed
         // TODO add your handling code here:
         bsRequest();
     }//GEN-LAST:event_bsButtonActionPerformed
-    public void updateUI()
+    public void updateBSUI()
     {
         bsValue.setText("" + value);
         bsNum.setText("" + num);

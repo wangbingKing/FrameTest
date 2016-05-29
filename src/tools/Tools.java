@@ -32,7 +32,8 @@ public class Tools {
 	
 	 public static String FileInputStreamDemo(String path){
 		 try{
-			 File file=new File(path);
+			 
+			 File file=new File("F:\\Github\\config.cof");
 	         if(!file.exists()||file.isDirectory())
 	         {
 	        	 return "";
@@ -56,14 +57,8 @@ public class Tools {
 		File directory = new File("");//参数为空 
 		try{
 			String courseFile = directory.getCanonicalPath();
-                        if(Config.RUN_PT=="ios")
-                        {
-                            return Tools.FileInputStreamDemo(courseFile+"/config.cof");
-                        }
-                        else
-                        {
-                            return Tools.FileInputStreamDemo(courseFile+"\\config.cof");
-                        }
+			String filePath = Tools.FileInputStreamDemo(courseFile+"/config.cof");
+			return Tools.FileInputStreamDemo(filePath);
 			
 		}catch(Exception e)
 		{
@@ -86,7 +81,7 @@ public class Tools {
 		conObj.ptName = datapt.getString("ptName");
 		conObj.api_key = datapt.getString("api_key");
 		conObj.secret_key = datapt.getString("secret_key");
-                conObj.baseUrl = datapt.getString("base_url");
+        conObj.baseUrl = datapt.getString("base_url");
 		return conObj;
 	}
     /**
