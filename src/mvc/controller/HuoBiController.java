@@ -17,10 +17,13 @@ public class HuoBiController implements BaseNode{
 	BaseConfig userKey;
 	int index = 0;//限制请求次数
 	stateAction state = Config.stateAction.INIT_STATE;//控制状态
+	
+	HttpUtilManager httpUtil;
 	public HuoBiController(Controller con)
 	{
 		mainController = con;
 		userKey = Tools.getUserAccount(Config.HUOBI);
+		httpUtil = HttpUtilManager.getInstance();
 	}
 	/**
 	 * 获得用户key
@@ -45,6 +48,25 @@ public class HuoBiController implements BaseNode{
 			break;
 		}
 	}
+	public void updateTickerData()
+	{
+		Thread thread = new Thread(){
+			   public void run(){
+				   try{
+					   
+						String result = httpUtil.requestHttpGet("http://api.huobi.com/staticmarket/detail_btc_json.js","", "");
+						mainController.model.setTickerData(Config.HUOBI,result);
+						index = 0;	
+				   }
+				   catch(Exception E)
+				   {
+					   index = 0;
+				   }
+				   state = Config.stateAction.NETOEVR_STATE;
+			   }
+			};
+		thread.start();
+	}
 	public void getDepthData()  //获取OKCoin市场深度
 	{
 		//https://www.okcoin.cn/api/v1/depth.do?symbol=btc_cny
@@ -58,22 +80,7 @@ public class HuoBiController implements BaseNode{
 		{
 			state = Config.stateAction.NETING_STATE;
 			index = -1;
-			Thread thread = new Thread(){
-				   public void run(){
-					   try{
-						   HttpUtilManager httpUtil = HttpUtilManager.getInstance();
-							String result = httpUtil.requestHttpGet("http://api.huobi.com/staticmarket/detail_btc_json.js","", "");
-							mainController.model.setTickerData(Config.HUOBI,result);
-							index = 0;	
-					   }
-					   catch(Exception E)
-					   {
-						   index = 0;
-					   }
-					   state = Config.stateAction.NETOEVR_STATE;
-				   }
-				};
-			thread.start();
+			updateTickerData();
 		}
 	}
 }

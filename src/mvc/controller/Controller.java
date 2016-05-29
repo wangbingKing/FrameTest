@@ -193,7 +193,7 @@ public class Controller implements BaseNode{
 		okCoinComController.update();
         bitVcController.update();
 		updata_Process();//更新状态机
-                mainview.update();
+        mainview.update();
 	}
 
 }

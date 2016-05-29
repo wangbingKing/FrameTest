@@ -4,8 +4,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class MD5Util {
 
@@ -28,7 +30,24 @@ public class MD5Util {
 		}
 		return mysign;
 	}
-	
+	public static String buildBitVcSign(Map<String, String> sArray,
+			String secretKey)
+	{
+		String mysign = "";
+		Map<String, String> array = new HashMap<String, String>();
+		for(Entry<String, String> a:sArray.entrySet())
+		{
+			array.put(a.getKey(), a.getValue());
+		}
+		array.put("secretKey", secretKey);
+		try {
+			String prestr = createLinkString(array); // 把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
+			mysign = getMD5String(prestr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mysign;
+	}
 	/**
 	 * 生成签名结果（老版本使用）
 	 * 

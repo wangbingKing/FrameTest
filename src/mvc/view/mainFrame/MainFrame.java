@@ -6,8 +6,11 @@
 package mvc.view.mainFrame;
 
 import base.BaseNode;
+import base.BaseUserInfo;
 import config.Config;
+
 import java.util.Vector;
+
 import mvc.controller.Controller;
 import mvc.view.balanceFrame.FutureJFrame;
 import mvc.view.holdOrder.HoldOrderListPanel;
@@ -347,5 +350,9 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
         ptHuobiJPanel.update();
         ptOkCoinCnJPanel.update();
         ptOkCoinComJPanel.update();   
+    }
+    public void updateUserInfo(int pt,BaseUserInfo infoData)
+    {
+//    	ptOkCoinCnJPanel.
     }
 }

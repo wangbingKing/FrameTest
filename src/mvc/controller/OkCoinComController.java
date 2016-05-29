@@ -15,10 +15,13 @@ public class OkCoinComController implements BaseNode{
 	 * 存用户的key
 	 */
 	BaseConfig userKey;
+	
+	HttpUtilManager httpUtil;
 	public OkCoinComController(Controller con)
 	{
 		mainController = con;
 		userKey = Tools.getUserAccount(Config.OKCOINCOM);
+		httpUtil = HttpUtilManager.getInstance();
 	}
 	/**
 	 * 获得用户key
@@ -43,6 +46,27 @@ public class OkCoinComController implements BaseNode{
 			break;
 		}
 	}
+	public void updateTickerData()
+	{
+		Thread thread = new Thread(){
+			   public void run(){
+				   try{
+					   
+						String result = httpUtil.requestHttpGet("https://www.okcoin.com/api/v1/depth.do?symbol=btc_usd","", "");
+						mainController.model.setTickerData(Config.OKCOINCOM,result);
+						String futureresult = httpUtil.requestHttpGet("https://www.okcoin.com/api/v1/depth.do?symbol=btc_usd","", "");
+						mainController.model.setFutureData(Config.OKCOINCOM,futureresult,Config.THIS_WEEK_FURTURE);
+						index = 0;	
+				   }
+				   catch(Exception E)
+				   {
+					   index = 0;
+				   }
+				   state = Config.stateAction.NETOEVR_STATE;
+			   }
+			};
+		thread.start();
+	}
 	public void getDepthData()  //获取OKCoin市场深度
 	{
 		//https://www.okcoin.cn/api/v1/depth.do?symbol=btc_cny
@@ -56,24 +80,7 @@ public class OkCoinComController implements BaseNode{
 		{
 			state = Config.stateAction.NETING_STATE;
 			index = -1;
-			Thread thread = new Thread(){
-				   public void run(){
-					   try{
-						   HttpUtilManager httpUtil = HttpUtilManager.getInstance();
-							String result = httpUtil.requestHttpGet("https://www.okcoin.com/api/v1/depth.do?symbol=btc_usd","", "");
-							mainController.model.setTickerData(Config.OKCOINCOM,result);
-							String futureresult = httpUtil.requestHttpGet("https://www.okcoin.com/api/v1/depth.do?symbol=btc_usd","", "");
-							mainController.model.setFutureData(Config.OKCOINCOM,futureresult,Config.THIS_WEEK_FURTURE);
-							index = 0;	
-					   }
-					   catch(Exception E)
-					   {
-						   index = 0;
-					   }
-					   state = Config.stateAction.NETOEVR_STATE;
-				   }
-				};
-			thread.start();
+			updateTickerData();
 		}
 	}
 }
