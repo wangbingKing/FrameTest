@@ -130,11 +130,13 @@
     </Component>
     <Component class="javax.swing.JTextField" name="bsValue">
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="bsValueFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bsValueActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="bsNum">
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="bsNumFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bsNumActionPerformed"/>
       </Events>
     </Component>

@@ -29,6 +29,7 @@ public class BSJPanel extends javax.swing.JPanel {
         num = 0.0f;
         total = 0.0f;
         initComponents();
+        updateBSUI();
     }
     public void setSuperPanel(PtJPanel superP)
     {
@@ -242,7 +243,7 @@ public class BSJPanel extends javax.swing.JPanel {
     {
         bsValue.setText("" + value);
         bsNum.setText("" + num);
-        bsTotal.setText("" + total);
+        bsTotal.setText(String.format("%.4f",total));
     }
     public void setBSData(double value,double num)
     {
