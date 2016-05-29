@@ -71,12 +71,22 @@ public class BSJPanel extends javax.swing.JPanel {
 
         jLabel7.setText("总价");
 
+        bsValue.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                bsValueFocusLost(evt);
+            }
+        });
         bsValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bsValueActionPerformed(evt);
             }
         });
 
+        bsNum.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                bsNumFocusLost(evt);
+            }
+        });
         bsNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bsNumActionPerformed(evt);
@@ -190,7 +200,7 @@ public class BSJPanel extends javax.swing.JPanel {
         {
             
         }
-         updateBSUI();
+        updateBSUI();
     }//GEN-LAST:event_bsNumActionPerformed
 
     private void bsTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsTotalActionPerformed
@@ -202,6 +212,32 @@ public class BSJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         bsRequest();
     }//GEN-LAST:event_bsButtonActionPerformed
+
+    private void bsValueFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bsValueFocusLost
+        // TODO add your handling code here:
+        try{
+            value = Double.parseDouble(bsValue.getText());
+            total = value * num;
+        }
+        catch(Exception e)
+        {
+            
+        }
+        updateBSUI();
+    }//GEN-LAST:event_bsValueFocusLost
+
+    private void bsNumFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bsNumFocusLost
+        // TODO add your handling code here:
+        try{
+            num = Double.parseDouble(bsNum.getText());
+            total = value * num;
+        }
+        catch(Exception e)
+        {
+            
+        }
+         updateBSUI();
+    }//GEN-LAST:event_bsNumFocusLost
     public void updateBSUI()
     {
         bsValue.setText("" + value);
