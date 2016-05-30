@@ -353,6 +353,17 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
     }
     public void updateUserInfo(int pt,BaseUserInfo infoData)
     {
-//    	ptOkCoinCnJPanel.
+    	switch(pt)
+    	{
+    	case Config.OKCOINCN:
+    		ptOkCoinCnJPanel.updateUserInfo(infoData);
+    		break;
+    	case Config.OKCOINCOM:
+    		ptOkCoinComJPanel.updateUserInfo(infoData);
+    		break;
+    	case Config.HUOBI:
+    		ptHuobiJPanel.updateUserInfo(infoData);
+    		break;
+    	}
     }
 }

@@ -58,7 +58,7 @@ public class BitVcController implements BaseNode{
         params.put("accessKey","667eb6b5-cffb0d21-15f3e934-2f56e212"); //userKey.api_key
         params.put("coinType", "1");
         params.put("created",Long.toString(time));
-        String sign = MD5Util.buildBitVcSign(params, "c71d1450-e613c76b-3011e5c7-2412d943");//userKey.secret_key
+        String sign = MD5Util.buildBitVcSign(params, "");//userKey.secret_key
         params.put("sign", sign);
         params.put("contarctType", type); 
         // 发送post请求

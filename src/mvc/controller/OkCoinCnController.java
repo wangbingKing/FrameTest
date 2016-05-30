@@ -17,40 +17,39 @@ import config.Config.stateAction;
 import base.BaseConfig;
 import base.BaseNode;
 import base.BaseUserInfo;
+
 import com.okcoin.rest.stock.IStockRestApi;
 import com.okcoin.rest.stock.impl.StockRestApi;
 
 public class OkCoinCnController implements BaseNode{
-        private final String BASE_URL = "https://www.okcoin.cn";
-        private final String API_KEY = "7945c0bb-f45e-4af9-b445-f5f71651e1ef";
-        private final String SECRET_KEY = "";
+    private final String BASE_URL = "https://www.okcoin.cn";
+    private final String API_KEY = "d086cba1-b17c-4961-ac17-dbd5ec4a8458";
+    private final String SECRET_KEY = "";
 
-        public BaseUserInfo baseUserInfo;
-        public Controller mainController;
-         /**
-         * get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息
-         * 
-        */
-        IStockRestApi stockGet;
-        IStockRestApi stockPost;
-        /**
-             * post请求需发送身份认证，获取用户个人相关信息时，需要指定api_key,与secret_key并与参数进行签名，
-             * 此处对构造方法传入api_key与secret_key,在请求用户相关方法时则无需再传入，
-             * 发送post请求之前，程序会做自动加密，生成签名。
-             * 
-            */
+    public BaseUserInfo baseUserInfo;
+    public Controller mainController;
+     /**
+     * get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息
+     * 
+    */
+    IStockRestApi stockGet;
+    IStockRestApi stockPost;
+    /**
+     * post请求需发送身份认证，获取用户个人相关信息时，需要指定api_key,与secret_key并与参数进行签名，
+     * 此处对构造方法传入api_key与secret_key,在请求用户相关方法时则无需再传入，
+     * 发送post请求之前，程序会做自动加密，生成签名。
+     * 
+    */
 
-        /**
-        *  get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息
-        */
-//        IFutureRestApi futureGetV1;
-        /**
-         * post请求需发送身份认证，获取用户个人相关信息时，需要指定api_key,与secret_key并与参数进行签名，
-         * 此处对构造方法传入api_key与secret_key,在请求用户相关方法时则无需再传入，
-         * 发送post请求之前，程序会做自动加密，生成签名。
-         * 
-        */
-//        IFutureRestApi futurePostV1;
+    /**
+    *  get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息
+    */
+    /**
+     * post请求需发送身份认证，获取用户个人相关信息时，需要指定api_key,与secret_key并与参数进行签名，
+     * 此处对构造方法传入api_key与secret_key,在请求用户相关方法时则无需再传入，
+     * 发送post请求之前，程序会做自动加密，生成签名。
+     * 
+    */
         
 	int index = 0;//限制请求次数
 	stateAction state = Config.stateAction.INIT_STATE;//控制状态
@@ -63,10 +62,9 @@ public class OkCoinCnController implements BaseNode{
 		baseUserInfo = new BaseUserInfo();
 		mainController = con;
 		userKey = Tools.getUserAccount(Config.OKCOINCN);
-                stockPost = new StockRestApi(BASE_URL, API_KEY, SECRET_KEY);
-                stockGet = new StockRestApi(BASE_URL);
-//                futureGetV1 = new FutureRestApiV1(BASE_URL);
-//                futurePostV1 = new FutureRestApiV1(BASE_URL, API_KEY, SECRET_KEY);
+        stockPost = new StockRestApi(BASE_URL, API_KEY, SECRET_KEY);
+        stockGet = new StockRestApi(BASE_URL);
+        updateUserInfo();
 	}
 	/**
 	 * 获得用户key
@@ -117,35 +115,40 @@ public class OkCoinCnController implements BaseNode{
 	 */
 	public void updateUserInfo()
 	{
-        // 发送post请求
-        try
-        {
-            String result = stockPost.userinfo();
-            System.out.println(result);
-            JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
-            Boolean resultInfo =  dataJson.getBoolean("result");
-            if(resultInfo)
-            {
-            	JSONObject infoData = dataJson.getJSONObject("info");
-            	JSONObject fundsData = infoData.getJSONObject("funds");
-            	JSONObject assetData = fundsData.getJSONObject("asset");
-            	/**
-            	 * 净资产
-            	 */
-            	String netData = assetData.getString("net");
-            	
-            	JSONObject freeData = fundsData.getJSONObject("free");
-            	
-            	String btcData = freeData.getString("btc");
-            	baseUserInfo.asset = netData;
-            	baseUserInfo.free = btcData;
-            	
-            }   
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
+		Thread thread = new Thread(){
+			public void run(){
+	        // 发送post请求
+	        try
+	        {
+	        	
+	            String result = stockPost.userinfo();
+	            System.out.println(result);
+	            JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
+	            Boolean resultInfo =  dataJson.getBoolean("result");
+	            if(resultInfo)
+	            {
+	            	JSONObject infoData = dataJson.getJSONObject("info");
+	            	JSONObject fundsData = infoData.getJSONObject("funds");
+	            	JSONObject assetData = fundsData.getJSONObject("asset");
+	            	/**
+	            	 * 净资产
+	            	 */
+	            	String netData = assetData.getString("net");
+	            	
+	            	JSONObject freeData = fundsData.getJSONObject("free");
+	            	
+	            	String btcData = freeData.getString("btc");
+	            	baseUserInfo.asset = netData;
+	            	baseUserInfo.free = btcData;
+	            	mainController.updateAccount(Config.OKCOINCN, baseUserInfo);
+	            }   
+	        }
+	        catch(Exception e)
+	        {
+	            e.printStackTrace();
+	        }
+		}};
+		thread.start();
 	}
 	public void getDepthData()  //获取OKCoin市场深度
 	{
@@ -162,5 +165,28 @@ public class OkCoinCnController implements BaseNode{
 			index = -1;
 			updateTickerData();
 		}
+	}
+	public void bsRequest(int bs, double value, double num) {
+		// TODO Auto-generated method stub
+		bs = Config.BUY_ID;
+        String bsStr[] = {"buy","sell"};
+        String price ="50";// String.format("%.4f", value);
+        String amount ="1.0";// String.format("%.4f", num);
+        try
+        {
+            String result = stockPost.trade("btc_usd", bsStr[bs], price, amount);
+            JSONObject tradejs = JSONObject.parseObject(result);
+            Boolean tresult = tradejs.getBoolean("result");
+          //现货下单交易
+    	    String tradeResult = stockPost.trade("btc_usd", "buy", "3500.11", "0.02");
+    	    System.out.println(tradeResult);
+    	    JSONObject tradeJSV1 = JSONObject.parseObject(tradeResult);
+    	    String tradeOrderV1 = tradeJSV1.getString("order_id");
+
+        }
+        catch (Exception e)
+        {
+            
+        }
 	}
 }

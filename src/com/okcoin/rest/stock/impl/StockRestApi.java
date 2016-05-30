@@ -34,27 +34,27 @@ public class StockRestApi implements IStockRestApi{
 	/**
 	 * 现货行情URL
 	 */
-	private final String TICKER_URL = "/api/v1/ticker.do?";
+	private final String TICKER_URL = "/api/v1/userinfo.do";
 	
 	/**
 	 * 现货市场深度URL
 	 */
-	private final String DEPTH_URL = "/api/v1/depth.do?";
+	private final String DEPTH_URL = "/api/v1/depth.do";
 	
 	/**
 	 * 现货历史交易信息URL
 	 */
-	private final String TRADES_URL = "/api/v1/trades.do?";
+	private final String TRADES_URL = "/api/v1/trades.do";
 	
 	/**
 	 * 现货获取用户信息URL
 	 */
-	private final String USERINFO_URL = "/api/v1/userinfo.do?";
+	private final String USERINFO_URL = "/api/v1/userinfo.do";
 	
 	/**
 	 * 现货 下单交易URL
 	 */
-	private final String TRADE_URL = "/api/v1/trade.do?";
+	private final String TRADE_URL = "/api/v1/trade.do";
 	
 	/**
 	 * 现货 批量下单URL

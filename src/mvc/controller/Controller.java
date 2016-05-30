@@ -9,6 +9,7 @@ import mvc.model.UserConfigData;
 import mvc.view.ViewBase;
 import base.BaseConfig;
 import base.BaseNode;
+import base.BaseUserInfo;
 import base.UserConBase;
 import mvc.view.mainFrame.MainFrame;
 
@@ -25,11 +26,11 @@ public class Controller implements BaseNode{
 	 * view 涓荤晫闈�
 	 */
 	public ViewBase view;
-        public MainFrame mainview;
+    public MainFrame mainview;
 	public OkCoinCnController okCoinCnController; //ok涓浗
 	public OkCoinComController okCoinComController;
 	public HuoBiController huobiController;
-        public BitVcController bitVcController;
+	public BitVcController bitVcController;
 	public Vector<ProcessControllerAI> processAI;
 	/**
 	 * set user config data
@@ -140,6 +141,10 @@ public class Controller implements BaseNode{
 		processAI.add(proc);
 		
 	}
+	public void updateAccount(int pt,BaseUserInfo baseUserInfo)
+	{
+		mainview.updateUserInfo(pt, baseUserInfo);
+	}
 	public Boolean removeProcess(long U_id)
 	{
 		Boolean result = false;
@@ -165,7 +170,7 @@ public class Controller implements BaseNode{
         {
             if(pt == Config.OKCOINCN)
             {
-                
+            	okCoinCnController.bsRequest(bs,value, num);
             }
             else if(pt == Config.OKCOINCOM)  
             {

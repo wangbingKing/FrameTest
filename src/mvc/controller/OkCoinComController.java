@@ -1,46 +1,54 @@
 package mvc.controller;
 
 import tools.Tools;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.okcoin.rest.HttpUtilManager;
+
 import config.Config;
 import config.Config.stateAction;
 import base.BaseConfig;
 import base.BaseNode;
+import base.BaseUserInfo;
+
 import com.okcoin.rest.MD5Util;
 import com.okcoin.rest.future.IFutureRestApi;
 import com.okcoin.rest.future.impl.FutureRestApiV1;
 import com.okcoin.rest.stock.IStockRestApi;
 import com.okcoin.rest.stock.impl.StockRestApi;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class OkCoinComController implements BaseNode{
-        private final String API_KEY = "7945c0bb-f45e-4af9-b445-f5f71651e1ef";
-        private final String SECRET_KEY = "";
-        private final String BASE_URL = "https://www.okcoin.com";
-         /**
-	     * get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息
-	     * 
-	    */
+    private final String API_KEY = "7945c0bb-f45e-4af9-b445-f5f71651e1ef";
+    private final String SECRET_KEY = "";
+    private final String BASE_URL = "https://www.okcoin.com";
+    public BaseUserInfo baseUserInfo;
+     /**
+     * get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息
+     * 
+    */
 	IStockRestApi stockGet;
-        /**
-	     * post请求需发送身份认证，获取用户个人相关信息时，需要指定api_key,与secret_key并与参数进行签名，
-	     * 此处对构造方法传入api_key与secret_key,在请求用户相关方法时则无需再传入，
-	     * 发送post请求之前，程序会做自动加密，生成签名。
-	     * 
-	    */
-        
-        /**
-        *  get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息
-        */
-        IFutureRestApi futureGetV1;// = new FutureRestApiV1(url_prex);
-        /**
-         * post请求需发送身份认证，获取用户个人相关信息时，需要指定api_key,与secret_key并与参数进行签名，
-         * 此处对构造方法传入api_key与secret_key,在请求用户相关方法时则无需再传入，
-         * 发送post请求之前，程序会做自动加密，生成签名。
-         * 
-        */
-        IFutureRestApi futurePostV1;// = new FutureRestApiV1(url_prex, api_key,secret_key);
+    /**
+     * post请求需发送身份认证，获取用户个人相关信息时，需要指定api_key,与secret_key并与参数进行签名，
+     * 此处对构造方法传入api_key与secret_key,在请求用户相关方法时则无需再传入，
+     * 发送post请求之前，程序会做自动加密，生成签名。
+     * 
+    */
+    
+    /**
+    *  get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息
+    */
+    IFutureRestApi futureGetV1;// = new FutureRestApiV1(url_prex);
+    /**
+     * post请求需发送身份认证，获取用户个人相关信息时，需要指定api_key,与secret_key并与参数进行签名，
+     * 此处对构造方法传入api_key与secret_key,在请求用户相关方法时则无需再传入，
+     * 发送post请求之前，程序会做自动加密，生成签名。
+     * 
+    */
+    IFutureRestApi futurePostV1;// = new FutureRestApiV1(url_prex, api_key,secret_key);
 	IStockRestApi stockPost;// = new StockRestApi(url_prex, api_key, secret_key);
 	public Controller mainController;
 	int index = 0;//限制请求次数
@@ -52,40 +60,83 @@ public class OkCoinComController implements BaseNode{
 	
 	public OkCoinComController(Controller con)
 	{
+		baseUserInfo = new BaseUserInfo();
 		mainController = con;
 		userKey = Tools.getUserAccount(Config.OKCOINCOM);
-                stockPost = new StockRestApi(BASE_URL, API_KEY, SECRET_KEY);
-                stockGet = new StockRestApi(BASE_URL);
-                futureGetV1 = new FutureRestApiV1(BASE_URL);
-                futurePostV1 = new FutureRestApiV1(BASE_URL, API_KEY, SECRET_KEY);
+        stockPost = new StockRestApi(BASE_URL, API_KEY, SECRET_KEY);
+        stockGet = new StockRestApi(BASE_URL);
+        futureGetV1 = new FutureRestApiV1(BASE_URL);
+        futurePostV1 = new FutureRestApiV1(BASE_URL, API_KEY, SECRET_KEY);
+        updateUserInfo();
 	}
 	/**
 	 * 获得用户key
 	 */
 	public BaseConfig getUserKey()
 	{
-            return this.userKey;
+        return this.userKey;
 	}
-        public String updateUserInfoRequest()
+    public String updateUserInfoRequest()
+    {
+        return "";
+    }
+    
+    public String bsRequest(int bs,double value,double num)
+    {
+    	bs = Config.BUY_ID;
+        String bsStr[] = {"buy","sell"};
+        String price ="1.0";// String.format("%.4f", value);
+        String amount ="1.0";// String.format("%.4f", num);
+        try
         {
-            return "";
+            stockPost.trade("btc_usd", bsStr[bs], price, amount);
         }
-        
-        public String bsRequest(int bs,double value,double num)
+        catch (Exception e)
         {
-            String bsStr[] = {"buy","sell"};
-            String price = String.format("%.4f", value);
-            String amount = String.format("%.4f", num);
-            try
-            {
-                stockPost.trade("btc_usd", bsStr[bs], price, amount);
-            }
-            catch (Exception e)
-            {
-                
-            }
-            return "";
+            
         }
+        return "";
+    }
+    /**
+	 * 更新账号信息
+	 */
+	public void updateUserInfo()
+	{
+		Thread thread = new Thread(){
+			public void run(){
+	        // 发送post请求
+	        try
+	        {
+	        	
+	            String result = stockPost.userinfo();
+	            System.out.println(result);
+	            JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
+	            Boolean resultInfo =  dataJson.getBoolean("result");
+	            if(resultInfo)
+	            {
+	            	JSONObject infoData = dataJson.getJSONObject("info");
+	            	JSONObject fundsData = infoData.getJSONObject("funds");
+	            	JSONObject assetData = fundsData.getJSONObject("asset");
+	            	/**
+	            	 * 净资产
+	            	 */
+	            	String netData = assetData.getString("net");
+	            	
+	            	JSONObject freeData = fundsData.getJSONObject("free");
+	            	
+	            	String btcData = freeData.getString("btc");
+	            	baseUserInfo.asset = netData;
+	            	baseUserInfo.free = btcData;
+	            	mainController.updateAccount(Config.OKCOINCOM, baseUserInfo);
+	            }   
+	        }
+	        catch(Exception e)
+	        {
+	            e.printStackTrace();
+	        }
+		}};
+		thread.start();
+	}
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub

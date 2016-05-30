@@ -6,6 +6,7 @@
 package mvc.view.mainFrame;
 
 import base.BaseNode;
+import base.BaseUserInfo;
 import config.Config;
 import mvc.controller.Controller;
 import mvc.model.HuoBIData;
@@ -409,4 +410,10 @@ public class PtJPanel extends javax.swing.JPanel implements BaseNode{
         	
         }
     }
+
+	public void updateUserInfo(BaseUserInfo infoData) {
+		// TODO Auto-generated method stub
+		bSPTPanel1.updateUserInfo(infoData);
+		bSPTPanel2.updateUserInfo(infoData);
+	}
 }
