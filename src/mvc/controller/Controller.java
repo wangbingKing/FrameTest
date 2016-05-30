@@ -25,7 +25,7 @@ public class Controller implements BaseNode{
 	 * view 涓荤晫闈�
 	 */
 	public ViewBase view;
-    public MainFrame mainview;
+        public MainFrame mainview;
 	public OkCoinCnController okCoinCnController; //ok涓浗
 	public OkCoinComController okCoinComController;
 	public HuoBiController huobiController;
@@ -45,7 +45,7 @@ public class Controller implements BaseNode{
 		okCoinCnController = new OkCoinCnController(this);
 		okCoinComController = new OkCoinComController(this);
 		huobiController = new HuoBiController(this);
-        bitVcController = new BitVcController(this);
+                bitVcController = new BitVcController(this);
 		this.initProcess();
 		
                 
@@ -167,8 +167,13 @@ public class Controller implements BaseNode{
             {
                 
             }
+            else if(pt == Config.OKCOINCOM)  
+            {
+                okCoinComController.bsRequest(bs,value, num);
+            }
             return true;
         }
+        
 	/**
 	 * 浠庣紦瀛樹腑鑾峰彇鏁版嵁
 	 */

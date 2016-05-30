@@ -39,7 +39,7 @@ public class BitVcController implements BaseNode{
     {
         mainController = con;
         userKey = Tools.getUserAccount(Config.BTBVC);
-        updateHoldOrder("week");
+//        updateHoldOrder("week");
     }
     /**
      * 获得用户key

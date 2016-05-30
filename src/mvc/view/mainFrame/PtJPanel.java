@@ -18,7 +18,6 @@ import mvc.model.OkCoinComData;
  * @author wuxianshikong
  */
 public class PtJPanel extends javax.swing.JPanel implements BaseNode{
-
     /**
      * Creates new form PtJPanel
      */
@@ -26,6 +25,18 @@ public class PtJPanel extends javax.swing.JPanel implements BaseNode{
         initComponents();
         bSPTPanel1.setBSPanel(Config.BUY_ID);
         bSPTPanel2.setBSPanel(Config.SELL_ID);
+        buyPanel1.setSuper(this,Config.BUY_ID);
+        buyPanel2.setSuper(this,Config.BUY_ID);
+        buyPanel3.setSuper(this,Config.BUY_ID);
+        buyPanel4.setSuper(this,Config.BUY_ID);
+        buyPanel5.setSuper(this,Config.BUY_ID);
+        sellPanel1.setSuper(this,Config.SELL_ID);
+        sellPanel2.setSuper(this,Config.SELL_ID);
+        sellPanel3.setSuper(this,Config.SELL_ID);
+        sellPanel4.setSuper(this,Config.SELL_ID);
+        sellPanel5.setSuper(this,Config.SELL_ID);
+        
+        
     }
 
     /**
@@ -164,12 +175,27 @@ public class PtJPanel extends javax.swing.JPanel implements BaseNode{
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    public void setBSData(int bs,double value,double num)
+    {
+        if(bs == Config.BUY_ID)
+        {
+            bSPTPanel1.setBSData(value,num);
+            tabbedPabel.setSelectedComponent(buyPanel);
+        }
+        else
+        {
+            bSPTPanel2.setBSData(value,num);
+            tabbedPabel.setSelectedComponent(sellPanel);
+        }
+        
+    }
     public void setPt(int pt,Controller con)
     {
         this.mainController = con;
         this.ptID = pt;
         titleLabel.setText(Config.getNameByPlat(pt));
+        this.bSPTPanel1.setSuperPanel(this);
+        this.bSPTPanel2.setSuperPanel(this);
     }
     /**
      * 平台id

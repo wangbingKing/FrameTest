@@ -17,16 +17,41 @@ import config.Config.stateAction;
 import base.BaseConfig;
 import base.BaseNode;
 import base.BaseUserInfo;
+import com.okcoin.rest.stock.IStockRestApi;
+import com.okcoin.rest.stock.impl.StockRestApi;
 
 public class OkCoinCnController implements BaseNode{
-	private final String BASE_URL = "https://www.okcoin.com";
-    private final String GET_HOLDORDER_URL = "/futures/holdOrder/list";
-    private final String GET_USERINFO_URL = "/api/v1/userinfo.do";
-    
-    public BaseUserInfo baseUserInfo;
-	public Controller mainController;
-	IFutureRestApi futurePostV1;
-	HttpUtilManager httpUtil;
+        private final String BASE_URL = "https://www.okcoin.cn";
+        private final String API_KEY = "7945c0bb-f45e-4af9-b445-f5f71651e1ef";
+        private final String SECRET_KEY = "";
+
+        public BaseUserInfo baseUserInfo;
+        public Controller mainController;
+         /**
+         * get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息
+         * 
+        */
+        IStockRestApi stockGet;
+        IStockRestApi stockPost;
+        /**
+             * post请求需发送身份认证，获取用户个人相关信息时，需要指定api_key,与secret_key并与参数进行签名，
+             * 此处对构造方法传入api_key与secret_key,在请求用户相关方法时则无需再传入，
+             * 发送post请求之前，程序会做自动加密，生成签名。
+             * 
+            */
+
+        /**
+        *  get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息
+        */
+//        IFutureRestApi futureGetV1;
+        /**
+         * post请求需发送身份认证，获取用户个人相关信息时，需要指定api_key,与secret_key并与参数进行签名，
+         * 此处对构造方法传入api_key与secret_key,在请求用户相关方法时则无需再传入，
+         * 发送post请求之前，程序会做自动加密，生成签名。
+         * 
+        */
+//        IFutureRestApi futurePostV1;
+        
 	int index = 0;//限制请求次数
 	stateAction state = Config.stateAction.INIT_STATE;//控制状态
 	/**
@@ -38,8 +63,10 @@ public class OkCoinCnController implements BaseNode{
 		baseUserInfo = new BaseUserInfo();
 		mainController = con;
 		userKey = Tools.getUserAccount(Config.OKCOINCN);
-		futurePostV1 = new FutureRestApiV1(BASE_URL, userKey.api_key,userKey.secret_key);
-		httpUtil = HttpUtilManager.getInstance();
+                stockPost = new StockRestApi(BASE_URL, API_KEY, SECRET_KEY);
+                stockGet = new StockRestApi(BASE_URL);
+//                futureGetV1 = new FutureRestApiV1(BASE_URL);
+//                futurePostV1 = new FutureRestApiV1(BASE_URL, API_KEY, SECRET_KEY);
 	}
 	/**
 	 * 获得用户key
@@ -72,7 +99,7 @@ public class OkCoinCnController implements BaseNode{
 		Thread thread = new Thread(){
 			   public void run(){
 				   try{
-						String result = httpUtil.requestHttpGet("https://www.okcoin.cn/api/v1/depth.do?symbol=btc_cny","", "");
+						String result =stockGet.depth("btc_cny");
 						mainController.model.setTickerData(Config.OKCOINCN,result);
 						index = 0;	
 				   }
@@ -90,17 +117,10 @@ public class OkCoinCnController implements BaseNode{
 	 */
 	public void updateUserInfo()
 	{
-        long time=System.currentTimeMillis()/1000;
-        // 构造参数签名
-        Map<String, String> params = new HashMap<String, String>();
-        
-        params.put("accessKey",userKey.api_key); //userKey.api_key
-        String sign = MD5Util.buildMysignV1(params, userKey.secret_key);//userKey.secret_key
-        params.put("sign", sign);
         // 发送post请求
         try
         {
-            String result = httpUtil.requestHttpPost(BASE_URL,GET_HOLDORDER_URL, params);
+            String result = stockPost.userinfo();
             System.out.println(result);
             JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
             Boolean resultInfo =  dataJson.getBoolean("result");

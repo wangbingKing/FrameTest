@@ -10,14 +10,19 @@ package mvc.view.mainFrame;
  * @author wuxianshikong
  */
 public class PtListJPanel extends javax.swing.JPanel {
-
+    PtJPanel ptJPanel;
+    int BSFlag;
     /**
      * Creates new form PtListJPanel
      */
     public PtListJPanel() {
         initComponents();
     }
-
+    public void setSuper(PtJPanel ptJPanel,int bs)
+    {
+        this.ptJPanel = ptJPanel;
+        BSFlag = bs;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,6 +79,9 @@ public class PtListJPanel extends javax.swing.JPanel {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
+        double n =Double.valueOf(num.getText());
+        double v =Double.valueOf(value.getText());
+        this.ptJPanel.setBSData(BSFlag, v, n);
     }//GEN-LAST:event_okButtonActionPerformed
 
 

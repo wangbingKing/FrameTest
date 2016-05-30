@@ -237,12 +237,12 @@ public class BSJPanel extends javax.swing.JPanel {
         {
             
         }
-         updateBSUI();
+        updateBSUI();
     }//GEN-LAST:event_bsNumFocusLost
     public void updateBSUI()
     {
-        bsValue.setText("" + value);
-        bsNum.setText("" + num);
+        bsValue.setText(String.format("%.4f",value));
+        bsNum.setText(String.format("%.1f",num));
         bsTotal.setText(String.format("%.4f",total));
     }
     public void setBSData(double value,double num)
@@ -250,7 +250,7 @@ public class BSJPanel extends javax.swing.JPanel {
         this.value = value;
         this.num = num;
         this.total = value * num;
-        updateUI();
+        updateBSUI();
     }
     public void updateUserInfo(BaseUserInfo info)
     {

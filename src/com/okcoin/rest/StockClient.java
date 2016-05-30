@@ -20,7 +20,7 @@ public class StockClient {
 		
 	    String api_key = "";  //OKCoin申请的apiKey
        	    String secret_key = "";  //OKCoin 申请的secret_key
- 	    String url_prex = "";  //注意：请求URL 国际站https://www.okcoin.com ; 国内站https://www.okcoin.cn
+ 	    String url_prex = "https://www.okcoin.com";  //注意：请求URL 国际站https://www.okcoin.com ; 国内站https://www.okcoin.cn
 	
 	    /**
 	     * get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息
@@ -46,7 +46,7 @@ public class StockClient {
             stockGet.trades("btc_usd", "20");
 		
 	    //现货用户信息
-	    stockPost.userinfo();
+	    String info = stockPost.userinfo();
 		
 	    //现货下单交易
 	    String tradeResult = stockPost.trade("btc_usd", "buy", "50", "0.02");
