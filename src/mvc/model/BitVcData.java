@@ -117,6 +117,7 @@ public class BitVcData extends ModelBase{
 					child.riskRate = arr.getDoubleValue("riskRate");
 					child.storeId = arr.getIntValue("storeId");
 					child.usedMargin = arr.getDoubleValue("usedMargin");
+                                        child.type = type;
 					bitvcData.add(child);
 				}
 			}

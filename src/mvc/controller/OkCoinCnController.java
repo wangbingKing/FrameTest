@@ -166,27 +166,28 @@ public class OkCoinCnController implements BaseNode{
 			updateTickerData();
 		}
 	}
-	public void bsRequest(int bs, double value, double num) {
+	public String bsRequest(int bs, double value, double num) {
 		// TODO Auto-generated method stub
 		bs = Config.BUY_ID;
         String bsStr[] = {"buy","sell"};
-        String price ="50";// String.format("%.4f", value);
-        String amount ="1.0";// String.format("%.4f", num);
+        String price = String.format("%.4f", value);
+        String amount = String.format("%.4f", num);
         try
         {
-            String result = stockPost.trade("btc_usd", bsStr[bs], price, amount);
+            String result = stockPost.trade("btc_cny", bsStr[bs], price, amount);
             JSONObject tradejs = JSONObject.parseObject(result);
             Boolean tresult = tradejs.getBoolean("result");
-          //现货下单交易
-    	    String tradeResult = stockPost.trade("btc_usd", "buy", "3500.11", "0.02");
-    	    System.out.println(tradeResult);
-    	    JSONObject tradeJSV1 = JSONObject.parseObject(tradeResult);
-    	    String tradeOrderV1 = tradeJSV1.getString("order_id");
+            if(tresult)
+            {
+                String tradeOrderV1 = tradejs.getString("order_id");
+                return tradeOrderV1;
+            }
 
         }
         catch (Exception e)
         {
             
         }
+        return "";
 	}
 }

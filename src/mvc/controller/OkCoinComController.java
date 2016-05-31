@@ -85,11 +85,19 @@ public class OkCoinComController implements BaseNode{
     {
     	bs = Config.BUY_ID;
         String bsStr[] = {"buy","sell"};
-        String price ="1.0";// String.format("%.4f", value);
-        String amount ="1.0";// String.format("%.4f", num);
+        String price = String.format("%.4f", value);
+        String amount = String.format("%.4f", num);
         try
         {
-            stockPost.trade("btc_usd", bsStr[bs], price, amount);
+            String result = stockPost.trade("btc_usd", bsStr[bs], price, amount);
+            JSONObject tradejs = JSONObject.parseObject(result);
+            Boolean tresult = tradejs.getBoolean("result");
+            if(tresult)
+            {
+                String tradeOrderV1 = tradejs.getString("order_id");
+                return tradeOrderV1;
+            }
+    	 
         }
         catch (Exception e)
         {
@@ -189,4 +197,21 @@ public class OkCoinComController implements BaseNode{
 			updateTickerData();
 		}
 	}
+        public void updateHoldOrder()
+        {
+            Thread thread = new Thread(){
+			   public void run(){
+                            try
+                            {
+                                String result = futurePostV1.future_position("btc_usd", "this_week");
+                                
+                            }
+                            catch(Exception e)
+                            {
+
+                            }
+                           }
+            };
+            thread.start();
+        }
 }

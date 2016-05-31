@@ -63,4 +63,11 @@ public class BaseVcHoldOrder {
      * 最后操作时间
      */
     public double lastTime;// : 1427354462 
+    
+    /**
+     * 当周
+     * 次周
+     * 季度
+     */
+    public int type;
 }
