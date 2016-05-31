@@ -204,7 +204,7 @@ public class OkCoinComController implements BaseNode{
                             try
                             {
                                 String result = futurePostV1.future_position("btc_usd", "this_week");
-                                
+                                mainController.setHoldOrderModel(Config.OKCOINCOM, result, Config.THIS_WEEK_FURTURE);
                             }
                             catch(Exception e)
                             {

@@ -8,6 +8,7 @@ import mvc.model.ModelMain;
 import mvc.model.UserConfigData;
 import mvc.view.ViewBase;
 import base.BaseConfig;
+import base.BaseErAiCheckData;
 import base.BaseNode;
 import base.BaseUserInfo;
 import base.UserConBase;
@@ -25,13 +26,13 @@ public class Controller implements BaseNode{
 	/**
 	 * view 涓荤晫闈�
 	 */
-	public ViewBase view;
-    public MainFrame mainview;
+        public MainFrame mainview;
 	public OkCoinCnController okCoinCnController; //ok涓浗
 	public OkCoinComController okCoinComController;
 	public HuoBiController huobiController;
 	public BitVcController bitVcController;
 	public Vector<ProcessControllerAI> processAI;
+        public Vector<ProcessControllerAIEr> processAIEr;
 	/**
 	 * set user config data
 	 */
@@ -40,7 +41,6 @@ public class Controller implements BaseNode{
 	{
 		isOver = false;
 		model = new ModelMain();
-//		view = new ViewBase("比特币交易机器人",this);
 		mainview = new MainFrame("比特币交易机器人",this);
 		//娣诲姞ok涓浗鎺у埗鍣�
 		okCoinCnController = new OkCoinCnController(this);
@@ -80,6 +80,7 @@ public class Controller implements BaseNode{
 	public void setHoldOrderModel(int pt,String result,int type)
 	{
 		model.setHoldOrderData(pt, result, type);
+                updateHoldOrderView();
 	}
 	public BaseConfig getUserConfig(int pt)
 	{
@@ -88,15 +89,19 @@ public class Controller implements BaseNode{
 		case Config.OKCOINCN:
 			return okCoinCnController.getUserKey();
 		case Config.OKCOINCOM:
-			return null;
+                        return okCoinComController.getUserKey();
 		case Config.BTBVC:
-			return null;
+			return bitVcController.getUserKey();
 		case Config.HUOBI:
 			return huobiController.getUserKey();
 		default:
 			return null;
 		}
 	}
+        public void updateHoldOrderView()
+        {
+            mainview.updateHoldView();
+        }
 	/**
 	 * 初始化状态机
 	 */
@@ -104,20 +109,7 @@ public class Controller implements BaseNode{
 	{
 		userData = new UserConfigData();
 		processAI = new Vector<ProcessControllerAI>();
-        UserConBase data = new UserConBase();
-        data.BSStateLeft = Config.BUY_ID;
-        data.BSStateRight = Config.SELL_ID;
-        
-        data.TypeMTLeft = Config.SELL_ID;
-        data.TypeMTRight = Config.BUY_ID;
-        
-        data.platLeft = Config.OKCOINCN;
-        data.platRight = Config.OKCOINCN;
-        
-//      data.ComPareState = Config.
-        
-//        this.addProcess(data);
-		
+                processAIEr = new Vector<ProcessControllerAIEr>();
 	}
 	/**
 	 * 刷新状态机
@@ -127,6 +119,10 @@ public class Controller implements BaseNode{
 		for(int i = 0;i<processAI.size();i++)
 		{
 			processAI.get(i).updata();
+		}
+                for(int i = 0;i<processAIEr.size();i++)
+		{
+			processAIEr.get(i).updata();
 		}
 	}
 	public void addProcess(UserConBase data)
@@ -139,6 +135,17 @@ public class Controller implements BaseNode{
 		userData.addControlData(data);
 		ProcessControllerAI proc = new ProcessControllerAI(data.U_id,data,this);
 		processAI.add(proc);
+		
+	}
+        public void addProcessEr(BaseErAiCheckData data)
+	{
+		if(data.U_id == -1)
+		{
+			long t2=System.currentTimeMillis();
+			data.U_id = t2;
+		}
+		ProcessControllerAIEr proc = new ProcessControllerAIEr(data.U_id,data,this);
+		processAIEr.add(proc);
 		
 	}
 	public void updateAccount(int pt,BaseUserInfo baseUserInfo)
@@ -159,6 +166,20 @@ public class Controller implements BaseNode{
 		}
 		Boolean dataResult = userData.removeControlData(U_id);
 		return result && dataResult;
+	}
+        public Boolean removeProcessEr(long U_id)
+	{
+		Boolean result = false;
+		for(int i = 0;i < processAIEr.size();i++)
+		{
+			if(((ProcessControllerAIEr)processAIEr.get(i)).U_id == U_id)
+			{
+				processAI.remove(i);
+				result = true;
+				break;
+			}
+		}
+		return result;
 	}
         /**
          * 现货买卖请求

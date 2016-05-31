@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.Vector;
 
 import base.BaseList;
+import base.BaseOKHoldOrder;
 import base.BaseVcHoldOrder;
 
 import com.alibaba.fastjson.JSON;
@@ -20,14 +21,14 @@ public class OkCoinComData extends ModelBase{
         /**
         * 存放仓位信息
         */
-        public Vector<BaseVcHoldOrder> holdOrderData;
+        public Vector<BaseOKHoldOrder> holdOrderData;
 	public OkCoinComData()
 	{
 		verTickerSellData = new Vector<BaseList>();
 		verTickerBuyData = new Vector<BaseList>();
 		verFurtureSellData = new Vector<BaseList>();
 		verFurtureBuyData = new Vector<BaseList>();
-                holdOrderData =new Vector<BaseVcHoldOrder>();
+                holdOrderData =new Vector<BaseOKHoldOrder>();
 	}
 	public void setFutureData(String result,int rutureType)//保存期货数据
 	{
@@ -260,21 +261,21 @@ public class OkCoinComData extends ModelBase{
                             for(int i = 0;i < data.size();i++)
                             {
                                     JSONObject arr = data.getJSONObject(i);
-                                    BaseVcHoldOrder child = new BaseVcHoldOrder();
-                                    child.id = String.format("%d", arr.getLong("contract_id"));// arr.getString("id");
-                                    child.tradeType = arr.getIntValue("tradeType");
-                                    child.price = arr.getDoubleValue("price");
-                                    child.status = arr.getIntValue("status");
-                                    child.lastTime = arr.getDoubleValue("lastTime");
-                                    child.money = arr.getDoubleValue("money");
-                                    child.closeMoney = arr.getDoubleValue("closeMoney");
-                                    child.holdProfitLoss = arr.getDoubleValue("holdProfitLoss");
-                                    child.dynamicRights = arr.getDoubleValue("dynamicRights");
-                                    child.liquidatePrice = arr.getDoubleValue("liquidatePrice");
-                                    child.riskRate = arr.getDoubleValue("riskRate");
-                                    child.storeId = arr.getIntValue("storeId");
-                                    child.usedMargin = arr.getDoubleValue("usedMargin");
-                                    child.type = type;
+                                    BaseOKHoldOrder child = new BaseOKHoldOrder();
+                                    child.contract_id = arr.getLong("contract_id");// arr.getString("id");
+                                    child.buy_amount = arr.getDouble("buy_amount");
+                                    child.buy_available = arr.getDouble("buy_available");
+                                    child.buy_price_avg = arr.getDouble("buy_price_avg");
+                                    child.buy_profit_real = arr.getDouble("buy_profit_real");
+                                    child.contract_type = arr.getIntValue("contract_type");
+                                    child.create_date = arr.getLong("create_date");
+                                    child.force_liqu_price = arr.getDouble("force_liqu_price");
+                                    child.lever_rate = arr.getDouble("lever_rate");
+                                    child.sell_amount = arr.getDouble("sell_amount");
+                                    child.sell_available = arr.getDouble("sell_available");
+                                    child.sell_price_avg = arr.getDouble("sell_price_avg");
+                                    child.sell_price_cost = arr.getDouble("sell_price_cost");
+                                    child.sell_profit_real = arr.getDouble("sell_profit_real");
                                     holdOrderData.add(child);
                             }
                         }

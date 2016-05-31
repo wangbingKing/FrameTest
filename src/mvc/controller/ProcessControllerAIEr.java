@@ -1,5 +1,6 @@
 package mvc.controller;
 
+import base.BaseErAiCheckData;
 import java.util.Vector;
 
 import machine.InitMachine;
@@ -10,7 +11,7 @@ import base.BaseNode;
 import base.BaseOrder;
 import base.UserConBase;
 
-public class ProcessControllerAI implements ProcessInterface {
+public class ProcessControllerAIEr implements ProcessInterface {
 	/**
 	 * 运行的状态机
 	 */
@@ -18,7 +19,7 @@ public class ProcessControllerAI implements ProcessInterface {
 	/**
 	 * 用户检测的数据
 	 */
-	public UserConBase userCheckData;
+	public BaseErAiCheckData baseErAiCheckData;
 	/**
 	 * 主控制器
 	 */
@@ -61,17 +62,16 @@ public class ProcessControllerAI implements ProcessInterface {
 	public Vector<BaseOrder> repealOverList;
 
 	public long U_id = -1;
-	public ProcessControllerAI(long U_id,UserConBase userCheckData,Controller mainControl)
+	public ProcessControllerAIEr(long U_id,BaseErAiCheckData userCheckData,Controller mainControl)
 	{
 		this.U_id = U_id;
-                this.userCheckData = userCheckData;
 		this.mainControl = mainControl;
-		MachineInterface machine = new InitMachine(this,userCheckData);
+                baseErAiCheckData = userCheckData;
 		this.setControllerMachine(machine);
 		buyListLift = new Vector<BaseList>();
-        sellListLift = new Vector<BaseList>();
-        buyListRight = new Vector<BaseList>();
-        sellListRight = new Vector<BaseList>();
+                sellListLift = new Vector<BaseList>();
+                buyListRight = new Vector<BaseList>();
+                sellListRight = new Vector<BaseList>();
 	}
 	/**
 	 * 清理左右双方检测数据
@@ -90,7 +90,7 @@ public class ProcessControllerAI implements ProcessInterface {
 	@Override
 	public void updata() {
 		// TODO Auto-generated method stub
-		machine.updata();
+//		machine.updata();
 	}
 	@Override
 	public ModelBase getModelData(int pt)

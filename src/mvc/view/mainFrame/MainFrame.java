@@ -6,7 +6,9 @@
 package mvc.view.mainFrame;
 
 import base.BaseNode;
+import base.BaseOKHoldOrder;
 import base.BaseUserInfo;
+import base.BaseVcHoldOrder;
 import config.Config;
 
 import java.util.Vector;
@@ -14,6 +16,7 @@ import java.util.Vector;
 import mvc.controller.Controller;
 import mvc.view.balanceFrame.FutureJFrame;
 import mvc.view.holdOrder.HoldOrderListPanel;
+import mvc.view.holdOrder.HoldOrderListPaneltitle;
 import mvc.view.setERFrame.OneDirectionFrame;
 
 /**
@@ -22,6 +25,14 @@ import mvc.view.setERFrame.OneDirectionFrame;
  */
 public class MainFrame extends javax.swing.JFrame implements BaseNode {
 
+    /**
+    * OK存放仓位信息
+    */
+    public Vector<BaseOKHoldOrder> okCoinComholdOrderData;
+    /**
+     * VC存放仓位信息
+     */
+    public Vector<BaseVcHoldOrder> bitvcholdOrderData;
     /**
      * Creates new form TestMainFrame
      */
@@ -34,6 +45,7 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
         ptHuobiJPanel.setPt(Config.HUOBI,con);
         okCoinHoldOrderList = new Vector<HoldOrderListPanel>();
         bitVcHoldOrderList = new Vector<HoldOrderListPanel>();
+        updateHoldView();
     }
 
     /**
@@ -281,7 +293,7 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FutureJFrame().setVisible(true);
+                new FutureJFrame(mainController).setVisible(true);
             }
         });
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -365,5 +377,60 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
     		ptHuobiJPanel.updateUserInfo(infoData);
     		break;
     	}
+    }
+    public void updateHoldView()
+    {
+        OkCoinFuturePanel.removeAll();
+        VcFuturePanel.removeAll();
+        holdOrderListPanel2 = null;
+        holdOrderListPanel1 = null;
+        HoldOrderListPaneltitle title1 = new HoldOrderListPaneltitle();
+        title1.setLocation(0, 0);
+        title1.setVisible(true); 
+        OkCoinFuturePanel.add(title1);
+        HoldOrderListPaneltitle title2 = new HoldOrderListPaneltitle();
+        title2.setLocation(0, 0);
+        title2.setVisible(true);       
+        VcFuturePanel.add(title2);
+        okCoinComholdOrderData = mainController.model.okCoinComData.holdOrderData;
+        bitvcholdOrderData = mainController.model.bitVcData.bitvcData;
+        for(int i = 0;i<5;i++)
+            {
+                HoldOrderListPanel panel = new HoldOrderListPanel();
+                panel.setLocation(0, i * 100);
+                panel.setVisible(true);
+                OkCoinFuturePanel.add(panel);
+            }
+        if(okCoinComholdOrderData!=null || !okCoinComholdOrderData.isEmpty())
+        {
+            for(int i = 0;i<okCoinComholdOrderData.size();i++)
+            {
+                HoldOrderListPanel panel = new HoldOrderListPanel();
+                panel.setLocation(0, i * 100);
+                panel.setVisible(true);
+                OkCoinFuturePanel.add(panel);
+            }
+        }
+        for(int i = 0;i<5;i++)
+            {
+                HoldOrderListPanel panel = new HoldOrderListPanel();
+                panel.setLocation(0, i * 100);
+                panel.setVisible(true);
+                VcFuturePanel.add(panel);
+            }
+        if(bitvcholdOrderData != null || !bitvcholdOrderData.isEmpty())
+        {
+            for(int i = 0;i<bitvcholdOrderData.size();i++)
+            {
+                HoldOrderListPanel panel = new HoldOrderListPanel();
+                panel.setLocation(0, i * 100);
+                panel.setVisible(true);
+                VcFuturePanel.add(panel);
+            }
+        }
+        else
+        {
+            
+        }
     }
 }

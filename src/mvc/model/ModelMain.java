@@ -19,6 +19,7 @@ public class ModelMain extends ModelBase{
 		switch(pt)
 		{
 		case Config.OKCOINCOM:
+                        okCoinComData.setHoldOrderData(str,type);
 			break;
 		case Config.BTBVC:
 			bitVcData.setHoldOrderData(str,type);

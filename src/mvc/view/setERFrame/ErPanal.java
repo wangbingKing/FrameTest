@@ -5,16 +5,20 @@
  */
 package mvc.view.setERFrame;
 
+import base.BaseErData;
+import javax.swing.JTabbedPane;
+
 /**
  *
  * @author wuxianshikong
  */
 public class ErPanal extends javax.swing.JPanel {
-
+    public BaseErData baseErData;
     /**
      * Creates new form ErPanal
      */
     public ErPanal() {
+        baseErData = new BaseErData();
         initComponents();
     }
 
@@ -28,20 +32,20 @@ public class ErPanal extends javax.swing.JPanel {
     private void initComponents() {
 
         jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        pt_L = new javax.swing.JComboBox<>();
+        bs_L = new javax.swing.JComboBox<>();
+        pt_R = new javax.swing.JComboBox<>();
+        bs_R = new javax.swing.JComboBox<>();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        bi_value = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        han_a = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        han_b = new javax.swing.JTextField();
+        do_bs = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 204, 153));
@@ -53,20 +57,51 @@ public class ErPanal extends javax.swing.JPanel {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OK中国", "OK国际", "火币", "BtbVC", "比特币中国" }));
+        pt_L.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OK中国", "OK国际", "火币", "BtbVC", "比特币中国" }));
+        pt_L.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pt_LActionPerformed(evt);
+            }
+        });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "现货卖价", "现货买价", "期货卖价", "期货买价" }));
+        bs_L.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "现货买价", "现货卖价" }));
+        bs_L.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bs_LActionPerformed(evt);
+            }
+        });
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OK中国", "OK国际", "火币", "BtbVC", "比特币中国" }));
+        pt_R.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OK中国", "OK国际", "火币", "BtbVC", "比特币中国" }));
+        pt_R.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pt_RActionPerformed(evt);
+            }
+        });
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "现货卖价", "现货买价", "期货卖价", "期货买价" }));
+        bs_R.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "现货买价", "现货卖价" }));
+        bs_R.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bs_RActionPerformed(evt);
+            }
+        });
+
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
 
         jLabel5.setText("特定值 = 最新成交价 * ");
 
-        jTextField1.setText("00000");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        bi_value.setText("00000");
+        bi_value.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                bi_valueFocusLost(evt);
+            }
+        });
+        bi_value.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                bi_valueActionPerformed(evt);
             }
         });
 
@@ -78,7 +113,7 @@ public class ErPanal extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bi_value, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(123, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -87,7 +122,7 @@ public class ErPanal extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bi_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -95,19 +130,29 @@ public class ErPanal extends javax.swing.JPanel {
 
         jLabel6.setText("特定值 = ");
 
-        jTextField2.setText("000000");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        han_a.setText("000000");
+        han_a.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                han_aFocusLost(evt);
+            }
+        });
+        han_a.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                han_aActionPerformed(evt);
             }
         });
 
         jLabel7.setText("*X + ");
 
-        jTextField4.setText("1111111");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        han_b.setText("1111111");
+        han_b.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                han_bFocusLost(evt);
+            }
+        });
+        han_b.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                han_bActionPerformed(evt);
             }
         });
 
@@ -119,11 +164,11 @@ public class ErPanal extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(han_a, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(han_b, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(74, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -132,16 +177,21 @@ public class ErPanal extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(han_a, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(han_b, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("函数", jPanel1);
 
-        jComboBox6.setBackground(new java.awt.Color(0, 204, 102));
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "买入", "卖出" }));
+        do_bs.setBackground(new java.awt.Color(0, 204, 102));
+        do_bs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "买入", "卖出" }));
+        do_bs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                do_bsActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("操作");
 
@@ -156,20 +206,20 @@ public class ErPanal extends javax.swing.JPanel {
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(do_bs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addComponent(jLabel1))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pt_L, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bs_L, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pt_R, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(bs_R, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -177,11 +227,11 @@ public class ErPanal extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pt_L, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bs_L, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pt_R, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bs_R, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -191,35 +241,92 @@ public class ErPanal extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(do_bs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        baseErData.gd = jComboBox1.getSelectedIndex();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void bi_valueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bi_valueActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_bi_valueActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void han_aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_han_aActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_han_aActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void han_bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_han_bActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+        
+    }//GEN-LAST:event_han_bActionPerformed
 
+    private void pt_LActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pt_LActionPerformed
+        // TODO add your handling code here:
+        baseErData.Pt_L =  pt_L.getSelectedIndex() + 1;
+    }//GEN-LAST:event_pt_LActionPerformed
 
+    private void pt_RActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pt_RActionPerformed
+        // TODO add your handling code here:
+        baseErData.Pt_R =  pt_R.getSelectedIndex() + 1;
+    }//GEN-LAST:event_pt_RActionPerformed
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        // TODO add your handling code here:
+        if(jTabbedPane1 != null)
+        {
+            int selectedIndex = jTabbedPane1.getSelectedIndex();
+            baseErData.han_bi = selectedIndex;
+        }
+        
+    }//GEN-LAST:event_jTabbedPane1StateChanged
+
+    private void bs_LActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_LActionPerformed
+        // TODO add your handling code here:
+        baseErData.bs_L = bs_L.getSelectedIndex();
+    }//GEN-LAST:event_bs_LActionPerformed
+
+    private void bs_RActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_RActionPerformed
+        // TODO add your handling code here:
+        baseErData.bs_R = bs_R.getSelectedIndex();
+    }//GEN-LAST:event_bs_RActionPerformed
+
+    private void do_bsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_do_bsActionPerformed
+        // TODO add your handling code here:
+        baseErData.do_BS = do_bs.getSelectedIndex();
+    }//GEN-LAST:event_do_bsActionPerformed
+
+    private void bi_valueFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bi_valueFocusLost
+        // TODO add your handling code here:
+        baseErData.bi = Double.parseDouble(bi_value.getText());
+    }//GEN-LAST:event_bi_valueFocusLost
+
+    private void han_aFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_han_aFocusLost
+        // TODO add your handling code here:
+        baseErData.a = Double.parseDouble(han_a.getText());
+    }//GEN-LAST:event_han_aFocusLost
+
+    private void han_bFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_han_bFocusLost
+        // TODO add your handling code here:
+        baseErData.b = Double.parseDouble(han_b.getText());
+    }//GEN-LAST:event_han_bFocusLost
+
+    public BaseErData getSelectData()
+    {
+        return this.baseErData;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField bi_value;
+    private javax.swing.JComboBox<String> bs_L;
+    private javax.swing.JComboBox<String> bs_R;
+    private javax.swing.JComboBox<String> do_bs;
+    private javax.swing.JTextField han_a;
+    private javax.swing.JTextField han_b;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -227,8 +334,7 @@ public class ErPanal extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JComboBox<String> pt_L;
+    private javax.swing.JComboBox<String> pt_R;
     // End of variables declaration//GEN-END:variables
 }

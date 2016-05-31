@@ -5,17 +5,49 @@
  */
 package mvc.view.balanceFrame;
 
+import base.UserConBase;
+import config.Config;
+import mvc.controller.Controller;
+
 /**
  *
  * @author wuxianshikong
  */
 public class CellPanel extends javax.swing.JPanel {
-
+    Controller mainControl;
+    UserConBase userCheckData;
+    public void resetUserConBase(UserConBase userCheckData)
+    {
+        this.userCheckData = userCheckData;
+        if(this.userCheckData == null)
+        {
+            jLabel1.setText("");
+            jLabel2.setText("");
+            jLabel3.setText("");
+            jLabel4.setText("");
+            jLabel5.setText("");
+            jLabel6.setText("");
+            jLabel7.setText("");
+            jLabel8.setText("");
+        }
+        else
+        {
+            jLabel1.setText(Config.BTCPLAT[userCheckData.platLeft - 1][0]);
+            jLabel2.setText("");
+            jLabel3.setText("");
+            jLabel4.setText("");
+            jLabel5.setText("");
+            jLabel6.setText("");
+            jLabel7.setText("");
+            jLabel8.setText("");
+        }
+    }
     /**
      * Creates new form CellPanel
      */
     public CellPanel() {
         initComponents();
+        resetUserConBase(null);
     }
 
     /**

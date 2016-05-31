@@ -139,5 +139,15 @@ public class Config {
 		 */
 		REPEALERROR_TRADESTATE
 	}
+        public static final int GAO_PRICE = 0;
+        public static final int DI_PRICE = 1;
+        
+        public static enum YHF
+        {
+            YHF_Y,
+            YHF_H,
+            YHF_NULL
+        }
+        
         public static String RUN_PT = "windos";
 }

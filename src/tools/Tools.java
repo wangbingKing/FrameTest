@@ -70,7 +70,7 @@ public class Tools {
 	{
 		BaseConfig conObj = new BaseConfig();
 		String configStr = Tools.getConfigFile();
-		if(configStr == "" || configStr.equals(null) )
+		if(configStr == "" || configStr == null )
 		{
 			return null;
 		}
