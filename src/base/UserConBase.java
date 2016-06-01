@@ -60,10 +60,24 @@ public class UserConBase {
     /**
      * 差价
      */
-    public int money = 0;
+    public float money = 0;
     
     /**
      * 符合条件的买卖价数量
      */
     public float checkNum = 0.0f;
+    
+    /**
+     * 最小交易额
+     */
+    public float limitMin = 0.0f;
+    /**
+     * 最大限制交易数量
+     */
+    public float limitMax = 0.0f;
+    /**
+     * 操作
+     */
+    public int do_bs_L;
+    public int do_bs_R;
 }

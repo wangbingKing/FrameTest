@@ -17,7 +17,7 @@ public class BaseErAiCheckData {
     * 唯一id
     */
     public long U_id = -1;
-    BaseErData leftCheckData;
-    BaseErData rightCheckData;
-    Config.YHF compare;
+    public BaseErData leftCheckData;
+    public BaseErData rightCheckData;
+    public int compare;
 }

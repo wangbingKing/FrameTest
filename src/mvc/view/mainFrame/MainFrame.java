@@ -25,6 +25,7 @@ import mvc.view.setERFrame.OneDirectionFrame;
  */
 public class MainFrame extends javax.swing.JFrame implements BaseNode {
 
+    OneDirectionFrame erFrame;
     /**
     * OK存放仓位信息
     */
@@ -256,8 +257,9 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
             java.util.logging.Logger.getLogger(OneDirectionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new OneDirectionFrame().setVisible(true);
+                new OneDirectionFrame(mainController).setVisible(true);
             }
         });
     }//GEN-LAST:event_jButton1ActionPerformed

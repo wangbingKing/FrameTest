@@ -130,7 +130,7 @@ public class ErPanal extends javax.swing.JPanel {
 
         jLabel6.setText("特定值 = ");
 
-        han_a.setText("000000");
+        han_a.setText("0");
         han_a.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 han_aFocusLost(evt);
@@ -144,7 +144,7 @@ public class ErPanal extends javax.swing.JPanel {
 
         jLabel7.setText("*X + ");
 
-        han_b.setText("1111111");
+        han_b.setText("0");
         han_b.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 han_bFocusLost(evt);
@@ -266,12 +266,12 @@ public class ErPanal extends javax.swing.JPanel {
 
     private void pt_LActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pt_LActionPerformed
         // TODO add your handling code here:
-        baseErData.Pt_L =  pt_L.getSelectedIndex() + 1;
+        baseErData.Pt_L =  pt_L.getSelectedIndex();
     }//GEN-LAST:event_pt_LActionPerformed
 
     private void pt_RActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pt_RActionPerformed
         // TODO add your handling code here:
-        baseErData.Pt_R =  pt_R.getSelectedIndex() + 1;
+        baseErData.Pt_R =  pt_R.getSelectedIndex();
     }//GEN-LAST:event_pt_RActionPerformed
 
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
@@ -316,7 +316,18 @@ public class ErPanal extends javax.swing.JPanel {
 
     public BaseErData getSelectData()
     {
-        return this.baseErData;
+        BaseErData data = new BaseErData();
+        data.Pt_L = this.baseErData.Pt_L;
+        data.Pt_R = this.baseErData.Pt_R;
+        data.a = this.baseErData.a;
+        data.b = this.baseErData.b;
+        data.bi = this.baseErData.bi;
+        data.bs_L = this.baseErData.bs_L;
+        data.bs_R = this.baseErData.bs_R;
+        data.do_BS = this.baseErData.do_BS;
+        data.gd = this.baseErData.gd;
+        data.han_bi = this.baseErData.han_bi;
+        return data;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

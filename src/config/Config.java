@@ -78,6 +78,11 @@ public class Config {
 		String t[] = {"买价","卖价"};
 		return t[mf];
 	}
+        public static String getStringBSDO(int mf)
+	{
+		String t[] = {"买入","卖出"};
+		return t[mf];
+	}
         /**
          * 获得平台名称
          * @param 平台标志
@@ -141,13 +146,15 @@ public class Config {
 	}
         public static final int GAO_PRICE = 0;
         public static final int DI_PRICE = 1;
-        
-        public static enum YHF
+        public static final String CONPARE_GD[] = {"高于","低于"};
+        public static String getHDStr(int gd)
         {
-            YHF_Y,
-            YHF_H,
-            YHF_NULL
+            return Config.CONPARE_GD[gd];
         }
+        public static int YHF_ONE = 2;
+        public static int YHF_ALL = 1;
+        public static int YHF_NULL = 0;
+        public static final String CONPARE_STR[] = {"无","都","任一"};
         
         public static String RUN_PT = "windos";
 }

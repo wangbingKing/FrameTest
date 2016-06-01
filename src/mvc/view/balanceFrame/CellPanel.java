@@ -16,30 +16,34 @@ import mvc.controller.Controller;
 public class CellPanel extends javax.swing.JPanel {
     Controller mainControl;
     UserConBase userCheckData;
+    FutureJFrame superaThis;
     public void resetUserConBase(UserConBase userCheckData)
     {
         this.userCheckData = userCheckData;
-        if(this.userCheckData == null)
+        if(this.userCheckData != null)
         {
-            jLabel1.setText("");
-            jLabel2.setText("");
-            jLabel3.setText("");
-            jLabel4.setText("");
-            jLabel5.setText("");
-            jLabel6.setText("");
-            jLabel7.setText("");
-            jLabel8.setText("");
+            String typebs[] = {"现货","当周","次周","季度"};
+            pt_L.setText(Config.getNameByPlat(userCheckData.platLeft + 1));
+            type_L.setText(typebs[userCheckData.TypeMTLeft]+Config.getStringBS(userCheckData.BSStateLeft));
+            pt_R.setText(Config.getNameByPlat(userCheckData.platRight + 1));
+            type_R.setText(typebs[userCheckData.TypeMTRight]+Config.getStringBS(userCheckData.BSStateRight));
+            do_LR.setText("左"+ Config.getStringBSDO(userCheckData.do_bs_L)+"右"+ Config.getStringBSDO(userCheckData.do_bs_R));
+            compare.setText(Config.getHDStr(userCheckData.ComPareState));
+            money.setText("" + userCheckData.money);
+            limitMax.setText("" + userCheckData.limitMax);
+            this.setVisible(true);
         }
         else
         {
-            jLabel1.setText(Config.BTCPLAT[userCheckData.platLeft - 1][0]);
-            jLabel2.setText("");
-            jLabel3.setText("");
-            jLabel4.setText("");
-            jLabel5.setText("");
-            jLabel6.setText("");
-            jLabel7.setText("");
-            jLabel8.setText("");
+            pt_L.setText("");
+            type_L.setText("");
+            pt_R.setText("");
+            type_R.setText("");
+            do_LR.setText("");
+            compare.setText("");
+            money.setText("");
+            limitMax.setText("");
+            this.setVisible(false);
         }
     }
     /**
@@ -59,32 +63,32 @@ public class CellPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        pt_L = new javax.swing.JLabel();
+        type_L = new javax.swing.JLabel();
+        pt_R = new javax.swing.JLabel();
+        type_R = new javax.swing.JLabel();
+        do_LR = new javax.swing.JLabel();
+        compare = new javax.swing.JLabel();
+        money = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        limitMax = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 255, 204));
 
-        jLabel1.setText("okCoin中国");
+        pt_L.setText("okCoin中国");
 
-        jLabel2.setText("期货现价");
+        type_L.setText("期货现价");
 
-        jLabel3.setText("okCoin中国");
-        jLabel3.setToolTipText("");
+        pt_R.setText("okCoin中国");
+        pt_R.setToolTipText("");
 
-        jLabel4.setText("期货现价");
+        type_R.setText("期货现价");
 
-        jLabel5.setText("左买右卖");
+        do_LR.setText("左买右卖");
 
-        jLabel6.setText("大于");
+        compare.setText("大于");
 
-        jLabel7.setText("10000");
+        money.setText("10000");
 
         jButton1.setText("撤销");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +97,7 @@ public class CellPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel8.setText("10000");
+        limitMax.setText("10000");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -101,21 +105,21 @@ public class CellPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(11, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pt_L, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(type_L)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(compare, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pt_R, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(type_R)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(money, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(do_LR)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(limitMax, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addGap(35, 35, 35))
@@ -125,32 +129,40 @@ public class CellPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
+                    .addComponent(pt_L)
+                    .addComponent(type_L)
+                    .addComponent(pt_R)
+                    .addComponent(type_R)
+                    .addComponent(do_LR)
+                    .addComponent(compare)
+                    .addComponent(money)
                     .addComponent(jButton1)
-                    .addComponent(jLabel8)))
+                    .addComponent(limitMax)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.superaThis.mainControl.removeProcess(this.userCheckData.U_id);
+        this.superaThis.updateUIList();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel compare;
+    private javax.swing.JLabel do_LR;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel limitMax;
+    private javax.swing.JLabel money;
+    private javax.swing.JLabel pt_L;
+    private javax.swing.JLabel pt_R;
+    private javax.swing.JLabel type_L;
+    private javax.swing.JLabel type_R;
     // End of variables declaration//GEN-END:variables
+
+    void resetUserConBase(UserConBase userCheckData, FutureJFrame aThis) {
+        superaThis = aThis;
+        this.resetUserConBase(userCheckData);
+    }
 }

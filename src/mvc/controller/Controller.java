@@ -174,7 +174,7 @@ public class Controller implements BaseNode{
 		{
 			if(((ProcessControllerAIEr)processAIEr.get(i)).U_id == U_id)
 			{
-				processAI.remove(i);
+				processAIEr.remove(i);
 				result = true;
 				break;
 			}
