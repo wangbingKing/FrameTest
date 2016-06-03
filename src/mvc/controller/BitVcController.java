@@ -27,6 +27,7 @@ import tools.Tools;
 public class BitVcController implements BaseNode{
     private final String BASE_URL = "https://api.bitvc.com";
     private final String GET_HOLDORDER_URL = "/futures/holdOrder/list";
+    private final String GET_BALANCE = "/futures/balance";
     public Controller mainController;
     int index = 0;//限制请求次数
     stateAction state = Config.stateAction.INIT_STATE;//控制状态
@@ -39,7 +40,8 @@ public class BitVcController implements BaseNode{
     {
         mainController = con;
         userKey = Tools.getUserAccount(Config.BTBVC);
-//        updateHoldOrder("week");
+        updateBalance();
+        this.updateHoldOrder("week");
     }
     /**
      * 获得用户key
@@ -50,14 +52,13 @@ public class BitVcController implements BaseNode{
     }
     public void updateHoldOrder(String type)
     {
-        IFutureRestApi futurePostV1 = new FutureRestApiV1(BASE_URL, userKey.api_key,userKey.secret_key);
         long time=System.currentTimeMillis()/1000;
         // 构造参数签名
         Map<String, String> params = new HashMap<String, String>();
         
         params.put("accessKey","667eb6b5-cffb0d21-15f3e934-2f56e212"); //userKey.api_key
         params.put("coinType", "1");
-        params.put("created",Long.toString(time));
+        params.put("created",""+Long.toString(time));
         String sign = MD5Util.buildBitVcSign(params, "");//userKey.secret_key
         params.put("sign", sign);
         params.put("contarctType", type); 
@@ -69,6 +70,31 @@ public class BitVcController implements BaseNode{
             String result = httpUtil.requestHttpPost(BASE_URL,GET_HOLDORDER_URL, params);
             System.out.println(result);
             mainController.setHoldOrderModel(Config.BTBVC,result,Config.THIS_WEEK_FURTURE);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+     public void updateBalance()
+    {
+        long time=System.currentTimeMillis()/1000;
+        // 构造参数签名
+        Map<String, String> params = new HashMap<String, String>();
+        
+        params.put("accessKey","667eb6b5-cffb0d21-15f3e934-2f56e212"); //userKey.api_key
+        params.put("coinType", "1");
+        params.put("created",""+Long.toString(time));
+        String sign = MD5Util.buildBitVcSign(params, "");//userKey.secret_key
+        params.put("sign", sign);
+        // 发送post请求
+
+        HttpUtilManager httpUtil = HttpUtilManager.getInstance();
+        try
+        {
+            String result = httpUtil.requestHttpPost(BASE_URL,GET_BALANCE, params);
+            System.out.println(result);
+
         }
         catch(Exception e)
         {

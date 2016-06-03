@@ -11,6 +11,7 @@ import base.BaseConfig;
 import base.BaseErAiCheckData;
 import base.BaseNode;
 import base.BaseUserInfo;
+import base.BaseWuAi;
 import base.UserConBase;
 import mvc.view.mainFrame.MainFrame;
 
@@ -33,6 +34,7 @@ public class Controller implements BaseNode{
 	public BitVcController bitVcController;
 	public Vector<ProcessControllerAI> processAI;
         public Vector<ProcessControllerAIEr> processAIEr;
+        public Vector<ProcessControllerAIWu> processControllerAIWu;
 	/**
 	 * set user config data
 	 */
@@ -110,6 +112,7 @@ public class Controller implements BaseNode{
 		userData = new UserConfigData();
 		processAI = new Vector<ProcessControllerAI>();
                 processAIEr = new Vector<ProcessControllerAIEr>();
+                processControllerAIWu = new Vector<ProcessControllerAIWu>();
 	}
 	/**
 	 * 刷新状态机
@@ -148,6 +151,17 @@ public class Controller implements BaseNode{
 		processAIEr.add(proc);
 		
 	}
+        public void addProcessWu(BaseWuAi data)
+	{
+		if(data.U_id == -1)
+		{
+			long t2=System.currentTimeMillis();
+			data.U_id = t2;
+		}
+		ProcessControllerAIWu proc = new ProcessControllerAIWu(data.U_id,data,this);
+		processControllerAIWu.add(proc);
+		
+	}
 	public void updateAccount(int pt,BaseUserInfo baseUserInfo)
 	{
 		mainview.updateUserInfo(pt, baseUserInfo);
@@ -175,6 +189,20 @@ public class Controller implements BaseNode{
 			if(((ProcessControllerAIEr)processAIEr.get(i)).U_id == U_id)
 			{
 				processAIEr.remove(i);
+				result = true;
+				break;
+			}
+		}
+		return result;
+	}
+        public Boolean removeProcessWu(long U_id)
+	{
+		Boolean result = false;
+		for(int i = 0;i < processControllerAIWu.size();i++)
+		{
+			if(((ProcessControllerAIWu)processControllerAIWu.get(i)).U_id == U_id)
+			{
+				processControllerAIWu.remove(i);
 				result = true;
 				break;
 			}

@@ -23,6 +23,7 @@ public class CellPanel extends javax.swing.JPanel {
         if(this.userCheckData != null)
         {
             String typebs[] = {"现货","当周","次周","季度"};
+            String dsStr[] = {"双向","单向"};
             pt_L.setText(Config.getNameByPlat(userCheckData.platLeft + 1));
             type_L.setText(typebs[userCheckData.TypeMTLeft]+Config.getStringBS(userCheckData.BSStateLeft));
             pt_R.setText(Config.getNameByPlat(userCheckData.platRight + 1));
@@ -31,6 +32,8 @@ public class CellPanel extends javax.swing.JPanel {
             compare.setText(Config.getHDStr(userCheckData.ComPareState));
             money.setText("" + userCheckData.money);
             limitMax.setText("" + userCheckData.limitMax);
+            compareValue2.setText(""+userCheckData.compareValue2);
+            ds_trand.setText(""+ dsStr[userCheckData.bs_trand]);
             this.setVisible(true);
         }
         else
@@ -72,6 +75,8 @@ public class CellPanel extends javax.swing.JPanel {
         money = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         limitMax = new javax.swing.JLabel();
+        ds_trand = new javax.swing.JLabel();
+        compareValue2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 255, 204));
 
@@ -99,12 +104,16 @@ public class CellPanel extends javax.swing.JPanel {
 
         limitMax.setText("10000");
 
+        ds_trand.setText("单向");
+
+        compareValue2.setText("0000");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pt_L, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(type_L)
@@ -120,6 +129,10 @@ public class CellPanel extends javax.swing.JPanel {
                 .addComponent(do_LR)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(limitMax, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ds_trand, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(compareValue2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addGap(35, 35, 35))
@@ -137,7 +150,9 @@ public class CellPanel extends javax.swing.JPanel {
                     .addComponent(compare)
                     .addComponent(money)
                     .addComponent(jButton1)
-                    .addComponent(limitMax)))
+                    .addComponent(limitMax)
+                    .addComponent(ds_trand)
+                    .addComponent(compareValue2)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -151,7 +166,9 @@ public class CellPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel compare;
+    private javax.swing.JLabel compareValue2;
     private javax.swing.JLabel do_LR;
+    private javax.swing.JLabel ds_trand;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel limitMax;
     private javax.swing.JLabel money;

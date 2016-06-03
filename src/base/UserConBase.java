@@ -80,4 +80,7 @@ public class UserConBase {
      */
     public int do_bs_L;
     public int do_bs_R;
+    
+    public int bs_trand;
+    public float compareValue2;
 }

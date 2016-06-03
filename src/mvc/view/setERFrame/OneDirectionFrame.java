@@ -83,7 +83,7 @@ public class OneDirectionFrame extends javax.swing.JFrame {
         erlistJPanel9 = new mvc.view.setERFrame.ErlistJPanel();
         erlistJPanel10 = new mvc.view.setERFrame.ErlistJPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "无", "都", "任一" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {

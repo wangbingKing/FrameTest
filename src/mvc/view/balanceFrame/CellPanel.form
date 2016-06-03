@@ -22,7 +22,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="11" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="pt_L" min="-2" pref="91" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="type_L" min="-2" max="-2" attributes="0"/>
@@ -38,6 +38,10 @@
               <Component id="do_LR" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="limitMax" min="-2" pref="53" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="ds_trand" min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="compareValue2" min="-2" pref="61" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
@@ -58,6 +62,8 @@
                   <Component id="money" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="limitMax" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ds_trand" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="compareValue2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -111,6 +117,16 @@
     <Component class="javax.swing.JLabel" name="limitMax">
       <Properties>
         <Property name="text" type="java.lang.String" value="10000"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ds_trand">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x5355;&#x5411;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="compareValue2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0000"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -156,5 +156,8 @@ public class Config {
         public static int YHF_NULL = 0;
         public static final String CONPARE_STR[] = {"无","都","任一"};
         
+        public static final int ds_s = 0;
+        public static final int ds_d = 1;
+        
         public static String RUN_PT = "windos";
 }
