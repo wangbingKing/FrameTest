@@ -22,22 +22,26 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="11" max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="91" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="pt_L" min="-2" pref="91" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <Component id="type_L" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel6" min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="compare" min="-2" pref="26" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" pref="91" max="-2" attributes="0"/>
+              <Component id="pt_R" min="-2" pref="91" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+              <Component id="type_R" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel7" min="-2" pref="50" max="-2" attributes="0"/>
+              <Component id="money" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+              <Component id="do_LR" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel8" min="-2" pref="53" max="-2" attributes="0"/>
+              <Component id="limitMax" min="-2" pref="53" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="ds_trand" min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="compareValue2" min="-2" pref="61" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
@@ -49,53 +53,55 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="pt_L" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="type_L" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="pt_R" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="type_R" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="do_LR" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="compare" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="money" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="limitMax" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ds_trand" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="compareValue2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="pt_L">
       <Properties>
         <Property name="text" type="java.lang.String" value="okCoin&#x4e2d;&#x56fd;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="type_L">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x671f;&#x8d27;&#x73b0;&#x4ef7;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="pt_R">
       <Properties>
         <Property name="text" type="java.lang.String" value="okCoin&#x4e2d;&#x56fd;"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="type_R">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x671f;&#x8d27;&#x73b0;&#x4ef7;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="do_LR">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x5de6;&#x4e70;&#x53f3;&#x5356;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
+    <Component class="javax.swing.JLabel" name="compare">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x5927;&#x4e8e;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
+    <Component class="javax.swing.JLabel" name="money">
       <Properties>
         <Property name="text" type="java.lang.String" value="10000"/>
       </Properties>
@@ -108,9 +114,19 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
+    <Component class="javax.swing.JLabel" name="limitMax">
       <Properties>
         <Property name="text" type="java.lang.String" value="10000"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ds_trand">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x5355;&#x5411;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="compareValue2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0000"/>
       </Properties>
     </Component>
   </SubComponents>
