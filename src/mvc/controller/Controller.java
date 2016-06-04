@@ -9,7 +9,9 @@ import mvc.model.UserConfigData;
 import mvc.view.ViewBase;
 import base.BaseConfig;
 import base.BaseErAiCheckData;
+import base.BaseList;
 import base.BaseNode;
+import base.BaseOrder;
 import base.BaseUserInfo;
 import base.BaseWuAi;
 import base.UserConBase;
@@ -128,6 +130,37 @@ public class Controller implements BaseNode{
 			processAIEr.get(i).updata();
 		}
 	}
+        public void update_WU_Process()
+        {
+            Vector<BaseOrder> orderLists = new Vector<BaseOrder>();
+            for(int i = 0;i<processControllerAIWu.size();i++)
+            {
+                if(processControllerAIWu.get(i).state != Config.WUSTATE.REQUESTING)
+                {
+                    Vector<BaseOrder> orderlist = processControllerAIWu.get(i).tradeList;
+                    if(!orderlist.isEmpty());
+                    {
+                        BaseOrder list = orderlist.get(0);
+                        orderLists.add(list);
+                    }
+                }    
+            }
+            
+            
+        }
+        public void checkOrderData(Vector<BaseOrder> orderLists,int pt,int mf)
+        {
+            String orders = "";
+            for(int i = 0;i<orderLists.size();i++)
+            {
+                BaseOrder order = orderLists.get(i);
+                if(order.pt == pt && order.mf == mf)
+                {
+                    orders = orders + "," + order.orderID;
+                }
+            }
+            
+        }
 	public void addProcess(UserConBase data)
 	{
 		if(data.U_id == -1)

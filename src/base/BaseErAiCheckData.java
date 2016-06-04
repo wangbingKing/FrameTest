@@ -20,4 +20,5 @@ public class BaseErAiCheckData {
     public BaseErData leftCheckData;
     public BaseErData rightCheckData;
     public int compare;
+    public double maxNum;
 }

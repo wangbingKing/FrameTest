@@ -34,7 +34,7 @@ public class StockRestApi implements IStockRestApi{
 	/**
 	 * 现货行情URL
 	 */
-	private final String TICKER_URL = "/api/v1/userinfo.do";
+	private final String TICKER_URL = "/api/v1/ticker.do";
 	
 	/**
 	 * 现货市场深度URL

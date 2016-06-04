@@ -28,6 +28,9 @@ public class OkCoinCnController implements BaseNode{
 
     public BaseUserInfo baseUserInfo;
     public Controller mainController;
+    
+    public double newTrandMoney;
+    
      /**
      * get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息
      * 
@@ -65,6 +68,7 @@ public class OkCoinCnController implements BaseNode{
         stockPost = new StockRestApi(BASE_URL, API_KEY, SECRET_KEY);
         stockGet = new StockRestApi(BASE_URL);
         updateUserInfo();
+        updateNewTrand();
 	}
 	/**
 	 * 获得用户key
@@ -89,6 +93,25 @@ public class OkCoinCnController implements BaseNode{
 			break;
 		}
 	}
+        public void updateNewTrand()
+        {
+            Thread thread = new Thread(){
+			   public void run(){
+				   try{
+						String result =stockGet.ticker("btc_cny");
+						JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
+                                                JSONObject data = dataJson.getJSONObject("ticker");
+                                                newTrandMoney = data.getDouble("last");
+				   }
+				   catch(Exception E)
+				   {
+					
+				   }
+				 
+			   }
+			};
+		thread.start();
+        }
 	/**
 	 * 更新现货深度
 	 */
@@ -150,6 +173,7 @@ public class OkCoinCnController implements BaseNode{
 		}};
 		thread.start();
 	}
+//        public void get
 	public void getDepthData()  //获取OKCoin市场深度
 	{
 		//https://www.okcoin.cn/api/v1/depth.do?symbol=btc_cny

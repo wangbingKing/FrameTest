@@ -26,6 +26,11 @@ public class OkCoinComController implements BaseNode{
     private final String SECRET_KEY = "";
     private final String BASE_URL = "https://www.okcoin.com";
     public BaseUserInfo baseUserInfo;
+    public double newTrandMoney;
+    public double newThisWeekMoney;
+    public double newNextWeekMoney;
+    public double newMonthMoney;
+    public double newQuarterMoney;
      /**
      * get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息
      * 
@@ -63,11 +68,12 @@ public class OkCoinComController implements BaseNode{
 		baseUserInfo = new BaseUserInfo();
 		mainController = con;
 		userKey = Tools.getUserAccount(Config.OKCOINCOM);
-        stockPost = new StockRestApi(BASE_URL, API_KEY, SECRET_KEY);
-        stockGet = new StockRestApi(BASE_URL);
-        futureGetV1 = new FutureRestApiV1(BASE_URL);
-        futurePostV1 = new FutureRestApiV1(BASE_URL, API_KEY, SECRET_KEY);
-        updateUserInfo();
+                stockPost = new StockRestApi(BASE_URL, API_KEY, SECRET_KEY);
+                stockGet = new StockRestApi(BASE_URL);
+                futureGetV1 = new FutureRestApiV1(BASE_URL);
+                futurePostV1 = new FutureRestApiV1(BASE_URL, API_KEY, SECRET_KEY);
+                updateUserInfo();
+                updateNewTrand();
 	}
 	/**
 	 * 获得用户key
@@ -213,5 +219,44 @@ public class OkCoinComController implements BaseNode{
                            }
             };
             thread.start();
+        }
+        public void updateNewTrand()
+        {
+            Thread thread = new Thread(){
+			   public void run(){
+				   try{
+						String result =stockGet.ticker("btc_usd");
+						JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
+                                                JSONObject data = dataJson.getJSONObject("ticker");
+                                                newTrandMoney = data.getDouble("last");
+                                                
+                                                String thisWeek = futureGetV1.future_ticker("btc_usd", "this_week");
+                                                JSONObject  dataWeekJson = new JSONObject(JSON.parseObject(thisWeek));
+                                                JSONObject weekdata = dataWeekJson.getJSONObject("ticker");
+                                                newThisWeekMoney = weekdata.getDouble("last");
+                                                
+                                                String next_week = futureGetV1.future_ticker("btc_usd", "next_week");
+                                                JSONObject  datanext_weekJson = new JSONObject(JSON.parseObject(next_week));
+                                                JSONObject next_weekdata = datanext_weekJson.getJSONObject("ticker");
+                                                newNextWeekMoney = next_weekdata.getDouble("last");
+                                                
+                                                String thismonth = futureGetV1.future_ticker("btc_usd", "month");
+                                                JSONObject  datamonthJson = new JSONObject(JSON.parseObject(thismonth));
+                                                JSONObject monthdata = datamonthJson.getJSONObject("ticker");
+                                                newMonthMoney = monthdata.getDouble("last");
+                                                
+                                                String thisquarter = futureGetV1.future_ticker("btc_usd", "quarter");
+                                                JSONObject  dataquarterJson = new JSONObject(JSON.parseObject(thisquarter));
+                                                JSONObject quarterdata = dataquarterJson.getJSONObject("ticker");
+                                                newQuarterMoney = quarterdata.getDouble("last");                                              
+				   }
+				   catch(Exception E)
+				   {
+					
+				   }
+				 
+			   }
+			};
+		thread.start();
         }
 }

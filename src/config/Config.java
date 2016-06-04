@@ -160,4 +160,13 @@ public class Config {
         public static final int ds_d = 1;
         
         public static String RUN_PT = "windos";
+        
+        
+        public static enum WUSTATE
+        {
+            NULLSTATE,
+            REQUESTING,
+            
+            
+        }
 }

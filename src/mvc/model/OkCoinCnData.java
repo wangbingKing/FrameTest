@@ -102,6 +102,7 @@ public class OkCoinCnData extends ModelBase{
 	            	}
 	            }
 	        });
+                        
 		}
 	}
 	public BaseList[] getTickerSellData()

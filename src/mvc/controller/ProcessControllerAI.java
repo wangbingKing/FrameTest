@@ -78,10 +78,10 @@ public class ProcessControllerAI implements ProcessInterface {
 	 */
 	public void clearCheckData()
 	{
-		buyListLift.clear();
-        sellListLift.clear();
-        buyListRight.clear();
-        sellListRight.clear();
+            buyListLift.clear();
+            sellListLift.clear();
+            buyListRight.clear();
+            sellListRight.clear();
 	}
 	public void setControllerMachine(MachineInterface machine)
 	{

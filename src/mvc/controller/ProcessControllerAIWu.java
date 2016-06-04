@@ -11,8 +11,10 @@ import base.BaseNode;
 import base.BaseOrder;
 import base.BaseWuAi;
 import base.UserConBase;
+import config.Config;
 
 public class ProcessControllerAIWu implements ProcessInterface {
+        public Config.WUSTATE state;
 	/**
 	 * 运行的状态机
 	 */
@@ -88,8 +90,15 @@ public class ProcessControllerAIWu implements ProcessInterface {
 	{
 		this.machine = machine;
 	}
+        public void updateHaveOrder()
+        {
+            
+        }
 	@Override
 	public void updata() {
+           
+
+            
 		// TODO Auto-generated method stub
 //		machine.updata();
 	}

@@ -3,6 +3,7 @@ package base;
 import config.Config;
 
 public class BaseOrder {
+        public int pt;
 	/**
 	 * 订单id
 	 */
@@ -21,6 +22,10 @@ public class BaseOrder {
 	 * 剩余数量
 	 */
 	public float remainNum;
+        public long uid;
+        public int aiType;
+        public double money;
+        public int mf;
 	public BaseOrder()
 	{
 		this.orderID = "";

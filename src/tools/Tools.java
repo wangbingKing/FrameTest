@@ -84,6 +84,19 @@ public class Tools {
         conObj.baseUrl = datapt.getString("base_url");
 		return conObj;
 	}
+        
+    public static double getNumMedol(Vector<BaseList> ListLift,Vector<BaseList> ListRight,int bs)
+    {
+        //列表都是从小到大排序 ListLift > ListRight
+        int idxL = 0;
+        int inxR = 0;
+        if(bs == Config.GAO_PRICE)
+        {
+            
+        }
+        
+        return 0.0f;
+    }
     /**
      * 获得比较有差值的数量
      * @param buyListLift

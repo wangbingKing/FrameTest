@@ -79,9 +79,9 @@ public class ProcessControllerAIEr implements ProcessInterface {
 	public void clearCheckData()
 	{
 		buyListLift.clear();
-        sellListLift.clear();
-        buyListRight.clear();
-        sellListRight.clear();
+                sellListLift.clear();
+                buyListRight.clear();
+                sellListRight.clear();
 	}
 	public void setControllerMachine(MachineInterface machine)
 	{
@@ -90,7 +90,6 @@ public class ProcessControllerAIEr implements ProcessInterface {
 	@Override
 	public void updata() {
 		// TODO Auto-generated method stub
-//		machine.updata();
 	}
 	@Override
 	public ModelBase getModelData(int pt)

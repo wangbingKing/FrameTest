@@ -20,6 +20,7 @@ public class ErPanal extends javax.swing.JPanel {
     public ErPanal() {
         baseErData = new BaseErData();
         initComponents();
+        bs_R.setVisible(false);
     }
 
     /**

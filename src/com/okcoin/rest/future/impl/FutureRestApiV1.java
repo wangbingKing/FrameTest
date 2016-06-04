@@ -93,6 +93,10 @@ public class FutureRestApiV1 implements IFutureRestApi {
 	 * 用户期货订单信息查询URL
 	 */
 	private final String FUTURE_ORDER_INFO_URL = "/api/v1/order_info.do";
+        /**
+	 * 用户期货订单信息查询URL
+	 */
+	private final String FUTURE_ORDERS_INFO_URL = "/api/v1/order_info.do";
 
 	@Override
 	public String future_ticker(String symbol, String contractType)
