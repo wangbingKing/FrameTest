@@ -33,7 +33,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel8" min="-2" pref="121" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel10" pref="108" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -49,6 +54,8 @@
               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
               <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -114,6 +121,16 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x64a4;&#x9500;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ok&#x56fd;&#x9645;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel10">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
   </SubComponents>
