@@ -10,6 +10,7 @@ import mvc.view.ViewBase;
 import base.BaseConfig;
 import base.BaseErAiCheckData;
 import base.BaseList;
+import base.BaseNewErConData;
 import base.BaseNode;
 import base.BaseOrder;
 import base.BaseUserInfo;
@@ -19,24 +20,25 @@ import mvc.view.mainFrame.MainFrame;
 
 public class Controller implements BaseNode{
 	/**
-	 * 鏁版嵁闆�
+	 * 
 	 */
 	public ModelMain model;
 	/**
-	 * 宸ョ▼缁撴潫
+	 * 
 	 */
 	public Boolean isOver;
 	/**
-	 * view 涓荤晫闈�
+	 * view 
 	 */
         public MainFrame mainview;
-	public OkCoinCnController okCoinCnController; //ok涓浗
+	public OkCoinCnController okCoinCnController; 
 	public OkCoinComController okCoinComController;
 	public HuoBiController huobiController;
 	public BitVcController bitVcController;
 	public Vector<ProcessControllerAI> processAI;
         public Vector<ProcessControllerAIEr> processAIEr;
         public Vector<ProcessControllerAIWu> processControllerAIWu;
+        public Vector<ProcessControllerAINewER> processControllerAINewER;
 	/**
 	 * set user config data
 	 */
@@ -46,7 +48,6 @@ public class Controller implements BaseNode{
 		isOver = false;
 		model = new ModelMain();
 		mainview = new MainFrame("比特币交易机器人",this);
-		//娣诲姞ok涓浗鎺у埗鍣�
 		okCoinCnController = new OkCoinCnController(this);
 		okCoinComController = new OkCoinComController(this);
 		huobiController = new HuoBiController(this);
@@ -115,6 +116,7 @@ public class Controller implements BaseNode{
 		processAI = new Vector<ProcessControllerAI>();
                 processAIEr = new Vector<ProcessControllerAIEr>();
                 processControllerAIWu = new Vector<ProcessControllerAIWu>();
+                processControllerAINewER=new Vector<ProcessControllerAINewER>();
 	}
 	/**
 	 * 刷新状态机
@@ -133,18 +135,18 @@ public class Controller implements BaseNode{
         public void update_WU_Process()
         {
             Vector<BaseOrder> orderLists = new Vector<BaseOrder>();
-            for(int i = 0;i<processControllerAIWu.size();i++)
-            {
-                if(processControllerAIWu.get(i).state != Config.WUSTATE.REQUESTING)
-                {
-                    Vector<BaseOrder> orderlist = processControllerAIWu.get(i).tradeList;
-                    if(!orderlist.isEmpty());
-                    {
-                        BaseOrder list = orderlist.get(0);
-                        orderLists.add(list);
-                    }
-                }    
-            }
+//            for(int i = 0;i<processControllerAIWu.size();i++)
+//            {
+//                if(processControllerAIWu.get(i).state != Config.WUSTATE.REQUESTING)
+//                {
+//                    Vector<BaseOrder> orderlist = processControllerAIWu.get(i).tradeList;
+//                    if(!orderlist.isEmpty());
+//                    {
+//                        BaseOrder list = orderlist.get(0);
+//                        orderLists.add(list);
+//                    }
+//                }    
+//            }
             
             
         }
@@ -195,6 +197,15 @@ public class Controller implements BaseNode{
 		processControllerAIWu.add(proc);
 		
 	}
+        
+        public void addProcessAINewER(BaseNewErConData data)
+	{
+            long t2=System.currentTimeMillis();
+            data.U_id = t2;
+            ProcessControllerAINewER proc = new ProcessControllerAINewER(data.U_id,data,this);
+            processControllerAINewER.add(proc);
+		
+	}
 	public void updateAccount(int pt,BaseUserInfo baseUserInfo)
 	{
 		mainview.updateUserInfo(pt, baseUserInfo);
@@ -242,6 +253,20 @@ public class Controller implements BaseNode{
 		}
 		return result;
 	}
+        public Boolean removeProcessAINewER(long U_id)
+	{
+		Boolean result = false;
+		for(int i = 0;i < processControllerAINewER.size();i++)
+		{
+			if(((ProcessControllerAINewER)processControllerAINewER.get(i)).U_id == U_id)
+			{
+				processControllerAINewER.remove(i);
+				result = true;
+				break;
+			}
+		}
+		return result;
+	}
         /**
          * 现货买卖请求
          * @param bs
@@ -280,8 +305,23 @@ public class Controller implements BaseNode{
 			return null;
 		}
 	}
+        public double getNewPtPrice(int pt)
+        {
+            switch(pt)
+            {
+                case Config.OKCOINCN:
+                    return okCoinCnController.newTrandMoney;
+                case Config.OKCOINCOM:
+                    return okCoinComController.newTrandMoney;
+                case Config.HUOBI:
+                    return huobiController.newTrandMoney;
+                case Config.BTCC:
+                    break;
+            }
+            return 0.0f;
+        }
 	/**
-	 * 鏁翠釜宸ョ▼缁撴潫鏄惁
+	 * 
 	 * @return
 	 */
 	public Boolean isOver()
@@ -289,17 +329,17 @@ public class Controller implements BaseNode{
 		return this.isOver;
 	}
 	/**
-	 * OkCoin涓浗鏁版嵁鍒锋柊
+	 * OkCoin
 	 */
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		okCoinCnController.update();//鏇存柊OkCoin涓浗鏁版嵁
+		okCoinCnController.update();
 		huobiController.update();
 		okCoinComController.update();
-        bitVcController.update();
+                bitVcController.update();
 		updata_Process();//更新状态机
-        mainview.update();
+                mainview.update();
 	}
 
 }

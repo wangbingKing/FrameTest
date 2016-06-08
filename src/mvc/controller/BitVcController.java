@@ -30,6 +30,7 @@ public class BitVcController implements BaseNode{
     private final String GET_BALANCE = "/futures/balance";
     public Controller mainController;
     int index = 0;//限制请求次数
+    public double newTrandMoney;
     stateAction state = Config.stateAction.INIT_STATE;//控制状态
     /**
      * 存用户的key
@@ -108,7 +109,7 @@ public class BitVcController implements BaseNode{
 			return;
 		}
 		index ++;
-		if(index > 2) //计数到
+		if(index > 10) //计数到
 		{
 			state = Config.stateAction.NETING_STATE;
 			index = -1;
@@ -130,19 +131,45 @@ public class BitVcController implements BaseNode{
 			thread.start();
 		}
     }
+    public void getNewPrice()
+    {
+        if(index == -1) //网络连接中
+        {
+                return;
+        }
+        index ++;
+        if(index > 2) //计数到
+        {
+            index = -1;
+            Thread thread = new Thread(){
+                public void run(){
+                        try{
+                               
+                                index = 0;	
+                        }
+                        catch(Exception E)
+                        {
+                                index = 0;
+                        }
+                }
+             };
+            thread.start();
+        }
+    }
     @Override
     public void update() {
     	// TODO Auto-generated method stub
-    	switch(state)
-		{
-		case INIT_STATE:
-			getDepthData();
-			break;
-		case NETING_STATE:
-			break;
-		case NETOEVR_STATE:
-			getDepthData();
-			break;
-		}
+        getDepthData();
+//    	switch(state)
+//		{
+//		case INIT_STATE:
+//			getDepthData();
+//			break;
+//		case NETING_STATE:
+//			break;
+//		case NETOEVR_STATE:
+//			getDepthData();
+//			break;
+//		}
     }
 }

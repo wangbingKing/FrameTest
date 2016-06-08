@@ -7,11 +7,14 @@ import machine.InitMachine;
 import machine.MachineInterface;
 import mvc.model.ModelBase;
 import base.BaseList;
+import base.BaseNewErConData;
 import base.BaseNode;
 import base.BaseOrder;
 import base.UserConBase;
 
 public class ProcessControllerAIEr implements ProcessInterface {
+        BaseNewErConData conData;
+        
 	/**
 	 * 运行的状态机
 	 */

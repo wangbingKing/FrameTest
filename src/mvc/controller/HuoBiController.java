@@ -21,6 +21,7 @@ public class HuoBiController implements BaseNode{
 	 */
 	BaseConfig userKey;
 	int index = 0;//限制请求次数
+        public double newTrandMoney;
 	stateAction state = Config.stateAction.INIT_STATE;//控制状态
 	
 	HttpUtilManager httpUtil;

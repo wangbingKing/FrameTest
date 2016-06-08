@@ -75,7 +75,7 @@
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="92" max="32767" attributes="0"/>
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                   </Group>
@@ -92,8 +92,18 @@
                           <Component id="erCellPanel9" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="erCellPanel10" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="erCellPanel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="erCellPanel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="erCellPanel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="erCellPanel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="erCellPanel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="erCellPanel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="erCellPanel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="erCellPanel17" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="erCellPanel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="erCellPanel19" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="erCellPanel20" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="123" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -132,7 +142,27 @@
                       <Component id="erCellPanel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="erCellPanel10" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="erCellPanel11" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="erCellPanel12" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="erCellPanel13" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="erCellPanel14" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="erCellPanel15" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="erCellPanel16" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="erCellPanel17" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="erCellPanel18" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="erCellPanel19" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="erCellPanel20" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -237,6 +267,26 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x9644;&#x52a0;&#x89e6;&#x53d1;&#x6761;&#x4ef6;"/>
               </Properties>
+            </Component>
+            <Component class="mvc.view.newER.ErCellPanel" name="erCellPanel11">
+            </Component>
+            <Component class="mvc.view.newER.ErCellPanel" name="erCellPanel12">
+            </Component>
+            <Component class="mvc.view.newER.ErCellPanel" name="erCellPanel13">
+            </Component>
+            <Component class="mvc.view.newER.ErCellPanel" name="erCellPanel14">
+            </Component>
+            <Component class="mvc.view.newER.ErCellPanel" name="erCellPanel15">
+            </Component>
+            <Component class="mvc.view.newER.ErCellPanel" name="erCellPanel16">
+            </Component>
+            <Component class="mvc.view.newER.ErCellPanel" name="erCellPanel17">
+            </Component>
+            <Component class="mvc.view.newER.ErCellPanel" name="erCellPanel18">
+            </Component>
+            <Component class="mvc.view.newER.ErCellPanel" name="erCellPanel19">
+            </Component>
+            <Component class="mvc.view.newER.ErCellPanel" name="erCellPanel20">
             </Component>
           </SubComponents>
         </Container>

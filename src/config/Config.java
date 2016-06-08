@@ -161,12 +161,15 @@ public class Config {
         
         public static String RUN_PT = "windos";
         
-        
+        public static int HAN = 1;
+        public static int BI = 0;
         public static enum WUSTATE
         {
             NULLSTATE,
-            REQUESTING,
-            
-            
+            REQUESTING,  
         }
+        
+        public static int TYPE_BS_XIAN = 0;
+        public static int TYPE_BS_SHI = 1;
+        
 }

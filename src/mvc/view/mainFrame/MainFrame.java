@@ -17,6 +17,7 @@ import mvc.controller.Controller;
 import mvc.view.balanceFrame.FutureJFrame;
 import mvc.view.holdOrder.HoldOrderListPanel;
 import mvc.view.holdOrder.HoldOrderListPaneltitle;
+import mvc.view.newER.ErFrame;
 import mvc.view.setERFrame.OneDirectionFrame;
 import mvc.view.wuFrame.WuJFrame;
 
@@ -254,18 +255,20 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OneDirectionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ErFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OneDirectionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ErFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OneDirectionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ErFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OneDirectionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ErFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
-                new OneDirectionFrame(mainController).setVisible(true);
+                new ErFrame(mainController).setVisible(true);
             }
         });
         jButton1.setEnabled(false);
