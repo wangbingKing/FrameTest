@@ -90,7 +90,6 @@ public class OkCoinComController implements BaseNode{
     
     public String bsRequest(int bs,double value,double num)
     {
-    	bs = Config.BUY_ID;
         String bsStr[] = {"buy","sell"};
         String price = String.format("%.4f", value);
         String amount = String.format("%.4f", num);
@@ -112,6 +111,32 @@ public class OkCoinComController implements BaseNode{
         }
         return "";
     }
+    public String bsRequest(int bs,int xs, double value, double num) {
+		// TODO Auto-generated method stub
+        String bsStr[][] = {
+        		{"buy","sell"},
+        		{"buy_market","sell_market"}
+					        };
+        String price = String.format("%.4f", value);
+        String amount = String.format("%.4f", num);
+        try
+        {
+            String result = stockPost.trade("btc_usd", bsStr[xs][bs], price, amount);
+            JSONObject tradejs = JSONObject.parseObject(result);
+            Boolean tresult = tradejs.getBoolean("result");
+            if(tresult)
+            {
+                String tradeOrderV1 = tradejs.getString("order_id");
+                return tradeOrderV1;
+            }
+
+        }
+        catch (Exception e)
+        {
+            
+        }
+        return "";
+	}
     /**
 	 * 更新账号信息
 	 */

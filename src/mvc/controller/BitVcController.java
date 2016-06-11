@@ -7,16 +7,19 @@ package mvc.controller;
 
 import base.BaseConfig;
 import base.BaseNode;
+
 import com.okcoin.rest.HttpUtilManager;
 import com.okcoin.rest.MD5Util;
 import com.okcoin.rest.StringUtil;
 import com.okcoin.rest.future.IFutureRestApi;
 import com.okcoin.rest.future.impl.FutureRestApiV1;
+
 import config.Config;
 import config.Config.stateAction;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import tools.Tools;
 
 /**
@@ -25,6 +28,7 @@ import tools.Tools;
  * BitVc平台控制器
  */
 public class BitVcController implements BaseNode{
+	
     private final String BASE_URL = "https://api.bitvc.com";
     private final String GET_HOLDORDER_URL = "/futures/holdOrder/list";
     private final String GET_BALANCE = "/futures/balance";

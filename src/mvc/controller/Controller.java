@@ -30,15 +30,15 @@ public class Controller implements BaseNode{
 	/**
 	 * view 
 	 */
-        public MainFrame mainview;
+    public MainFrame mainview;
 	public OkCoinCnController okCoinCnController; 
 	public OkCoinComController okCoinComController;
 	public HuoBiController huobiController;
 	public BitVcController bitVcController;
 	public Vector<ProcessControllerAI> processAI;
-        public Vector<ProcessControllerAIEr> processAIEr;
-        public Vector<ProcessControllerAIWu> processControllerAIWu;
-        public Vector<ProcessControllerAINewER> processControllerAINewER;
+    public Vector<ProcessControllerAIEr> processAIEr;
+    public Vector<ProcessControllerAIWu> processControllerAIWu;
+    public Vector<ProcessControllerAINewER> processControllerAINewER;
 	/**
 	 * set user config data
 	 */
@@ -114,9 +114,9 @@ public class Controller implements BaseNode{
 	{
 		userData = new UserConfigData();
 		processAI = new Vector<ProcessControllerAI>();
-                processAIEr = new Vector<ProcessControllerAIEr>();
-                processControllerAIWu = new Vector<ProcessControllerAIWu>();
-                processControllerAINewER=new Vector<ProcessControllerAINewER>();
+        processAIEr = new Vector<ProcessControllerAIEr>();
+        processControllerAIWu = new Vector<ProcessControllerAIWu>();
+        processControllerAINewER=new Vector<ProcessControllerAINewER>();
 	}
 	/**
 	 * 刷新状态机
@@ -186,7 +186,7 @@ public class Controller implements BaseNode{
 		processAIEr.add(proc);
 		
 	}
-        public void addProcessWu(BaseWuAi data)
+    public void addProcessWu(BaseWuAi data)
 	{
 		if(data.U_id == -1)
 		{
@@ -198,14 +198,21 @@ public class Controller implements BaseNode{
 		
 	}
         
-        public void addProcessAINewER(BaseNewErConData data)
+    public void addProcessAINewER(BaseNewErConData data)
 	{
-            long t2=System.currentTimeMillis();
-            data.U_id = t2;
-            ProcessControllerAINewER proc = new ProcessControllerAINewER(data.U_id,data,this);
-            processControllerAINewER.add(proc);
+        long t2=System.currentTimeMillis();
+        data.U_id = t2;
+        ProcessControllerAINewER proc = new ProcessControllerAINewER(data.U_id,data,this);
+        processControllerAINewER.add(proc);
 		
 	}
+    public void updateAiNewER()
+    {
+    	for(int i = 0;i < processControllerAINewER.size();i++)
+    	{
+    		processControllerAINewER.get(i).updata();
+    	}
+    }
 	public void updateAccount(int pt,BaseUserInfo baseUserInfo)
 	{
 		mainview.updateUserInfo(pt, baseUserInfo);
@@ -253,7 +260,7 @@ public class Controller implements BaseNode{
 		}
 		return result;
 	}
-        public Boolean removeProcessAINewER(long U_id)
+    public Boolean removeProcessAINewER(long U_id)
 	{
 		Boolean result = false;
 		for(int i = 0;i < processControllerAINewER.size();i++)
@@ -282,6 +289,18 @@ public class Controller implements BaseNode{
             else if(pt == Config.OKCOINCOM)  
             {
                 okCoinComController.bsRequest(bs,value, num);
+            }
+            return true;
+        }
+        public Boolean bsRequest(int bs,int xs,double value,double num,int pt)
+        {
+            if(pt == Config.OKCOINCN)
+            {
+            	okCoinCnController.bsRequest(bs,xs,value, num);
+            }
+            else if(pt == Config.OKCOINCOM)  
+            {
+                okCoinComController.bsRequest(bs,xs,value, num);
             }
             return true;
         }
@@ -337,9 +356,10 @@ public class Controller implements BaseNode{
 		okCoinCnController.update();
 		huobiController.update();
 		okCoinComController.update();
-                bitVcController.update();
+        bitVcController.update();
 		updata_Process();//更新状态机
-                mainview.update();
+        mainview.update();
+        updateAiNewER();
 	}
 
 }

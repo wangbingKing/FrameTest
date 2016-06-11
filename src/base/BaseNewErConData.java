@@ -5,14 +5,18 @@
  */
 package base;
 
+import config.Config;
+
 /**
  *
  * @author wuxianshikong
  */
 public class BaseNewErConData {
+	public Config.ER_AI_STATE state = Config.ER_AI_STATE.NULLSTATE;
     public long U_id;
     public int pt_L;
     public int xs_L;
+    
     
     public double price;
     public double amount;
@@ -61,7 +65,9 @@ public class BaseNewErConData {
     {
         if(han_bi == 1)
         {
-            return (v * a + b);
+        	long t1=System.currentTimeMillis();
+        	int x = (int) ((t1 - U_id)/360000);
+            return (x * 0.1 * a + b);
         }
         else
         {
@@ -72,7 +78,9 @@ public class BaseNewErConData {
     {
         if(han_bi_special == 1)
         {
-            return (v * a_special + b_special);
+        	long t1=System.currentTimeMillis();
+        	int x = (int) ((t1 - U_id)/360000);
+            return (x * 0.1 * a_special + b_special);
         }
         else
         {

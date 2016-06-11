@@ -197,6 +197,10 @@ public class ErCellPanel extends javax.swing.JPanel implements BaseNode {
             this.userCheckData.newPrice_special = conValue_special;
             conPrice.setText(String.format("%.4f", this.userCheckData.getValue(conValue)));
             conValue_R.setText(String.format("%.4f",this.userCheckData.getSpecialValue(conValue_special)));
+            if(this.userCheckData.state == Config.ER_AI_STATE.OVER)
+            {
+            	this.jButton1.setText("已完成");
+            }
         }
         
     }

@@ -172,4 +172,11 @@ public class Config {
         public static int TYPE_BS_XIAN = 0;
         public static int TYPE_BS_SHI = 1;
         
+        public static enum ER_AI_STATE
+        {
+            NULLSTATE,
+            CHECKING,
+            REQUESTING,
+            OVER
+        }
 }

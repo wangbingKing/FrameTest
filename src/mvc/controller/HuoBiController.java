@@ -8,21 +8,25 @@ import config.Config;
 import config.Config.stateAction;
 import base.BaseConfig;
 import base.BaseNode;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.okcoin.rest.MD5Util;
 import com.okcoin.rest.StringUtil;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class HuoBiController implements BaseNode{
 	public Controller mainController;
+	private final String API_KEY = "419d4c14-3d2a2894-dc96119f-1d091";
+    private final String SECRET_KEY = "";
 	/**
 	 * 存用户的key
 	 */
 	BaseConfig userKey;
 	int index = 0;//限制请求次数
-        public double newTrandMoney;
+    public double newTrandMoney;
 	stateAction state = Config.stateAction.INIT_STATE;//控制状态
 	
 	HttpUtilManager httpUtil;
