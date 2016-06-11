@@ -176,17 +176,32 @@ public class ErCellPanel extends javax.swing.JPanel implements BaseNode {
             }
             else
             {
-                conValue_R.setText(Config.getNameByPlat(this.userCheckData.pt_R));
+                double conValue = this.mainController.getNewPtPrice(this.userCheckData.pt_L);
+                this.userCheckData.newPrice = conValue;
+                double conValue_special = this.mainController.getNewPtPrice(this.userCheckData.pt_R);
+                this.userCheckData.newPrice_special = conValue_special;
+                conPrice.setText(String.format("%.4f", this.userCheckData.getValue(conValue)));
+                conValue_R.setText(String.format("%.4f", conValue_special));
+                pt_R.setText(Config.getNameByPlat(this.userCheckData.pt_R));
             }
             this.setVisible(true);
         }
     }
     public void updateNewTrandUIData()
     {
+        if(this.userCheckData != null)
+        {
+            double conValue = this.mainController.getNewPtPrice(this.userCheckData.pt_L);
+            this.userCheckData.newPrice = conValue;
+            double conValue_special = this.mainController.getNewPtPrice(this.userCheckData.pt_R);
+            this.userCheckData.newPrice_special = conValue_special;
+            conPrice.setText(String.format("%.4f", this.userCheckData.getValue(conValue)));
+            conValue_R.setText(String.format("%.4f", conValue_special));
+        }
         
     }
     @Override
     public void update() {
-        
+        updateNewTrandUIData();
     }
 }

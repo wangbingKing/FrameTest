@@ -8,6 +8,7 @@ import config.Config;
 import config.Config.stateAction;
 import base.BaseConfig;
 import base.BaseNode;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.okcoin.rest.MD5Util;
 import com.okcoin.rest.StringUtil;
@@ -61,6 +62,9 @@ public class HuoBiController implements BaseNode{
 				   try{
 					   
                                         String result = httpUtil.requestHttpGet("http://api.huobi.com/staticmarket/detail_btc_json.js","", "");
+                                        JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
+                                        double newPrece = dataJson.getDouble("p_new");
+                                        newTrandMoney = newPrece;
                                         mainController.model.setTickerData(Config.HUOBI,result);
                                         index = 0;	
 				   }
