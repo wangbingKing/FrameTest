@@ -32,7 +32,7 @@ public class BaseNewErConData {
      * 操作
      */
     public int do_BS;
-    
+    public int gd_L;
     /**
      * 初始设置最新价  不变
      */
@@ -45,6 +45,7 @@ public class BaseNewErConData {
      * 比例 0
      * 函数 1
      */
+    public int gd_R;
     public int han_bi_special;
     
     public double bi_special;

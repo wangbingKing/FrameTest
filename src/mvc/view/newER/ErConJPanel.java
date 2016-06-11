@@ -78,6 +78,8 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
         han_a1 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         han_b1 = new javax.swing.JTextField();
+        compare_R = new javax.swing.JComboBox<>();
+        compare_L = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(0, 204, 153));
 
@@ -361,6 +363,8 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
 
         jTabbedPane2.addTab("函数", jPanel5);
 
+        compare_R.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "大于等于", "小于等于" }));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -369,7 +373,8 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pt_R, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(compare_R, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pt_R, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -377,15 +382,19 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pt_R, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pt_R, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(compare_R, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        compare_L.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "大于等于", "小于等于" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -415,8 +424,10 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(han_TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(120, 120, 120)
-                                .addComponent(jLabel7)))
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel7)
+                                .addGap(26, 26, 26)
+                                .addComponent(compare_L, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -483,7 +494,9 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
                             .addComponent(xs_L, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(compare_L, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(han_TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -608,6 +621,8 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
         data.pt_R = pt_R.getSelectedIndex() + 1;
         data.han_bi_special = this.jTabbedPane2.getSelectedIndex();
         data.basePrice_special = this.mainController.getNewPtPrice(data.pt_R);
+        data.gd_L = this.compare_L.getSelectedIndex();
+        data.gd_R = this.compare_R.getSelectedIndex();
         this.mainController.addProcessAINewER(data);
         this.superConPanel.updateSuperUI();
     }//GEN-LAST:event_bs_doActionPerformed
@@ -633,6 +648,8 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
     private javax.swing.JTextField bi_value1;
     public javax.swing.JButton bs_do;
     private javax.swing.JComboBox<String> compare;
+    private javax.swing.JComboBox<String> compare_L;
+    private javax.swing.JComboBox<String> compare_R;
     private javax.swing.JTabbedPane han_TabbedPane;
     private javax.swing.JTextField han_a;
     private javax.swing.JTextField han_a1;
