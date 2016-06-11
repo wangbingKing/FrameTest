@@ -5,13 +5,16 @@
  */
 package mvc.view.newER;
 
+import base.BaseNode;
+import java.util.Vector;
 import mvc.controller.Controller;
+import mvc.controller.ProcessControllerAINewER;
 
 /**
  *
  * @author wuxianshikong
  */
-public class ErFrame extends javax.swing.JFrame {
+public class ErFrame extends javax.swing.JFrame implements BaseNode{
     Controller mainController;
     /**
      * Creates new form ErFrame
@@ -20,8 +23,31 @@ public class ErFrame extends javax.swing.JFrame {
         super("计划委托");
         this.mainController = mainController;
         initComponents();
-        erConJPanel1.setMainController(this.mainController);
         
+        erSetConPanel1.setMainController(this.mainController,this);
+        ErCellPanel list[] = {erCellPanel1,erCellPanel2,erCellPanel3,erCellPanel4,erCellPanel5,erCellPanel6,erCellPanel7,erCellPanel8,erCellPanel9,erCellPanel10,erCellPanel11,
+        erCellPanel12,erCellPanel13,erCellPanel14,erCellPanel15,erCellPanel16,erCellPanel17,erCellPanel18,erCellPanel19,erCellPanel20};
+        this.mainList = list;
+        for(int i = 0;i< this.mainList.length;i++)
+        {
+            this.mainList[i].setMainController(this.mainController,this);
+        }
+        upDateListData();
+    }
+    public void upDateListData()
+    {
+        Vector<ProcessControllerAINewER> processControllerAINewER = this.mainController.processControllerAINewER;
+        for(int i = 0;i < this.mainList.length;i++)
+        {
+            if(i > processControllerAINewER.size()-1)
+            {
+                this.mainList[i].updateUIData(null);
+            }
+            else
+            {
+                this.mainList[i].updateUIData(processControllerAINewER.get(i).userCheckData);
+            }
+        }
     }
 
     /**
@@ -65,7 +91,7 @@ public class ErFrame extends javax.swing.JFrame {
         erCellPanel18 = new mvc.view.newER.ErCellPanel();
         erCellPanel19 = new mvc.view.newER.ErCellPanel();
         erCellPanel20 = new mvc.view.newER.ErCellPanel();
-        erConJPanel1 = new mvc.view.newER.ErConJPanel();
+        erSetConPanel1 = new mvc.view.newER.ErSetConPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -214,8 +240,9 @@ public class ErFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(erConJPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
+                .addComponent(erSetConPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -223,10 +250,10 @@ public class ErFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(erConJPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                        .addComponent(erSetConPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 64, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -266,7 +293,7 @@ public class ErFrame extends javax.swing.JFrame {
     private mvc.view.newER.ErCellPanel erCellPanel7;
     private mvc.view.newER.ErCellPanel erCellPanel8;
     private mvc.view.newER.ErCellPanel erCellPanel9;
-    private mvc.view.newER.ErConJPanel erConJPanel1;
+    private mvc.view.newER.ErSetConPanel erSetConPanel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -280,4 +307,14 @@ public class ErFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    public ErCellPanel mainList[];
+    @Override
+    public void update() {
+//        erConJPanel1.update();
+        for(int i = 0;i < mainList.length;i++)
+        {
+            mainList[i].update();
+        }
+    }
 }

@@ -28,6 +28,7 @@ import mvc.view.wuFrame.WuJFrame;
 public class MainFrame extends javax.swing.JFrame implements BaseNode {
 
     OneDirectionFrame erFrame;
+    public ErFrame erNewFrame;
     /**
     * OK存放仓位信息
     */
@@ -41,6 +42,7 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
      */
     public MainFrame(String str,Controller con) {
         super(str);
+//        erNewFrame = new ErFrame(mainController);
         mainController = con;
         initComponents();
         ptOkCoinCnJPanel.setPt(Config.OKCOINCN,con);
@@ -268,7 +270,9 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ErFrame(mainController).setVisible(true);
+                ErFrame er = new ErFrame(mainController);
+                er.setVisible(true);
+                erNewFrame = er;
             }
         });
         jButton1.setEnabled(false);
@@ -406,6 +410,10 @@ public class MainFrame extends javax.swing.JFrame implements BaseNode {
     @Override
     public void update() {
 //        list.updateUI(this.mainController.getModelData(Config.HUOBI));
+        if(erNewFrame != null)
+        {
+            erNewFrame.update();
+        }       
         ptHuobiJPanel.update();
         ptOkCoinCnJPanel.update();
         ptOkCoinComJPanel.update();   

@@ -6,19 +6,23 @@
 package mvc.view.newER;
 
 import base.BaseNewErConData;
+import base.BaseNode;
 import mvc.controller.Controller;
 
 /**
  *
  * @author wuxianshikong
  */
-public class ErConJPanel extends javax.swing.JPanel {
+public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
     Controller mainController;
+    ErSetConPanel superConPanel;
+    public int bs;
     /**
      * Creates new form ErConJPanel
      */
-    public void setMainController(Controller mainController)
+    public void setMainController(Controller mainController,ErSetConPanel superPanel)
     {
+        this.superConPanel = superPanel;
         this.mainController = mainController;
     }
     public ErConJPanel() {
@@ -49,7 +53,7 @@ public class ErConJPanel extends javax.swing.JPanel {
         total = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        bs_do = new javax.swing.JButton();
         han_TabbedPane = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -63,7 +67,7 @@ public class ErConJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         compare = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        pt_R = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
@@ -74,7 +78,6 @@ public class ErConJPanel extends javax.swing.JPanel {
         han_a1 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         han_b1 = new javax.swing.JTextField();
-        pt_L = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(0, 204, 153));
 
@@ -94,7 +97,12 @@ public class ErConJPanel extends javax.swing.JPanel {
 
         jLabel8.setText("价格");
 
-        price.setText("9999");
+        price.setText("0");
+        price.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                priceFocusLost(evt);
+            }
+        });
         price.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 priceActionPerformed(evt);
@@ -103,7 +111,12 @@ public class ErConJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("数量");
 
-        amount.setText("9999");
+        amount.setText("0");
+        amount.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                amountFocusLost(evt);
+            }
+        });
         amount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 amountActionPerformed(evt);
@@ -112,7 +125,7 @@ public class ErConJPanel extends javax.swing.JPanel {
 
         jLabel10.setText("总价");
 
-        total.setText("9999");
+        total.setText("0");
         total.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 totalActionPerformed(evt);
@@ -125,10 +138,10 @@ public class ErConJPanel extends javax.swing.JPanel {
         jLabel23.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel23.setText("=");
 
-        jButton1.setText("买入");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bs_do.setText("买入");
+        bs_do.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bs_doActionPerformed(evt);
             }
         });
 
@@ -243,7 +256,7 @@ public class ErConJPanel extends javax.swing.JPanel {
 
         compare.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "无", "都", "任一" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ok中国", "ok国际", "火币" }));
+        pt_R.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ok中国", "ok国际", "火币" }));
 
         jLabel15.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel15.setText("触发价格:");
@@ -356,7 +369,7 @@ public class ErConJPanel extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pt_R, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -364,17 +377,15 @@ public class ErConJPanel extends javax.swing.JPanel {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pt_R, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-
-        pt_L.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ok中国", "ok国际", "火币" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -404,9 +415,7 @@ public class ErConJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(han_TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(pt_L, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(120, 120, 120)
                                 .addComponent(jLabel7)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -441,7 +450,7 @@ public class ErConJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(bs_do, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel6)
@@ -474,9 +483,7 @@ public class ErConJPanel extends javax.swing.JPanel {
                             .addComponent(xs_L, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(pt_L, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(han_TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -495,7 +502,7 @@ public class ErConJPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(32, 32, 32)))
-                .addComponent(jButton1)
+                .addComponent(bs_do)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -581,10 +588,10 @@ public class ErConJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTabbedPane2StateChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bs_doActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_doActionPerformed
         // TODO add your handling code here:
         BaseNewErConData data = new BaseNewErConData();
-        data.pt_L = pt_L.getSelectedIndex();
+        data.pt_L = superConPanel.pt.getSelectedIndex() + 1;
         data.xs_L = xs_L.getSelectedIndex();
         data.han_bi = han_TabbedPane.getSelectedIndex();
         data.price = Double.parseDouble(price.getText());
@@ -598,23 +605,38 @@ public class ErConJPanel extends javax.swing.JPanel {
         data.b_special = Double.parseDouble(han_b1.getText());
         data.bi_special = Double.parseDouble(bi_value1.getText());
         data.basePrice = this.mainController.getNewPtPrice(data.pt_L);
+        data.pt_R = pt_R.getSelectedIndex() + 1;
         data.basePrice_special = this.mainController.getNewPtPrice(data.pt_R);
         this.mainController.addProcessAINewER(data);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.superConPanel.updateSuperUI();
+    }//GEN-LAST:event_bs_doActionPerformed
+
+    private void priceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_priceFocusLost
+        // TODO add your handling code here:
+        double priceValue = Double.parseDouble(price.getText());
+        double amountValue = Double.parseDouble(amount.getText());
+        total.setText(String.format("%.4f", priceValue*amountValue));
+    }//GEN-LAST:event_priceFocusLost
+
+    private void amountFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_amountFocusLost
+        // TODO add your handling code here:
+        double priceValue = Double.parseDouble(price.getText());
+        double amountValue = Double.parseDouble(amount.getText());
+        total.setText(String.format("%.4f", priceValue*amountValue));
+    }//GEN-LAST:event_amountFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amount;
     private javax.swing.JTextField bi_value;
     private javax.swing.JTextField bi_value1;
+    public javax.swing.JButton bs_do;
     private javax.swing.JComboBox<String> compare;
     private javax.swing.JTabbedPane han_TabbedPane;
     private javax.swing.JTextField han_a;
     private javax.swing.JTextField han_a1;
     private javax.swing.JTextField han_b;
     private javax.swing.JTextField han_b1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -641,8 +663,13 @@ public class ErConJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField price;
-    private javax.swing.JComboBox<String> pt_L;
+    private javax.swing.JComboBox<String> pt_R;
     private javax.swing.JTextField total;
     private javax.swing.JComboBox<String> xs_L;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update() {
+        
+    }
 }

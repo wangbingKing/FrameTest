@@ -285,24 +285,24 @@ public class PtJPanel extends javax.swing.JPanel implements BaseNode{
              return;
          }
          buyPanel1.id.setText("买一");
-         buyPanel1.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-1).value+"");
-         buyPanel1.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-1).num+"");
+         buyPanel1.value.setText(medelData.verTickerBuyData.get(0).value+"");
+         buyPanel1.num.setText(medelData.verTickerBuyData.get(0).num+"");
 
          buyPanel2.id.setText("买二");
-         buyPanel2.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-2).value+"");
-         buyPanel2.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-2).num+"");
+         buyPanel2.value.setText(medelData.verTickerBuyData.get(1).value+"");
+         buyPanel2.num.setText(medelData.verTickerBuyData.get(1).num+"");
 
          buyPanel3.id.setText("买三");
-         buyPanel3.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-3).value+"");
-         buyPanel3.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-3).num+"");
+         buyPanel3.value.setText(medelData.verTickerBuyData.get(2).value+"");
+         buyPanel3.num.setText(medelData.verTickerBuyData.get(2).num+"");
 
          buyPanel4.id.setText("买四");
-         buyPanel4.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-4).value+"");
-         buyPanel4.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-4).num+"");
+         buyPanel4.value.setText(medelData.verTickerBuyData.get(3).value+"");
+         buyPanel4.num.setText(medelData.verTickerBuyData.get(3).num+"");
 
          buyPanel5.id.setText("买五");
-         buyPanel5.value.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-5).value+"");
-         buyPanel5.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-5).num+"");
+         buyPanel5.value.setText(medelData.verTickerBuyData.get(4).value+"");
+         buyPanel5.num.setText(medelData.verTickerBuyData.get(4).num+"");
          
          sellPanel1.id.setText("卖一");
          sellPanel1.value.setText(medelData.verTickerSellData.get(0).value+"");
@@ -352,24 +352,24 @@ public class PtJPanel extends javax.swing.JPanel implements BaseNode{
          buyPanel5.num.setText(medelData.verTickerBuyData.get(medelData.verTickerBuyData.size()-5).num+"");
          
          sellPanel1.id.setText("卖一");
-         sellPanel1.value.setText(medelData.verTickerSellData.get(0).value+"");
-         sellPanel1.num.setText(medelData.verTickerSellData.get(0).num+"");
+         sellPanel1.value.setText(medelData.verTickerSellData.get(medelData.verTickerBuyData.size()- 5).value+"");
+         sellPanel1.num.setText(medelData.verTickerSellData.get(medelData.verTickerBuyData.size()-5).num+"");
 
          sellPanel2.id.setText("卖二");
-         sellPanel2.value.setText(medelData.verTickerSellData.get(1).value+"");
-         sellPanel2.num.setText(medelData.verTickerSellData.get(1).num+"");
+         sellPanel2.value.setText(medelData.verTickerSellData.get(medelData.verTickerBuyData.size()-4).value+"");
+         sellPanel2.num.setText(medelData.verTickerSellData.get(medelData.verTickerBuyData.size()-4).num+"");
 
          sellPanel3.id.setText("卖三");
-         sellPanel3.value.setText(medelData.verTickerSellData.get(2).value+"");
-         sellPanel3.num.setText(medelData.verTickerSellData.get(2).num+"");
+         sellPanel3.value.setText(medelData.verTickerSellData.get(medelData.verTickerBuyData.size()-3).value+"");
+         sellPanel3.num.setText(medelData.verTickerSellData.get(medelData.verTickerBuyData.size()-3).num+"");
 
          sellPanel4.id.setText("卖四");
-         sellPanel4.value.setText(medelData.verTickerSellData.get(3).value+"");
-         sellPanel4.num.setText(medelData.verTickerSellData.get(3).num+"");
+         sellPanel4.value.setText(medelData.verTickerSellData.get(medelData.verTickerBuyData.size()-2).value+"");
+         sellPanel4.num.setText(medelData.verTickerSellData.get(medelData.verTickerBuyData.size()-2).num+"");
 
          sellPanel5.id.setText("卖五");
-         sellPanel5.value.setText(medelData.verTickerSellData.get(4).value+"");
-         sellPanel5.num.setText(medelData.verTickerSellData.get(4).num+"");
+         sellPanel5.value.setText(medelData.verTickerSellData.get(medelData.verTickerBuyData.size()-1).value+"");
+         sellPanel5.num.setText(medelData.verTickerSellData.get(medelData.verTickerBuyData.size()-1).num+"");
     }
     @Override
     public void update() {

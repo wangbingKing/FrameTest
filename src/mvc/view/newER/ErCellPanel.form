@@ -17,25 +17,25 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jLabel1" min="-2" pref="90" max="-2" attributes="0"/>
+              <Component id="pt_L" min="-2" pref="90" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" pref="80" max="-2" attributes="0"/>
+              <Component id="conPrice" min="-2" pref="80" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="bs_L" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel4" min="-2" pref="80" max="-2" attributes="0"/>
+              <Component id="price" min="-2" pref="80" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel6" min="-2" pref="80" max="-2" attributes="0"/>
+              <Component id="amount" min="-2" pref="80" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel7" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel8" min="-2" pref="121" max="-2" attributes="0"/>
+              <Component id="total" min="-2" pref="121" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+              <Component id="pt_R" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel10" pref="108" max="32767" attributes="0"/>
+              <Component id="conValue_R" pref="108" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -45,23 +45,23 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="103" groupAlignment="3" attributes="0">
-              <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-              <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Component id="pt_L" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Component id="conPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Component id="bs_L" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Component id="price" alignment="3" min="-2" max="-2" attributes="0"/>
               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Component id="amount" alignment="3" min="-2" max="-2" attributes="0"/>
               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Component id="total" alignment="3" min="-2" max="-2" attributes="0"/>
               <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-              <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-              <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Component id="pt_R" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Component id="conValue_R" alignment="3" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="pt_L">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="ff" red="0" type="rgb"/>
@@ -70,19 +70,19 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="conPrice">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="999"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="bs_L">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="&#x4e70;&#x5165;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="price">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="999"/>
@@ -97,7 +97,7 @@
         <Property name="text" type="java.lang.String" value="X"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
+    <Component class="javax.swing.JLabel" name="amount">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="999"/>
@@ -112,7 +112,7 @@
         <Property name="text" type="java.lang.String" value="="/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
+    <Component class="javax.swing.JLabel" name="total">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="999"/>
@@ -122,13 +122,16 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x64a4;&#x9500;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel9">
+    <Component class="javax.swing.JLabel" name="pt_R">
       <Properties>
         <Property name="text" type="java.lang.String" value="ok&#x56fd;&#x9645;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel10">
+    <Component class="javax.swing.JLabel" name="conValue_R">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
