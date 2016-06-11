@@ -64,7 +64,7 @@ public class BaseNewErConData {
         }
         else
         {
-            return (v * bi);
+            return (basePrice * bi);
         }
     }
     public double getSpecialValue(double v)
@@ -75,7 +75,7 @@ public class BaseNewErConData {
         }
         else
         {
-            return (v * bi_special);
+            return (basePrice_special * bi_special);
         }
     } 
 }

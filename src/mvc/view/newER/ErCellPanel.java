@@ -196,7 +196,7 @@ public class ErCellPanel extends javax.swing.JPanel implements BaseNode {
             double conValue_special = this.mainController.getNewPtPrice(this.userCheckData.pt_R);
             this.userCheckData.newPrice_special = conValue_special;
             conPrice.setText(String.format("%.4f", this.userCheckData.getValue(conValue)));
-            conValue_R.setText(String.format("%.4f", conValue_special));
+            conValue_R.setText(String.format("%.4f",this.userCheckData.getSpecialValue(conValue_special)));
         }
         
     }

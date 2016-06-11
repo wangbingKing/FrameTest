@@ -30,6 +30,7 @@ public class ProcessControllerAINewER implements ProcessInterface{
     public void updateCheckData()
     {
         userCheckData.newPrice = this.mainControl.getNewPtPrice(userCheckData.pt_L);
+        
         userCheckData.newPrice_special = this.mainControl.getNewPtPrice(userCheckData.pt_R);
     }
     @Override

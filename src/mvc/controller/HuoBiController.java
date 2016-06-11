@@ -61,16 +61,16 @@ public class HuoBiController implements BaseNode{
 			   public void run(){
 				   try{
 					   
-                                        String result = httpUtil.requestHttpGet("http://api.huobi.com/staticmarket/detail_btc_json.js","", "");
-                                        JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
-                                        double newPrece = dataJson.getDouble("p_new");
-                                        newTrandMoney = newPrece;
-                                        mainController.model.setTickerData(Config.HUOBI,result);
-                                        index = 0;	
+                        String result = httpUtil.requestHttpGet("http://api.huobi.com/staticmarket/detail_btc_json.js","", "");
+                        JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
+                        double newPrece = dataJson.getDouble("p_new");
+                        newTrandMoney = newPrece;
+                        mainController.model.setTickerData(Config.HUOBI,result);
+                        index = 0;	
 				   }
 				   catch(Exception E)
 				   {
-                                        index = 0;
+                        index = 0;
 				   }
 				   state = Config.stateAction.NETOEVR_STATE;
 			   }
@@ -95,42 +95,42 @@ public class HuoBiController implements BaseNode{
 	}
         public String bsRequest(int bs, double value, double num) {
 		// TODO Auto-generated method stub
-		bs = Config.BUY_ID;
-                String bsStr[] = {"buy","sell"};
-                String price = String.format("%.4f", value);
-                String amount = String.format("%.4f", num);
-                try
+        	bs = Config.BUY_ID;
+            String bsStr[] = {"buy","sell"};
+            String price = String.format("%.4f", value);
+            String amount = String.format("%.4f", num);
+            try
+            {
+                long time=System.currentTimeMillis()/1000;
+                // 构造参数签名
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("method",bsStr[bs]);
+                params.put("access_key", userKey.api_key);
+                params.put("coin_type","1");
+                params.put("price",price);
+                params.put("amount",amount);
+                params.put("created",Long.toString(time));
+                String sign = MD5Util.buildHuoBiSign(params, userKey.secret_key);
+                params.put("sign", sign);
+
+                // 发送post请求
+                HttpUtilManager httpUtil = HttpUtilManager.getInstance();
+                String result = httpUtil.requestHttpPost(userKey.baseUrl,"",
+                                params);
+                JSONObject tradejs = JSONObject.parseObject(result);
+                Boolean tresult = tradejs.getBoolean("result");
+                if(tresult)
                 {
-                    long time=System.currentTimeMillis()/1000;
-                    // 构造参数签名
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("method",bsStr[bs]);
-                    params.put("access_key", userKey.api_key);
-                    params.put("coin_type","1");
-                    params.put("price",price);
-                    params.put("amount",amount);
-                    params.put("created",Long.toString(time));
-                    String sign = MD5Util.buildHuoBiSign(params, userKey.secret_key);
-                    params.put("sign", sign);
-
-                    // 发送post请求
-                    HttpUtilManager httpUtil = HttpUtilManager.getInstance();
-                    String result = httpUtil.requestHttpPost(userKey.baseUrl,"",
-                                    params);
-                    JSONObject tradejs = JSONObject.parseObject(result);
-                    Boolean tresult = tradejs.getBoolean("result");
-                    if(tresult)
-                    {
-                        String tradeOrderV1 = tradejs.getString("id");
-                        return tradeOrderV1;
-                    }
-
+                    String tradeOrderV1 = tradejs.getString("id");
+                    return tradeOrderV1;
                 }
-                catch (Exception e)
-                {
 
-                }
-                return "";
+            }
+            catch (Exception e)
+            {
+
+            }
+            return "";
 	}
         
 }

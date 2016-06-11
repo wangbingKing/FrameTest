@@ -55,6 +55,7 @@ public class OkCoinCnController implements BaseNode{
     */
         
 	int index = 0;//限制请求次数
+	int newPriceIndex = 0;
 	stateAction state = Config.stateAction.INIT_STATE;//控制状态
 	/**
 	 * 存用户的key
@@ -92,26 +93,37 @@ public class OkCoinCnController implements BaseNode{
 			getDepthData();
 			break;
 		}
+		updateNewTrand();
 	}
-        public void updateNewTrand()
-        {
-            Thread thread = new Thread(){
-			   public void run(){
-				   try{
-						String result =stockGet.ticker("btc_cny");
-						JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
-                                                JSONObject data = dataJson.getJSONObject("ticker");
-                                                newTrandMoney = data.getDouble("last");
-				   }
-				   catch(Exception E)
-				   {
-					
-				   }
-				 
-			   }
-			};
-		thread.start();
-        }
+    public void updateNewTrand()
+    {
+    	if(newPriceIndex > 2)
+    	{
+    		newPriceIndex = 0;
+    		Thread thread = new Thread(){
+    			   public void run(){
+    				   try{
+    						String result =stockGet.ticker("btc_cny");
+    						JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
+    	                    JSONObject data = dataJson.getJSONObject("ticker");
+    	                    newTrandMoney = data.getDouble("last");
+    				   }
+    				   catch(Exception E)
+    				   {
+    					
+    				   }
+    				 
+    			   }
+    			};
+    			thread.start();
+    	}
+    	else
+    	{
+    		newPriceIndex ++;
+    	}
+    	
+        
+    }
 	/**
 	 * 更新现货深度
 	 */

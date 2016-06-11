@@ -606,6 +606,7 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
         data.bi_special = Double.parseDouble(bi_value1.getText());
         data.basePrice = this.mainController.getNewPtPrice(data.pt_L);
         data.pt_R = pt_R.getSelectedIndex() + 1;
+        data.han_bi_special = this.jTabbedPane2.getSelectedIndex();
         data.basePrice_special = this.mainController.getNewPtPrice(data.pt_R);
         this.mainController.addProcessAINewER(data);
         this.superConPanel.updateSuperUI();
