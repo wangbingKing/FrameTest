@@ -49,7 +49,7 @@ public class MD5Util {
 		return mysign;
 	}
         
-        public static String buildHuoBiSign(Map<String, String> sArray,
+    public static String buildHuoBiSign(Map<String, String> sArray,
 			String secretKey)
 	{
 		String mysign = "";
