@@ -18,7 +18,7 @@ import com.deal.api.util.HttpUtil;
  */
 public abstract class Base {
 	//火币现货配置信息
-	public static String HUOBI_ACCESS_KEY = "";
+	public static String HUOBI_ACCESS_KEY = "95b208ac-9829d7de-5d646ca4-e5423";
 	public static String HUOBI_SECRET_KEY = "";
 	public static String HUOBI_API_URL = "https://api.huobi.com/apiv3";
 	

@@ -11,6 +11,7 @@ import base.BaseNode;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.deal.api.demo.huobi.HuobiService;
 import com.okcoin.rest.MD5Util;
 import com.okcoin.rest.StringUtil;
 
@@ -18,9 +19,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HuoBiController implements BaseNode{
+	HuobiService service;
+	
+	private static String BUY = "buy";
+    private static String BUY_MARKET = "buy_market";
+    private static String CANCEL_ORDER = "cancel_order";
+    private static String ACCOUNT_INFO = "get_account_info";
+    private static String NEW_DEAL_ORDERS = "get_new_deal_orders";
+    private static String ORDER_ID_BY_TRADE_ID = "get_order_id_by_trade_id";
+    private static String GET_ORDERS = "get_orders";
+    private static String ORDER_INFO = "order_info";
+    private static String SELL = "sell";
+    private static String SELL_MARKET = "sell_market";
+    
 	public Controller mainController;
-	private final String API_KEY = "419d4c14-3d2a2894-dc96119f-1d091";
-    private final String SECRET_KEY = "";
 	/**
 	 * 存用户的key
 	 */
@@ -32,9 +44,11 @@ public class HuoBiController implements BaseNode{
 	HttpUtilManager httpUtil;
 	public HuoBiController(Controller con)
 	{
+		service = new HuobiService();
 		mainController = con;
 		userKey = Tools.getUserAccount(Config.HUOBI);
 		httpUtil = HttpUtilManager.getInstance();
+		this.bsRequest(0, 1, 0.1);
 	}
 	/**
 	 * 获得用户key
@@ -97,44 +111,76 @@ public class HuoBiController implements BaseNode{
 			updateTickerData();
 		}
 	}
-        public String bsRequest(int bs, double value, double num) {
-		// TODO Auto-generated method stub
-        	bs = Config.BUY_ID;
-            String bsStr[] = {"buy","sell"};
-            String price = String.format("%.4f", value);
-            String amount = String.format("%.4f", num);
-            try
+    public String bsRequest(int bs, double value, double num) {
+	// TODO Auto-generated method stub
+        String price = String.format("%.2f", value);
+        String amount = String.format("%.2f", num);
+        String result = "";
+        try
+        {
+        	if(bs == Config.BUY_ID)
+        	{
+        		result = service.buy(1, price, amount, null, null, BUY);
+        	}
+        	else
+        	{
+        		result = service.sell(1, price, amount, null, null, SELL);
+        	}
+        	System.out.println(result);
+            JSONObject tradejs = JSONObject.parseObject(result);
+            String tresult = tradejs.getString("result");
+            if(tresult.equals("success"))
             {
-                long time=System.currentTimeMillis()/1000;
-                // 构造参数签名
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("method",bsStr[bs]);
-                params.put("access_key", userKey.api_key);
-                params.put("coin_type","1");
-                params.put("price",price);
-                params.put("amount",amount);
-                params.put("created",Long.toString(time));
-                String sign = MD5Util.buildHuoBiSign(params, userKey.secret_key);
-                params.put("sign", sign);
-
-                // 发送post请求
-                HttpUtilManager httpUtil = HttpUtilManager.getInstance();
-                String result = httpUtil.requestHttpPost(userKey.baseUrl,"",
-                                params);
-                JSONObject tradejs = JSONObject.parseObject(result);
-                Boolean tresult = tradejs.getBoolean("result");
-                if(tresult)
-                {
-                    String tradeOrderV1 = tradejs.getString("id");
-                    return tradeOrderV1;
-                }
-
+                String tradeOrderV1 = tradejs.getString("id");
+                return tradeOrderV1;
             }
-            catch (Exception e)
-            {
 
-            }
-            return "";
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        }
+        return "";
 	}
-        
+    
+    public String bsRequest(int bs,int xs, double value, double num) {
+    	// TODO Auto-generated method stub
+        String price = String.format("%.2f", value);
+        String amount = String.format("%.2f", num);
+        String result = "";
+        try
+        {
+        	if(bs == Config.BUY_ID && xs == Config.TYPE_BS_XIAN)
+        	{
+        		result = service.buy(1, price, amount, null, null, BUY);
+        	}
+        	else if(bs == Config.SELL_ID && xs == Config.TYPE_BS_XIAN)
+        	{
+        		result = service.sell(1, price, amount, null, null, SELL);
+        	}
+        	else if(bs == Config.BUY_ID && xs == Config.TYPE_BS_SHI)
+        	{
+        		result = service.buyMarket(1, amount, null, null, BUY_MARKET);
+        	}
+        	else if(bs == Config.SELL_ID && xs == Config.TYPE_BS_SHI)
+        	{
+        		result = service.sellMarket(1, amount, null, null, SELL_MARKET);
+        	}
+        	System.out.println(result);
+            JSONObject tradejs = JSONObject.parseObject(result);
+            String tresult = tradejs.getString("result");
+            if(tresult.equals("success"))
+            {
+                String tradeOrderV1 = tradejs.getString("id");
+                return tradeOrderV1;
+            }
+
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        }
+        return "";
+	}
+    
 }

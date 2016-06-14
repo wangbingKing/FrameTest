@@ -290,6 +290,10 @@ public class Controller implements BaseNode{
             {
                 okCoinComController.bsRequest(bs,value, num);
             }
+            else if (pt == Config.HUOBI)
+            {
+            	this.huobiController.bsRequest(bs, value, num);
+            }
             return true;
         }
         public Boolean bsRequest(int bs,int xs,double value,double num,int pt)
@@ -301,6 +305,10 @@ public class Controller implements BaseNode{
             else if(pt == Config.OKCOINCOM)  
             {
                 okCoinComController.bsRequest(bs,xs,value, num);
+            }
+            else if (pt == Config.HUOBI)
+            {
+            	this.huobiController.bsRequest(bs,xs, value, num);
             }
             return true;
         }

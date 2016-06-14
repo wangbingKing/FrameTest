@@ -31,32 +31,12 @@ public class test {
 //        public final String GET_HOLDORDER_URL = "";
 //        public final String GET_UESRINFO = "/api/v1/userinfo.do";
 	public static void main(String[] args) throws InterruptedException, HttpException, IOException {
-	
-		 long time=System.currentTimeMillis()/1000;
-         // 构造参数签名
-		 String bsStr[] = {"buy","sell"};
-         Map<String, String> params = new HashMap<String, String>();
-         params.put("method",bsStr[0]);
-         params.put("access_key", "419d4c14-3d2a2894-dc96119f-1d091");
-         params.put("coin_type","1");
-         params.put("price","0.1");
-         params.put("amount","0.1");
-         params.put("created",Long.toString(time));
-         String sign = MD5Util.buildHuoBiSign(params, "");
-         params.put("sign", sign);
+		String tresult = "success";
+        if(tresult.equals("success"))
+        {
+           System.out.print("\\\\");
+        }
 
-         // 发送post请求
-         HttpUtilManager httpUtil = HttpUtilManager.getInstance();
-         String result = httpUtil.requestHttpPost("https://api.huobi.com/apiv3","",
-                         params);
-         JSONObject tradejs = JSONObject.parseObject(result);
-         Boolean tresult = tradejs.getBoolean("result");
-         if(tresult)
-         {
-             String tradeOrderV1 = tradejs.getString("id");
-         }
-
-		
 	}
 
 }
