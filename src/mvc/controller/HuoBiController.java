@@ -48,7 +48,6 @@ public class HuoBiController implements BaseNode{
 		mainController = con;
 		userKey = Tools.getUserAccount(Config.HUOBI);
 		httpUtil = HttpUtilManager.getInstance();
-		this.bsRequest(0, 1, 0.1);
 	}
 	/**
 	 * 获得用户key

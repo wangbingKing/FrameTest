@@ -26,6 +26,7 @@ import org.apache.http.util.EntityUtils;
  * @author qq 2814579448
  *
  */
+@SuppressWarnings("deprecation")
 public class HttpUtil {
     /**
      * 默认编码

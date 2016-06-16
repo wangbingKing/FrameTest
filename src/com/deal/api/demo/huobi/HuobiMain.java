@@ -24,11 +24,11 @@ public class HuobiMain {
         HuobiService service = new HuobiService();
         try {
             // 提交限价单接口 1btc 2ltc
-//            System.out.println(service.buy(1, "10", "0.1", null, null, BUY));
+            System.out.println(service.buy(1, "10", "0.1", null, null, BUY));
 //            // 提交市价单接口
 //            System.out.println(service.buyMarket(1, "2", null, null, BUY_MARKET));
 //            // 取消订单接口
-            System.out.println(service.cancelOrder(1, 160801, CANCEL_ORDER));
+//            System.out.println(service.cancelOrder(1, 160801, CANCEL_ORDER));
 //            // 获取账号详情
 //            System.out.println(service.getAccountInfo(ACCOUNT_INFO));
 //            // 查询个人最新10条成交订单

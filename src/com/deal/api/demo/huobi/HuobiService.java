@@ -5,7 +5,15 @@
  */
 package com.deal.api.demo.huobi;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
+
+import org.apache.http.HttpException;
+import org.apache.http.message.BasicNameValuePair;
+
+import com.okcoin.rest.HttpUtilManager;
 
 import base.StringUtils;
 
@@ -45,9 +53,38 @@ public class HuobiService extends Base {
         if (null != tradeid) {
             paraMap.put("trade_id", tradeid);
         }
-        return post(paraMap, HUOBI_API_URL);
+        return chengePost(paraMap);
+//        Map<String, String> pam = new HashMap<String, String>();
+//        for (Map.Entry<String, Object> me : paraMap.entrySet()) {
+//            if (me.getValue() != null) {
+//            	pam.put(me.getKey(), me.getValue().toString());
+//            }
+//        }
+//     // 发送post请求
+// 		HttpUtilManager httpUtil = HttpUtilManager.getInstance();
+// 		String result = httpUtil.requestHttpPost(HUOBI_API_URL,"",
+// 				pam);
+//
+// 		return result;
+//        return post(paraMap, HUOBI_API_URL);
     }
 
+    public String chengePost(TreeMap<String, Object> paraMap) throws HttpException, IOException
+    {
+    	 Map<String, String> pam = new HashMap<String, String>();
+         for (Map.Entry<String, Object> me : paraMap.entrySet()) {
+             if (me.getValue() != null) {
+             	pam.put(me.getKey(), me.getValue().toString());
+             }
+         }
+      // 发送post请求
+  		HttpUtilManager httpUtil = HttpUtilManager.getInstance();
+  		String result = httpUtil.requestHttpPost(HUOBI_API_URL,"",
+  				pam);
+  		
+  		return result;
+    }
+    
     /**
      * 提交市价单接口
      * 
@@ -77,7 +114,8 @@ public class HuobiService extends Base {
         if (null != tradeid) {
             paraMap.put("trade_id", tradeid);
         }
-        return post(paraMap, HUOBI_API_URL);
+        return chengePost(paraMap);
+//        return post(paraMap, HUOBI_API_URL);
     }
 
     /**
@@ -100,7 +138,8 @@ public class HuobiService extends Base {
         String md5 = sign(paraMap);
         paraMap.remove("secret_key");
         paraMap.put("sign", md5);
-        return post(paraMap, HUOBI_API_URL);
+        return chengePost(paraMap);
+//        return post(paraMap, HUOBI_API_URL);
     }
 
     /**
@@ -119,7 +158,8 @@ public class HuobiService extends Base {
         String md5 = sign(paraMap);
         paraMap.remove("secret_key");
         paraMap.put("sign", md5);
-        return post(paraMap, HUOBI_API_URL);
+        return chengePost(paraMap);
+//        return post(paraMap, HUOBI_API_URL);
     }
 
     /**
@@ -140,7 +180,8 @@ public class HuobiService extends Base {
         String md5 = sign(paraMap);
         paraMap.remove("secret_key");
         paraMap.put("sign", md5);
-        return post(paraMap, HUOBI_API_URL);
+        return chengePost(paraMap);
+//        return post(paraMap, HUOBI_API_URL);
     }
 
     /**
@@ -163,7 +204,8 @@ public class HuobiService extends Base {
         String md5 = sign(paraMap);
         paraMap.remove("secret_key");
         paraMap.put("sign", md5);
-        return post(paraMap, HUOBI_API_URL);
+        return chengePost(paraMap);
+//        return post(paraMap, HUOBI_API_URL);
     }
 
     /**
@@ -184,7 +226,8 @@ public class HuobiService extends Base {
         String md5 = sign(paraMap);
         paraMap.remove("secret_key");
         paraMap.put("sign", md5);
-        return post(paraMap, HUOBI_API_URL);
+        return chengePost(paraMap);
+//        return post(paraMap, HUOBI_API_URL);
     }
 
     /**
@@ -207,7 +250,8 @@ public class HuobiService extends Base {
         String md5 = sign(paraMap);
         paraMap.remove("secret_key");
         paraMap.put("sign", md5);
-        return post(paraMap, HUOBI_API_URL);
+        return chengePost(paraMap);
+//        return post(paraMap, HUOBI_API_URL);
     }
 
     /**
@@ -241,7 +285,8 @@ public class HuobiService extends Base {
         if (null != tradeid) {
             paraMap.put("trade_id", tradeid);
         }
-        return post(paraMap, HUOBI_API_URL);
+        return chengePost(paraMap);
+//        return post(paraMap, HUOBI_API_URL);
     }
 
     /**
@@ -273,7 +318,9 @@ public class HuobiService extends Base {
         if (null != tradeid) {
             paraMap.put("trade_id", tradeid);
         }
-        return post(paraMap, HUOBI_API_URL);
+ 		return chengePost(paraMap);
+// 		return result;
+//        return post(paraMap, HUOBI_API_URL);
     }
 
 }
