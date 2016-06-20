@@ -55,7 +55,7 @@ public class ErSetConPanel extends javax.swing.JPanel {
         jTabbedPane1.addTab("买入", erConJPanel1);
         jTabbedPane1.addTab("卖出", erConJPanel2);
 
-        pt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ok中国", "ok国际", "火币" }));
+        pt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ok中国现货", "ok国际现货", "火币现货", "ok国际当周", "ok国际次周", "ok国际季度", "BitVc当周", "BitVc次周", "bitVc季度" }));
         pt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ptActionPerformed(evt);

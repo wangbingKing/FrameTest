@@ -45,6 +45,11 @@ public class BitVcController implements BaseNode{
     public Controller mainController;
     int index = 0;//限制请求次数
     public double newTrandMoney;
+    
+    public double newThisWeekMoney;
+    public double newNextWeekMoney;
+    public double newQuarterMoney;
+    
     stateAction state = Config.stateAction.INIT_STATE;//控制状态
     /**
      * 存用户的key
@@ -56,7 +61,6 @@ public class BitVcController implements BaseNode{
     	service = new FuturesService();
         mainController = con;
         userKey = Tools.getUserAccount(Config.BTBVC);
-        updateBalance();
     }
     /**
      * 获得用户key
@@ -92,31 +96,31 @@ public class BitVcController implements BaseNode{
     public void getDepthData()
     {
     	if(index == -1) //网络连接中
-		{
-			return;
-		}
-		index ++;
-		if(index > 10) //计数到
-		{
-			state = Config.stateAction.NETING_STATE;
-			index = -1;
-			Thread thread = new Thread(){
-				   public void run(){
-					   try{
-						   HttpUtilManager httpUtil = HttpUtilManager.getInstance();
-							String result = httpUtil.requestHttpGet("http://market.bitvc.com/futures/depths_btc_week.js","", "");
-							mainController.model.setFutureData(Config.BTBVC, result,Config.THIS_WEEK_FURTURE);
-							index = 0;	
-					   }
-					   catch(Exception E)
-					   {
-						   index = 0;
-					   }
-					   state = Config.stateAction.NETOEVR_STATE;
-				   }
-				};
-			thread.start();
-		}
+        {
+                return;
+        }
+        index ++;
+        if(index > 10) //计数到
+        {
+                state = Config.stateAction.NETING_STATE;
+                index = -1;
+                Thread thread = new Thread(){
+                           public void run(){
+                                   try{
+                                           HttpUtilManager httpUtil = HttpUtilManager.getInstance();
+                                                String result = httpUtil.requestHttpGet("http://market.bitvc.com/futures/depths_btc_week.js","", "");
+                                                mainController.model.setFutureData(Config.BTBVC, result,Config.THIS_WEEK_FURTURE);
+                                                index = 0;	
+                                   }
+                                   catch(Exception E)
+                                   {
+                                           index = 0;
+                                   }
+                                   state = Config.stateAction.NETOEVR_STATE;
+                           }
+                        };
+                thread.start();
+        }
     }
     public void getNewPrice()
     {

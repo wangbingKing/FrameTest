@@ -258,7 +258,7 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
 
         compare.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "无", "都", "任一" }));
 
-        pt_R.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ok中国", "ok国际", "火币" }));
+        pt_R.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ok中国现货", "ok国际现货", "火币现货", "ok国际当周", "ok国际次周", "ok国际当月", "ok国际季度", "BitVc当周", "BitVc次周", "BitVc当月", "bitVc季度" }));
 
         jLabel15.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel15.setText("触发价格:");

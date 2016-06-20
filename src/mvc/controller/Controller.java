@@ -31,11 +31,11 @@ public class Controller implements BaseNode{
 	 * view 
 	 */
     public MainFrame mainview;
-	public OkCoinCnController okCoinCnController; 
-	public OkCoinComController okCoinComController;
-	public HuoBiController huobiController;
-	public BitVcController bitVcController;
-	public Vector<ProcessControllerAI> processAI;
+    public OkCoinCnController okCoinCnController; 
+    public OkCoinComController okCoinComController;
+    public HuoBiController huobiController;
+    public BitVcController bitVcController;
+    public Vector<ProcessControllerAI> processAI;
     public Vector<ProcessControllerAIEr> processAIEr;
     public Vector<ProcessControllerAIWu> processControllerAIWu;
     public Vector<ProcessControllerAINewER> processControllerAINewER;
@@ -334,17 +334,50 @@ public class Controller implements BaseNode{
 	}
         public double getNewPtPrice(int pt)
         {
-            switch(pt)
+            int xp = (pt - 1)/3;
+            int ptidx = (pt - 1)%3;
+            if(xp == 0)
             {
-                case Config.OKCOINCN:
-                    return okCoinCnController.newTrandMoney;
-                case Config.OKCOINCOM:
-                    return okCoinComController.newTrandMoney;
-                case Config.HUOBI:
-                    return huobiController.newTrandMoney;
-                case Config.BTCC:
-                    break;
+                switch(pt)
+                {
+                    case Config.OKCOINCN:
+                        return okCoinCnController.newTrandMoney;
+                    case Config.OKCOINCOM:
+                        return okCoinComController.newTrandMoney;
+                    case Config.HUOBI:
+                        return huobiController.newTrandMoney;
+                    case Config.BTCC:
+                        break;
+                }
             }
+            else
+            {
+                if(xp == 1)
+                {
+                    switch(pt)
+                    {
+                        case Config.THIS_WEEK_FURTURE:
+                            return okCoinComController.newThisWeekMoney;
+                        case Config.NEXT_WEEK_FURTURE:
+                            return okCoinComController.newNextWeekMoney;
+                        case Config.NEXT_MONTH_FURTURE:
+                            return okCoinComController.newQuarterMoney;
+                    }
+                }
+                else if(xp == 2)
+                {
+                    switch(pt)
+                    {
+                        case Config.THIS_WEEK_FURTURE:
+                            return bitVcController.newThisWeekMoney;
+                        case Config.NEXT_WEEK_FURTURE:
+                            return bitVcController.newNextWeekMoney;
+                        case Config.NEXT_MONTH_FURTURE:
+                            return bitVcController.newQuarterMoney;
+                    }
+                }
+            }
+            
             return 0.0f;
         }
 	/**

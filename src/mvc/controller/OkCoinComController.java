@@ -66,15 +66,15 @@ public class OkCoinComController implements BaseNode{
 	
 	public OkCoinComController(Controller con)
 	{
-		baseUserInfo = new BaseUserInfo();
-		mainController = con;
-		userKey = Tools.getUserAccount(Config.OKCOINCOM);
-        stockPost = new StockRestApi(BASE_URL, API_KEY, SECRET_KEY);
-        stockGet = new StockRestApi(BASE_URL);
-        futureGetV1 = new FutureRestApiV1(BASE_URL);
-        futurePostV1 = new FutureRestApiV1(BASE_URL, API_KEY, SECRET_KEY);
-        updateUserInfo();
-        updateNewTrand();
+            baseUserInfo = new BaseUserInfo();
+            mainController = con;
+            userKey = Tools.getUserAccount(Config.OKCOINCOM);
+            stockPost = new StockRestApi(BASE_URL, API_KEY, SECRET_KEY);
+            stockGet = new StockRestApi(BASE_URL);
+            futureGetV1 = new FutureRestApiV1(BASE_URL);
+            futurePostV1 = new FutureRestApiV1(BASE_URL, API_KEY, SECRET_KEY);
+            updateUserInfo();
+            updateNewTrand();
 	}
 	/**
 	 * 获得用户key
@@ -200,15 +200,15 @@ public class OkCoinComController implements BaseNode{
 			   public void run(){
 				   try{
 					   
-						String result = stockGet.depth("btc_usd");
-						mainController.model.setTickerData(Config.OKCOINCOM,result);
-						String futureresult = futureGetV1.future_depth("btc_usd", "this_week");
-						mainController.model.setFutureData(Config.OKCOINCOM,futureresult,Config.THIS_WEEK_FURTURE);
-						index = 0;	
+                                        String result = stockGet.depth("btc_usd");
+                                        mainController.model.setTickerData(Config.OKCOINCOM,result);
+                                        String futureresult = futureGetV1.future_depth("btc_usd", "this_week");
+                                        mainController.model.setFutureData(Config.OKCOINCOM,futureresult,Config.THIS_WEEK_FURTURE);
+                                        index = 0;	
 				   }
 				   catch(Exception E)
 				   {
-					   index = 0;
+                                        index = 0;
 				   }
 				   state = Config.stateAction.NETOEVR_STATE;
 			   }
@@ -251,43 +251,47 @@ public class OkCoinComController implements BaseNode{
     {
     	if(newPriceIndex > 3)
     	{
-    		newPriceIndex = 0;
+            newPriceIndex = -1;
             Thread thread = new Thread(){
      		   public void run(){
      			   try{
-     					String result =stockGet.ticker("btc_usd");
-     					JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
-						JSONObject data = dataJson.getJSONObject("ticker");
-						newTrandMoney = data.getDouble("last");
-						String thisWeek = futureGetV1.future_ticker("btc_usd", "this_week");
-						JSONObject  dataWeekJson = new JSONObject(JSON.parseObject(thisWeek));
-						JSONObject weekdata = dataWeekJson.getJSONObject("ticker");
-						newThisWeekMoney = weekdata.getDouble("last");
-						 
-						String next_week = futureGetV1.future_ticker("btc_usd", "next_week");
-						JSONObject  datanext_weekJson = new JSONObject(JSON.parseObject(next_week));
-						JSONObject next_weekdata = datanext_weekJson.getJSONObject("ticker");
-						newNextWeekMoney = next_weekdata.getDouble("last");
-						 
-						String thismonth = futureGetV1.future_ticker("btc_usd", "month");
-						JSONObject  datamonthJson = new JSONObject(JSON.parseObject(thismonth));
-						JSONObject monthdata = datamonthJson.getJSONObject("ticker");
-						newMonthMoney = monthdata.getDouble("last");
-						 
-						String thisquarter = futureGetV1.future_ticker("btc_usd", "quarter");
-						JSONObject  dataquarterJson = new JSONObject(JSON.parseObject(thisquarter));
-						JSONObject quarterdata = dataquarterJson.getJSONObject("ticker");
-						newQuarterMoney = quarterdata.getDouble("last");                                              
-					}
+                                String result =stockGet.ticker("btc_usd");
+                                JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
+                                JSONObject data = dataJson.getJSONObject("ticker");
+                                newTrandMoney = data.getDouble("last");
+                                String thisWeek = futureGetV1.future_ticker("btc_usd", "this_week");
+                                JSONObject  dataWeekJson = new JSONObject(JSON.parseObject(thisWeek));
+                                JSONObject weekdata = dataWeekJson.getJSONObject("ticker");
+                                newThisWeekMoney = weekdata.getDouble("last");
+
+                                String next_week = futureGetV1.future_ticker("btc_usd", "next_week");
+                                JSONObject  datanext_weekJson = new JSONObject(JSON.parseObject(next_week));
+                                JSONObject next_weekdata = datanext_weekJson.getJSONObject("ticker");
+                                newNextWeekMoney = next_weekdata.getDouble("last");
+
+                                String thismonth = futureGetV1.future_ticker("btc_usd", "month");
+                                JSONObject  datamonthJson = new JSONObject(JSON.parseObject(thismonth));
+                                JSONObject monthdata = datamonthJson.getJSONObject("ticker");
+                                newMonthMoney = monthdata.getDouble("last");
+
+                                String thisquarter = futureGetV1.future_ticker("btc_usd", "quarter");
+                                JSONObject  dataquarterJson = new JSONObject(JSON.parseObject(thisquarter));
+                                JSONObject quarterdata = dataquarterJson.getJSONObject("ticker");
+                                newQuarterMoney = quarterdata.getDouble("last");                                              
+                            }
      			   catch(Exception e)
      			   {
      				   e.printStackTrace();
-     			   }
-     			 
+                           }
+                           newPriceIndex =0;
      		   }
      		};
      		thread.start();
     	}
+        else if(newPriceIndex == -1)
+        {
+            
+        }
     	else   		
     	{
     		newPriceIndex ++;

@@ -179,4 +179,33 @@ public class Config {
             REQUESTING,
             OVER
         }
+        /*
+        ok中国现货
+        ok国际现货
+        火币现货
+        ok国际当周
+        ok国际次周
+        ok国际当月
+        ok国际季度
+        BitVc当周
+        BitVc次周
+        BitVc当月
+        bitVc季度
+        */
+        public static int getPtBySelect(int index)
+        {
+            if(index <= 3)
+            {
+                return index;
+            }
+            else if(index > 3 && index <= 6)
+            {
+                return 2;
+            }
+            else if(index > 6 && index <= 9)
+            {
+                return 4;
+            }
+            return 0;
+        }
 }

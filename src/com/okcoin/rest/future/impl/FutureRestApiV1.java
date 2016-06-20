@@ -123,7 +123,6 @@ public class FutureRestApiV1 implements IFutureRestApi {
 
 		}
 		String result = httpUtil.requestHttpGet(url_prex,FUTURE_TICKER_URL, param);
-		System.out.println(result);
 		return result;
 	}
 
