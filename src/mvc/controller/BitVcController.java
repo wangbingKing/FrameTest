@@ -8,6 +8,7 @@ package mvc.controller;
 import base.BaseConfig;
 import base.BaseNode;
 
+import com.deal.api.demo.futures.FuturesService;
 import com.okcoin.rest.HttpUtilManager;
 import com.okcoin.rest.MD5Util;
 import com.okcoin.rest.StringUtil;
@@ -32,6 +33,15 @@ public class BitVcController implements BaseNode{
     private final String BASE_URL = "https://api.bitvc.com";
     private final String GET_HOLDORDER_URL = "/futures/holdOrder/list";
     private final String GET_BALANCE = "/futures/balance";
+     
+    private static String FUTURES_BALANCE_INFO = "https://api.bitvc.com/futures/balance";
+    private static String FUTURES_HOLD_ORDER_LIST = "https://api.bitvc.com/futures/holdOrder/list";
+    private static String FUTURES_HOLD_ORDER_SUM = "https://api.bitvc.com/futures/holdOrder";
+    private static String FUTURES_ORDERS_LIST="https://api.bitvc.com/futures/order/list";
+    private static String FUTURES_ORDER_INFO = "https://api.bitvc.com/futures/order";
+    private static String FUTURES_ORDER_SAVE="https://api.bitvc.com/futures/order/save";
+    private static String FUTURES_CANCEL_ORDER = "https://api.bitvc.com/futures/order/cancel";
+    FuturesService service;
     public Controller mainController;
     int index = 0;//限制请求次数
     public double newTrandMoney;
@@ -43,10 +53,10 @@ public class BitVcController implements BaseNode{
 
     public BitVcController(Controller con)
     {
+    	service = new FuturesService();
         mainController = con;
         userKey = Tools.getUserAccount(Config.BTBVC);
         updateBalance();
-        this.updateHoldOrder("week");
     }
     /**
      * 获得用户key
@@ -57,23 +67,9 @@ public class BitVcController implements BaseNode{
     }
     public void updateHoldOrder(String type)
     {
-        long time=System.currentTimeMillis()/1000;
-        // 构造参数签名
-        Map<String, String> params = new HashMap<String, String>();
-        
-        params.put("accessKey","667eb6b5-cffb0d21-15f3e934-2f56e212"); //userKey.api_key
-        params.put("coinType", "1");
-        params.put("created",""+Long.toString(time));
-        String sign = MD5Util.buildBitVcSign(params, "");//userKey.secret_key
-        params.put("sign", sign);
-        params.put("contarctType", type); 
-        // 发送post请求
-
-        HttpUtilManager httpUtil = HttpUtilManager.getInstance();
         try
         {
-            String result = httpUtil.requestHttpPost(BASE_URL,GET_HOLDORDER_URL, params);
-            System.out.println(result);
+            String result = service.getHoldOrderList(1,type, FUTURES_HOLD_ORDER_LIST);
             mainController.setHoldOrderModel(Config.BTBVC,result,Config.THIS_WEEK_FURTURE);
         }
         catch(Exception e)
@@ -81,24 +77,11 @@ public class BitVcController implements BaseNode{
             e.printStackTrace();
         }
     }
-     public void updateBalance()
+    public void updateBalance()
     {
-        long time=System.currentTimeMillis()/1000;
-        // 构造参数签名
-        Map<String, String> params = new HashMap<String, String>();
-        
-        params.put("accessKey","667eb6b5-cffb0d21-15f3e934-2f56e212"); //userKey.api_key
-        params.put("coinType", "1");
-        params.put("created",""+Long.toString(time));
-        String sign = MD5Util.buildBitVcSign(params, "");//userKey.secret_key
-        params.put("sign", sign);
-        // 发送post请求
-
-        HttpUtilManager httpUtil = HttpUtilManager.getInstance();
         try
         {
-            String result = httpUtil.requestHttpPost(BASE_URL,GET_BALANCE, params);
-            System.out.println(result);
+            String result = service.getBalanceInfo(1,FUTURES_BALANCE_INFO);
 
         }
         catch(Exception e)
@@ -137,43 +120,25 @@ public class BitVcController implements BaseNode{
     }
     public void getNewPrice()
     {
-        if(index == -1) //网络连接中
-        {
-                return;
-        }
-        index ++;
-        if(index > 2) //计数到
-        {
-            index = -1;
-            Thread thread = new Thread(){
-                public void run(){
-                        try{
-                               
-                                index = 0;	
-                        }
-                        catch(Exception E)
-                        {
-                                index = 0;
-                        }
-                }
-             };
-            thread.start();
-        }
+      
+        Thread thread = new Thread(){
+            public void run(){
+                    try
+                    {
+                           
+                            
+                    }
+                    catch(Exception E)
+                    {
+                    }
+            }
+         };
+        thread.start();
     }
     @Override
     public void update() {
     	// TODO Auto-generated method stub
         getDepthData();
-//    	switch(state)
-//		{
-//		case INIT_STATE:
-//			getDepthData();
-//			break;
-//		case NETING_STATE:
-//			break;
-//		case NETOEVR_STATE:
-//			getDepthData();
-//			break;
-//		}
+
     }
 }

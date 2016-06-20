@@ -33,13 +33,13 @@ public class FuturesMain {
             // 获取所有正在进行的委托
             System.out.println(service.getOrderList(1, "week", FUTURES_ORDERS_LIST));
             //委托单详情
-            System.out.println(service.getOrderInfo(1L,1,"week",FUTURES_ORDER_INFO));
-            // 下委托单
-            BigDecimal price=new BigDecimal("2000.00").setScale(2);
-            BigDecimal money=new BigDecimal("300.00").setScale(2);
-            System.out.println(service.saveOrder(1,"week",1,1,price, money, 10,FUTURES_ORDER_SAVE));
-            // 取消订单接口
-            System.out.println(service.cancelOrder(1,"week", 160801, FUTURES_CANCEL_ORDER));
+//            System.out.println(service.getOrderInfo(1L,1,"week",FUTURES_ORDER_INFO));
+//            // 下委托单
+//            BigDecimal price=new BigDecimal("2000.00").setScale(2);
+//            BigDecimal money=new BigDecimal("300.00").setScale(2);
+//            System.out.println(service.saveOrder(1,"week",1,1,price, money, 10,FUTURES_ORDER_SAVE));
+//            // 取消订单接口
+//            System.out.println(service.cancelOrder(1,"week", 160801, FUTURES_CANCEL_ORDER));
 
         } catch (Exception e) {
             // TODO Auto-generated catch block

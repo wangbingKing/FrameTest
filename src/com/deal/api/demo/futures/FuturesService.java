@@ -5,16 +5,37 @@
  */
 package com.deal.api.demo.futures;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
+import org.apache.http.HttpException;
+
 import com.deal.api.demo.huobi.Base;
+import com.okcoin.rest.HttpUtilManager;
 
 /**
  * @author yanjg 2014年11月22日
  */
 public class FuturesService extends Base {
 
+	public String chengePost(TreeMap<String, Object> paraMap,String url) throws HttpException, IOException
+    {
+    	 Map<String, String> pam = new HashMap<String, String>();
+         for (Map.Entry<String, Object> me : paraMap.entrySet()) {
+             if (me.getValue() != null) {
+             	pam.put(me.getKey(), me.getValue().toString());
+             }
+         }
+      // 发送post请求
+  		HttpUtilManager httpUtil = HttpUtilManager.getInstance();
+  		String result = httpUtil.requestHttpPost(url,"",
+  				pam);
+  		
+  		return result;
+    }
     /**
      * 获取所有正在进行的委托
      * 
@@ -34,7 +55,8 @@ public class FuturesService extends Base {
         paraMap.remove("secretKey");
         paraMap.put("sign", md5);
         paraMap.put("contractType", contractType);
-        return post(paraMap, url);
+//        return post(paraMap, url);
+        return this.chengePost(paraMap,url);
     }
 
     /**
@@ -58,7 +80,8 @@ public class FuturesService extends Base {
         String md5 = sign(paraMap);
         paraMap.remove("secretKey");
         paraMap.put("sign", md5);
-        return post(paraMap, url);
+        return this.chengePost(paraMap,url);
+//        return post(paraMap, url);
     }
 
     /**
@@ -78,7 +101,8 @@ public class FuturesService extends Base {
         String md5 = sign(paraMap);
         paraMap.remove("secretKey");
         paraMap.put("sign", md5);
-        return post(paraMap, url);
+        return this.chengePost(paraMap,url);
+//        return post(paraMap, url);
     }
 
     /**
@@ -100,7 +124,8 @@ public class FuturesService extends Base {
         paraMap.remove("secretKey");
         paraMap.put("sign", md5);
         paraMap.put("contractType", contractType);
-        return post(paraMap, url);
+        return this.chengePost(paraMap,url);
+//        return post(paraMap, url);
     }
 
     /**
@@ -122,7 +147,8 @@ public class FuturesService extends Base {
         paraMap.remove("secretKey");
         paraMap.put("sign", md5);
         paraMap.put("contractType", contractType);
-        return post(paraMap, url);
+        return this.chengePost(paraMap,url);
+//        return post(paraMap, url);
     }
 
     /**
@@ -155,7 +181,8 @@ public class FuturesService extends Base {
         paraMap.put("leverage", leverage);
         paraMap.remove("secretKey");
         paraMap.put("sign", md5);
-        return post(paraMap, url);
+        return this.chengePost(paraMap,url);
+//        return post(paraMap, url);
     }
 
     /**
@@ -179,8 +206,8 @@ public class FuturesService extends Base {
         String md5 = sign(paraMap);
         paraMap.remove("secretKey");
         paraMap.put("sign", md5);
-
-        return post(paraMap, url);
+        return this.chengePost(paraMap,url);
+//        return post(paraMap, url);
     }
 
 }

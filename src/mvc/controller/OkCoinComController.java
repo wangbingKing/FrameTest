@@ -249,7 +249,7 @@ public class OkCoinComController implements BaseNode{
     }
     public void updateNewTrand()
     {
-    	if(newPriceIndex > 2)
+    	if(newPriceIndex > 3)
     	{
     		newPriceIndex = 0;
             Thread thread = new Thread(){
@@ -257,28 +257,28 @@ public class OkCoinComController implements BaseNode{
      			   try{
      					String result =stockGet.ticker("btc_usd");
      					JSONObject  dataJson = new JSONObject(JSON.parseObject(result));
-                         JSONObject data = dataJson.getJSONObject("ticker");
-                         newTrandMoney = data.getDouble("last");
-//                         String thisWeek = futureGetV1.future_ticker("btc_usd", "this_week");
-//                         JSONObject  dataWeekJson = new JSONObject(JSON.parseObject(thisWeek));
-//                         JSONObject weekdata = dataWeekJson.getJSONObject("ticker");
-//                         newThisWeekMoney = weekdata.getDouble("last");
-//                         
-//                         String next_week = futureGetV1.future_ticker("btc_usd", "next_week");
-//                         JSONObject  datanext_weekJson = new JSONObject(JSON.parseObject(next_week));
-//                         JSONObject next_weekdata = datanext_weekJson.getJSONObject("ticker");
-//                         newNextWeekMoney = next_weekdata.getDouble("last");
-//                         
-//                         String thismonth = futureGetV1.future_ticker("btc_usd", "month");
-//                         JSONObject  datamonthJson = new JSONObject(JSON.parseObject(thismonth));
-//                         JSONObject monthdata = datamonthJson.getJSONObject("ticker");
-//                         newMonthMoney = monthdata.getDouble("last");
-//                         
-//                         String thisquarter = futureGetV1.future_ticker("btc_usd", "quarter");
-//                         JSONObject  dataquarterJson = new JSONObject(JSON.parseObject(thisquarter));
-//                         JSONObject quarterdata = dataquarterJson.getJSONObject("ticker");
-//                         newQuarterMoney = quarterdata.getDouble("last");                                              
-     			   }
+						JSONObject data = dataJson.getJSONObject("ticker");
+						newTrandMoney = data.getDouble("last");
+						String thisWeek = futureGetV1.future_ticker("btc_usd", "this_week");
+						JSONObject  dataWeekJson = new JSONObject(JSON.parseObject(thisWeek));
+						JSONObject weekdata = dataWeekJson.getJSONObject("ticker");
+						newThisWeekMoney = weekdata.getDouble("last");
+						 
+						String next_week = futureGetV1.future_ticker("btc_usd", "next_week");
+						JSONObject  datanext_weekJson = new JSONObject(JSON.parseObject(next_week));
+						JSONObject next_weekdata = datanext_weekJson.getJSONObject("ticker");
+						newNextWeekMoney = next_weekdata.getDouble("last");
+						 
+						String thismonth = futureGetV1.future_ticker("btc_usd", "month");
+						JSONObject  datamonthJson = new JSONObject(JSON.parseObject(thismonth));
+						JSONObject monthdata = datamonthJson.getJSONObject("ticker");
+						newMonthMoney = monthdata.getDouble("last");
+						 
+						String thisquarter = futureGetV1.future_ticker("btc_usd", "quarter");
+						JSONObject  dataquarterJson = new JSONObject(JSON.parseObject(thisquarter));
+						JSONObject quarterdata = dataquarterJson.getJSONObject("ticker");
+						newQuarterMoney = quarterdata.getDouble("last");                                              
+					}
      			   catch(Exception e)
      			   {
      				   e.printStackTrace();

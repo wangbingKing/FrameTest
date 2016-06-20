@@ -23,7 +23,7 @@ public abstract class Base {
 	public static String HUOBI_API_URL = "https://api.huobi.com/apiv3";
 	
 	//bitvc现货，期货共用accessKey,secretKey配置信息
-	public static String BITVC_ACCESS_KEY = "";
+	public static String BITVC_ACCESS_KEY = "667eb6b5-cffb0d21-15f3e934-2f56e212";
 	public static String BITVC_SECRET_KEY = "";
     
     
