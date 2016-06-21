@@ -7,14 +7,13 @@ package mvc.view.newER;
 
 import base.BaseNewErConData;
 import base.BaseNode;
-import config.Config;
 import mvc.controller.Controller;
 
 /**
  *
  * @author wuxianshikong
  */
-public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
+public class ErConJPanelFuture extends javax.swing.JPanel implements BaseNode{
     Controller mainController;
     ErSetConPanel superConPanel;
     public int bs;
@@ -26,7 +25,7 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
         this.superConPanel = superPanel;
         this.mainController = mainController;
     }
-    public ErConJPanel() {
+    public ErConJPanelFuture() {
         
         initComponents();
     }
@@ -81,7 +80,10 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
         han_b1 = new javax.swing.JTextField();
         compare_R = new javax.swing.JComboBox<>();
         compare_L = new javax.swing.JComboBox<>();
-        bs_do1 = new javax.swing.JButton();
+        bs_do4 = new javax.swing.JButton();
+        bs_do5 = new javax.swing.JButton();
+        bs_do6 = new javax.swing.JButton();
+        jCheckBox2 = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(0, 204, 153));
 
@@ -142,7 +144,7 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
         jLabel23.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel23.setText("=");
 
-        bs_do.setText("买入");
+        bs_do.setText("买入开多");
         bs_do.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bs_doActionPerformed(evt);
@@ -249,7 +251,7 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
 
         han_TabbedPane.addTab("函数", jPanel1);
 
-        xs_L.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "限价单", "市价单" }));
+        xs_L.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "限价单" }));
         xs_L.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 xs_LFocusGained(evt);
@@ -398,46 +400,48 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
 
         compare_L.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "大于等于", "小于等于" }));
 
-        bs_do1.setText("卖出");
-        bs_do1.addActionListener(new java.awt.event.ActionListener() {
+        bs_do4.setText("卖出开空");
+        bs_do4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bs_do1ActionPerformed(evt);
+                bs_do4ActionPerformed(evt);
             }
         });
+
+        bs_do5.setText("买入平空");
+        bs_do5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bs_do5ActionPerformed(evt);
+            }
+        });
+
+        bs_do6.setText("卖出平多");
+        bs_do6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bs_do6ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox2.setText("对手价");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bs_do)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bs_do4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bs_do6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bs_do5)))
+                .addGap(0, 54, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 1, Short.MAX_VALUE)
-                                .addComponent(jLabel5)
-                                .addGap(6, 6, 6)
-                                .addComponent(xs_L, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel2))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(han_TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(jLabel7)
-                                .addGap(26, 26, 26)
-                                .addComponent(compare_L, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -460,28 +464,43 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
                                 .addComponent(jLabel8)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 114, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(compare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(bs_do, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bs_do1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel5)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(xs_L, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel1))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel2))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(han_TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(15, 15, 15)
+                                        .addComponent(jLabel7)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(compare_L, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(compare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox2)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,11 +546,14 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
                         .addGap(32, 32, 32)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bs_do)
-                    .addComponent(bs_do1))
+                    .addComponent(bs_do4)
+                    .addComponent(bs_do6)
+                    .addComponent(bs_do5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(compare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(compare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -635,7 +657,6 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
         data.basePrice_special = this.mainController.getNewPtPrice(data.pt_R);
         data.gd_L = this.compare_L.getSelectedIndex();
         data.gd_R = this.compare_R.getSelectedIndex();
-        data.do_BS = Config.BUY_ID;
         this.mainController.addProcessAINewER(data);
         this.superConPanel.updateSuperUI();
     }//GEN-LAST:event_bs_doActionPerformed
@@ -654,32 +675,17 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
         total.setText(String.format("%.4f", priceValue*amountValue));
     }//GEN-LAST:event_amountFocusLost
 
-    private void bs_do1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_do1ActionPerformed
+    private void bs_do4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_do4ActionPerformed
         // TODO add your handling code here:
-        BaseNewErConData data = new BaseNewErConData();
-        data.pt_L = superConPanel.pt.getSelectedIndex() + 1;
-        data.xs_L = xs_L.getSelectedIndex();
-        data.han_bi = han_TabbedPane.getSelectedIndex();
-        data.price = Double.parseDouble(price.getText());
-        data.amount = Double.parseDouble(amount.getText());
-        data.total = Double.parseDouble(total.getText());
-        data.a = Double.parseDouble(han_a.getText());
-        data.b = Double.parseDouble(han_b.getText());
-        data.bi = Double.parseDouble(bi_value.getText());
-        data.special = compare.getSelectedIndex();
-        data.a_special = Double.parseDouble(han_a1.getText());
-        data.b_special = Double.parseDouble(han_b1.getText());
-        data.bi_special = Double.parseDouble(bi_value1.getText());
-        data.basePrice = this.mainController.getNewPtPrice(data.pt_L);
-        data.pt_R = pt_R.getSelectedIndex() + 1;
-        data.han_bi_special = this.jTabbedPane2.getSelectedIndex();
-        data.basePrice_special = this.mainController.getNewPtPrice(data.pt_R);
-        data.gd_L = this.compare_L.getSelectedIndex();
-        data.gd_R = this.compare_R.getSelectedIndex();
-        data.do_BS = Config.SELL_ID;
-        this.mainController.addProcessAINewER(data);
-        this.superConPanel.updateSuperUI();
-    }//GEN-LAST:event_bs_do1ActionPerformed
+    }//GEN-LAST:event_bs_do4ActionPerformed
+
+    private void bs_do5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_do5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bs_do5ActionPerformed
+
+    private void bs_do6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_do6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bs_do6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -687,7 +693,9 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
     private javax.swing.JTextField bi_value;
     private javax.swing.JTextField bi_value1;
     public javax.swing.JButton bs_do;
-    public javax.swing.JButton bs_do1;
+    public javax.swing.JButton bs_do4;
+    public javax.swing.JButton bs_do5;
+    public javax.swing.JButton bs_do6;
     private javax.swing.JComboBox<String> compare;
     private javax.swing.JComboBox<String> compare_L;
     private javax.swing.JComboBox<String> compare_R;
@@ -696,6 +704,7 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
     private javax.swing.JTextField han_a1;
     private javax.swing.JTextField han_b;
     private javax.swing.JTextField han_b1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

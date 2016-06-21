@@ -12,7 +12,7 @@ import config.Config;
  * @author wuxianshikong
  */
 public class BaseNewErConData {
-	public Config.ER_AI_STATE state = Config.ER_AI_STATE.NULLSTATE;
+    public Config.ER_AI_STATE state = Config.ER_AI_STATE.NULLSTATE;
     public long U_id;
     public int pt_L;
     public int xs_L;
