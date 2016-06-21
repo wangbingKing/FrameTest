@@ -145,4 +145,9 @@ public class BitVcController implements BaseNode{
         getDepthData();
 
     }
+	public void bsFutureRequest(int bs, int type, double value, double num,
+			int pt) {
+		// TODO Auto-generated method stub
+		
+	}
 }

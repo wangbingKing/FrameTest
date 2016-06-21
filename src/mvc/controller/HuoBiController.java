@@ -181,5 +181,9 @@ public class HuoBiController implements BaseNode{
         }
         return "";
 	}
-    
+	public void bsFutureRequest(int bs, int type, double value, double num,
+			int pt) {
+		// TODO Auto-generated method stub
+		
+	}
 }

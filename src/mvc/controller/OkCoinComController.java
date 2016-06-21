@@ -137,6 +137,22 @@ public class OkCoinComController implements BaseNode{
         }
         return "";
 	}
+    public String bsFutureRequest(int bs,int type,double value,double num,int pt)
+    {
+    	String bsStr[] = {"buy","sell"};
+        String price = String.format("%.4f", value);
+        String amount = String.format("%.4f", num);
+    	try
+    	{
+    		String tradeResultV1 = futurePostV1.future_trade("btc_usd","this_week", "10.134", "1", "1", "0");
+    	}
+    	catch(Exception e)
+    	{
+    		
+    	}
+    	return "";
+    }
+    
     /**
 	 * 更新账号信息
 	 */

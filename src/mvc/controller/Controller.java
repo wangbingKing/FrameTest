@@ -312,6 +312,19 @@ public class Controller implements BaseNode{
             }
             return true;
         }
+        public Boolean bsFutureRequest(int bs,int type,double value,double num,int pt)
+        {
+        
+            if(pt == Config.OKCOINCOM)  
+            {
+                okCoinComController.bsFutureRequest(bs,type,value, num, pt);
+            }
+            else if (pt == Config.BTBVC)
+            {
+            	this.bitVcController.bsFutureRequest(bs,type,value, num, pt);
+            }
+        	return true;
+        }
         
 	/**
 	 * 浠庣紦瀛樹腑鑾峰彇鏁版嵁
