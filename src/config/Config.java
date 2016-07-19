@@ -159,6 +159,11 @@ public class Config {
         public static final int ds_s = 0;
         public static final int ds_d = 1;
         
+        public static final int FUTURE_KAI_DUO = 1;
+        public static final int FUTURE_KAI_KONG = 2;
+        public static final int FUTURE_PING_DUO = 3;
+        public static final int FUTURE_PING_KONG = 4;
+        
         public static String RUN_PT = "windos";
         
         public static int HAN = 1;

@@ -16,10 +16,12 @@ import config.Config;
 import config.Config.stateAction;
 import base.BaseConfig;
 import base.BaseNode;
+import base.BaseOrder;
 import base.BaseUserInfo;
 
 import com.okcoin.rest.stock.IStockRestApi;
 import com.okcoin.rest.stock.impl.StockRestApi;
+import java.util.Vector;
 
 public class OkCoinCnController implements BaseNode{
     private final String BASE_URL = "https://www.okcoin.cn";
@@ -30,6 +32,7 @@ public class OkCoinCnController implements BaseNode{
     public Controller mainController;
     
     public double newTrandMoney;
+    public Vector<BaseOrder> orderList;
     
      /**
      * get请求无需发送身份认证,通常用于获取行情，市场深度等公共信息
@@ -54,47 +57,59 @@ public class OkCoinCnController implements BaseNode{
      * 
     */
         
-	int index = 0;//限制请求次数
-	int newPriceIndex = 0;
-	stateAction state = Config.stateAction.INIT_STATE;//控制状态
-	/**
-	 * 存用户的key
-	 */
-	BaseConfig userKey;
-	public OkCoinCnController(Controller con)
-	{
-		baseUserInfo = new BaseUserInfo();
-		mainController = con;
-		userKey = Tools.getUserAccount(Config.OKCOINCN);
+    int index = 0;//限制请求次数
+    int newPriceIndex = 0;
+    stateAction state = Config.stateAction.INIT_STATE;//控制状态
+    /**
+     * 存用户的key
+     */
+    BaseConfig userKey;
+    public OkCoinCnController(Controller con)
+    {
+        baseUserInfo = new BaseUserInfo();
+        mainController = con;
+        userKey = Tools.getUserAccount(Config.OKCOINCN);
+        orderList = new Vector<BaseOrder>();
         stockPost = new StockRestApi(BASE_URL, API_KEY, SECRET_KEY);
         stockGet = new StockRestApi(BASE_URL);
         updateUserInfo();
         updateNewTrand();
-	}
-	/**
-	 * 获得用户key
-	 */
-	public BaseConfig getUserKey()
-	{
-		return this.userKey;
-	}
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
-		switch(state)
-		{
-		case INIT_STATE:
-			getDepthData();
-			break;
-		case NETING_STATE:
-			break;
-		case NETOEVR_STATE:
-			getDepthData();
-			break;
-		}
-		updateNewTrand();
-	}
+    }
+    public void updateOrderList()
+    {
+        
+        if(!orderList.isEmpty())
+        {
+            for(int i = 0;i< orderList.size();i++)
+            {
+                
+            }
+        }
+    }
+    /**
+     * 获得用户key
+     */
+    public BaseConfig getUserKey()
+    {
+            return this.userKey;
+    }
+    @Override
+    public void update() {
+            // TODO Auto-generated method stub
+
+            switch(state)
+            {
+            case INIT_STATE:
+                    getDepthData();
+                    break;
+            case NETING_STATE:
+                    break;
+            case NETOEVR_STATE:
+                    getDepthData();
+                    break;
+            }
+            updateNewTrand();
+    }
     public void updateNewTrand()
     {
     	if(newPriceIndex > 2)

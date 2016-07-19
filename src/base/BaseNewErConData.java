@@ -6,7 +6,6 @@
 package base;
 
 import config.Config;
-
 /**
  *
  * @author wuxianshikong
@@ -16,6 +15,7 @@ public class BaseNewErConData {
     public long U_id;
     public int pt_L;
     public int xs_L;
+    
     
     
     public double price;
@@ -30,6 +30,9 @@ public class BaseNewErConData {
     public double bi;
     public double a;
     public double b;
+    /**
+     * 最新价
+     */
     public double newPrice;
     
     /**
@@ -55,7 +58,12 @@ public class BaseNewErConData {
     public double bi_special;
     public double a_special;
     public double b_special;
-    
+    /**
+     * 期货
+     */
+    public int current_future;
+    public int future_type;
+    public int isDuishou;
     /**
      * 传当前的价格
      * 获取比较的值

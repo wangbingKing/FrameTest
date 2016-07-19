@@ -615,29 +615,7 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
 
     private void bs_doActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_doActionPerformed
         // TODO add your handling code here:
-        BaseNewErConData data = new BaseNewErConData();
-        data.pt_L = superConPanel.pt.getSelectedIndex() + 1;
-        data.xs_L = xs_L.getSelectedIndex();
-        data.han_bi = han_TabbedPane.getSelectedIndex();
-        data.price = Double.parseDouble(price.getText());
-        data.amount = Double.parseDouble(amount.getText());
-        data.total = Double.parseDouble(total.getText());
-        data.a = Double.parseDouble(han_a.getText());
-        data.b = Double.parseDouble(han_b.getText());
-        data.bi = Double.parseDouble(bi_value.getText());
-        data.special = compare.getSelectedIndex();
-        data.a_special = Double.parseDouble(han_a1.getText());
-        data.b_special = Double.parseDouble(han_b1.getText());
-        data.bi_special = Double.parseDouble(bi_value1.getText());
-        data.basePrice = this.mainController.getNewPtPrice(data.pt_L);
-        data.pt_R = pt_R.getSelectedIndex() + 1;
-        data.han_bi_special = this.jTabbedPane2.getSelectedIndex();
-        data.basePrice_special = this.mainController.getNewPtPrice(data.pt_R);
-        data.gd_L = this.compare_L.getSelectedIndex();
-        data.gd_R = this.compare_R.getSelectedIndex();
-        data.do_BS = Config.BUY_ID;
-        this.mainController.addProcessAINewER(data);
-        this.superConPanel.updateSuperUI();
+        addProcessAi(Config.BUY_ID);
     }//GEN-LAST:event_bs_doActionPerformed
 
     private void priceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_priceFocusLost
@@ -656,6 +634,11 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
 
     private void bs_do1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_do1ActionPerformed
         // TODO add your handling code here:
+        addProcessAi(Config.SELL_ID);
+    }//GEN-LAST:event_bs_do1ActionPerformed
+
+    void addProcessAi(int doType)
+    {
         BaseNewErConData data = new BaseNewErConData();
         data.pt_L = superConPanel.pt.getSelectedIndex() + 1;
         data.xs_L = xs_L.getSelectedIndex();
@@ -676,12 +659,12 @@ public class ErConJPanel extends javax.swing.JPanel implements BaseNode{
         data.basePrice_special = this.mainController.getNewPtPrice(data.pt_R);
         data.gd_L = this.compare_L.getSelectedIndex();
         data.gd_R = this.compare_R.getSelectedIndex();
-        data.do_BS = Config.SELL_ID;
+        data.do_BS = doType;
+        data.current_future = Config.MODERN_ID;
         this.mainController.addProcessAINewER(data);
         this.superConPanel.updateSuperUI();
-    }//GEN-LAST:event_bs_do1ActionPerformed
-
-
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amount;
     private javax.swing.JTextField bi_value;

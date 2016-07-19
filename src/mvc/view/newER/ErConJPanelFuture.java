@@ -7,6 +7,7 @@ package mvc.view.newER;
 
 import base.BaseNewErConData;
 import base.BaseNode;
+import config.Config;
 import mvc.controller.Controller;
 
 /**
@@ -637,6 +638,39 @@ public class ErConJPanelFuture extends javax.swing.JPanel implements BaseNode{
 
     private void bs_doActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_doActionPerformed
         // TODO add your handling code here:
+        addProcessAi(Config.FUTURE_KAI_DUO);
+    }//GEN-LAST:event_bs_doActionPerformed
+
+    private void priceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_priceFocusLost
+        // TODO add your handling code here:
+        double priceValue = Double.parseDouble(price.getText());
+        double amountValue = Double.parseDouble(amount.getText());
+        total.setText(String.format("%.4f", priceValue*amountValue));
+    }//GEN-LAST:event_priceFocusLost
+
+    private void amountFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_amountFocusLost
+        // TODO add your handling code here:
+        double priceValue = Double.parseDouble(price.getText());
+        double amountValue = Double.parseDouble(amount.getText());
+        total.setText(String.format("%.4f", priceValue*amountValue));
+    }//GEN-LAST:event_amountFocusLost
+
+    private void bs_do4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_do4ActionPerformed
+        // TODO add your handling code here:
+        addProcessAi(Config.FUTURE_KAI_KONG);
+    }//GEN-LAST:event_bs_do4ActionPerformed
+
+    private void bs_do5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_do5ActionPerformed
+        // TODO add your handling code here:
+        addProcessAi(Config.FUTURE_PING_KONG);
+    }//GEN-LAST:event_bs_do5ActionPerformed
+
+    private void bs_do6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_do6ActionPerformed
+        // TODO add your handling code here:
+        addProcessAi(Config.FUTURE_PING_DUO);
+    }//GEN-LAST:event_bs_do6ActionPerformed
+    public void addProcessAi(int doType)
+    {
         BaseNewErConData data = new BaseNewErConData();
         data.pt_L = superConPanel.pt.getSelectedIndex() + 1;
         data.xs_L = xs_L.getSelectedIndex();
@@ -657,36 +691,11 @@ public class ErConJPanelFuture extends javax.swing.JPanel implements BaseNode{
         data.basePrice_special = this.mainController.getNewPtPrice(data.pt_R);
         data.gd_L = this.compare_L.getSelectedIndex();
         data.gd_R = this.compare_R.getSelectedIndex();
+        data.current_future = Config.FURTURE_ID;
+        data.future_type = doType;
         this.mainController.addProcessAINewER(data);
         this.superConPanel.updateSuperUI();
-    }//GEN-LAST:event_bs_doActionPerformed
-
-    private void priceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_priceFocusLost
-        // TODO add your handling code here:
-        double priceValue = Double.parseDouble(price.getText());
-        double amountValue = Double.parseDouble(amount.getText());
-        total.setText(String.format("%.4f", priceValue*amountValue));
-    }//GEN-LAST:event_priceFocusLost
-
-    private void amountFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_amountFocusLost
-        // TODO add your handling code here:
-        double priceValue = Double.parseDouble(price.getText());
-        double amountValue = Double.parseDouble(amount.getText());
-        total.setText(String.format("%.4f", priceValue*amountValue));
-    }//GEN-LAST:event_amountFocusLost
-
-    private void bs_do4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_do4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bs_do4ActionPerformed
-
-    private void bs_do5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_do5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bs_do5ActionPerformed
-
-    private void bs_do6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bs_do6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bs_do6ActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amount;
